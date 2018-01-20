@@ -1,22 +1,6 @@
-# AngularFourMEANSeed
+# Webdev2018
 
-After you clone this repository and run "npm install"
-To start the project
-Open two terminals, One to start the front end, One to start the backend
-
-~ npm start
-
-
-~ nodemon server.js
-
-Front end will run on `http://localhost:4200/`
-Server will run on port 3100. Specified in server.js and in environment.ts files
-
-
-
-
-
-
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.5.
 
 ## Development server
 
@@ -24,7 +8,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Build
 
@@ -37,7 +21,6 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 ## Running end-to-end tests
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
 
 ## Further help
 
