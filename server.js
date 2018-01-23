@@ -29,22 +29,21 @@ app.use(function(req, res, next) {
 
 
 
-const port = process.env.PORT || '3100';
+const port = process.env.PORT || '5000';
 app.set('port', port);
 
 
 // Create HTTP server
 const server = http.createServer(app);
 
-//var serverSide = require("./server/test-mongodb/app");
-//serverSide(app);
 
 
-
+/*
 // For Build: Catch all other routes and return the index file -- BUILDING
 app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
+*/
 
 
-server.listen( port , () => console.log('Running on port 3100'));
+server.listen( port , () => console.log('Running on port 5000'));
