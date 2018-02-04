@@ -1,0 +1,170 @@
+body {
+  padding-top: 70px;
+  /*padding-top:7em;*/
+  padding-bottom: 70px;
+  /*padding-bottom: 7em;*/
+}
+input.form-control {
+  margin-bottom: 5px;
+  /*margin-bottom: 0.5em;*/
+}
+
+.cl-form-bottom-padding{
+  margin-bottom: 2em;
+}
+
+a:hover{
+  text-decoration: none;
+}
+
+.cl-container-padding {
+  padding-top: 1%;
+  padding-bottom: 10%;
+}
+
+.cl-blue-navbar{
+  background-color: #337ab7;
+}
+
+.cl-text-white{
+  color: #fff;
+}
+
+.cl-text-blue{
+  color: #0000ff;
+}
+.cl-text-black{
+  color: #000000;
+}
+
+.cl-text-bold{
+  font-weight: bold;
+}
+.cl-text-padding {
+  padding-left: 100px;
+  padding-right: 100px;
+  /*padding-left: 8em;*/
+  /*padding-right: 8em;*/
+}
+
+.cl-icon-padding {
+  padding-left: 10px;
+  padding-right: 10px;
+  /*padding-left: 1em;*/
+  /*padding-right: 1em;*/
+}
+.cl-icon-padding2 {
+  padding-left: 100px;
+  padding-right: 100px;
+  /*padding-left: 8em;*/
+  /*padding-right: 8em;*/
+}
+
+.cl-header-padding{
+  padding-left: 5%;
+}
+
+.cl-full-width{
+  width: 100%;
+}
+
+.cl-widget-list-item{
+  padding-bottom: 20px;
+  /*padding-bottom: 2em;*/
+}
+
+.cl-v-divider{
+  border-right: 1px solid #808080;
+  /*border-right: 0.1em solid #808080;*/
+  height: 100%;
+}
+
+.cl-widget-heading{
+  margin-top: 0px;
+  margin-bottom: 0px;
+  /*margin-top: 0;*/
+  /*margin-bottom: 0;*/
+}
+
+.cl-widget-paragraph{
+  margin-top: 0px;
+  margin-bottom: 0px;
+  /*margin-top: 0;*/
+  /*margin-bottom: 0;*/
+}
+
+.cl-height{
+  height: 100%;
+  min-height: 100%;
+}
+
+.cl-relative-position{
+  position: relative;
+}
+.cl-absolute-position{
+  position: absolute;
+}
+.cl-widget-list-icons{
+  top: 0px;
+  right: 0px;
+  /*top: 0;*/
+  /*right: 0;*/
+  z-index: 10;
+  background-color: white;
+}
+.cl-zero-right-padding{
+  padding-right: 0px;
+  /*padding-right: 0;*/
+}
+
+.cl-list-item-borderless {
+  border-top: 0 none;
+  border-bottom: 0 none;
+  border-left: 0 none;
+  border-right: 0 none;
+}
+
+.cl-widget-images{
+  display: inline;
+  width: 85%;
+  z-index: 100;
+  position: relative;
+}
+
+.cl-borders  {
+  margin-left: 6px;
+
+  border-left: 1px solid #808080;
+  /*border-left: 0.1em solid #808080;*/
+
+  /*font-size: 0;*/
+
+  height: 600px
+  /*height: 60em*/
+
+}
+
+.borders {
+  border-left: 1px solid #ddd;
+  margin: -20px;
+  height:1200px;
+  left: 20px;
+  /*border-left: 0.1em solid #ddd;*/
+  /*margin: -2em;*/
+  /*height:120em;*/
+  /*left: 20em;*/
+
+}
+
+.cl-8-top {
+  margin-top: 20px;
+  margin-left: 0px;
+  /*margin-top: 2em;*/
+  /*margin-left: 0;*/
+}
+.form-group {
+  margin-bottom: 1px;
+}
+.form-group-pagenew {
+  margin-bottom: 0px;
+}
