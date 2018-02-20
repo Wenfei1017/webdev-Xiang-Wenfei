@@ -24,14 +24,15 @@
 // }
 
 //
-import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import { Component, Inject, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 import { User } from '../../../models/user.model.client';
-import {UserService} from '../../../services/user.service.client';
+// import {UserService} from '../../../services/user.service.client';
 import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-register',
+  // providers: [UserService],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
@@ -42,7 +43,7 @@ export class RegisterComponent implements OnInit {
   InfoFlag: Boolean;
   infoMSG: String = 'wrong password';
 
-  constructor(private userService: UserService,
+  constructor(@Inject('UserService') private userService,
               private router: Router) {}
   register() {
     if (this.user.password === this.verifypas) {

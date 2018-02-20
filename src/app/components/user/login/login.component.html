@@ -12,7 +12,7 @@ class="alert alert-danger">
     Please enter username!
     </span>
 
-    <label for="password">Username</label>
+    <label for="password">Password</label>
     <input type="password" class="form-control" id="password" placeholder="password" name="password" ngModel required #password="ngModel"/>
 
     <span  class="help-block" *ngIf="!password.valid && password.touched">

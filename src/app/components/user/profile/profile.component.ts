@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {UserService} from '../../../services/user.service.client';
+// import {UserService} from '../../../services/user.service.client';
 import {User} from '../../../models/user.model.client';
 
 @Component({
   selector: 'app-profile',
+  // providers: [UserService],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
@@ -15,7 +16,7 @@ export class ProfileComponent implements OnInit {
   infoFlag: boolean;
   infoMsg = 'update success !';
   constructor(
-    private userService: UserService,
+    @Inject('UserService') private userService,
     private activatedRoute: ActivatedRoute) { }
 
   updateUser(user) {

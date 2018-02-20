@@ -2,7 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {Routing} from './app.routing';
 import {FormsModule} from '@angular/forms';
-import { HttpModule } from '@angular/http';
+// import { HttpModule } from '@angular/http';
+// // import {HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 
@@ -59,10 +60,28 @@ import { WidgetYoutubeComponent } from './components/widget/widget-edit/widget-y
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
+    // HttpModule,
     Routing,
+    // HttpClientModule,
   ],
-  providers: [UserService, WebsiteService, PageService, WidgetService],
+  providers: [
+    {
+      provide: 'UserService',
+      useClass: UserService
+    },
+    {
+      provide: 'WebsiteService',
+      useClass: WebsiteService
+    },
+    {
+      provide: 'PageService',
+      useClass: PageService
+    },
+    {
+      provide: 'WidgetService',
+      useClass: WidgetService
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
