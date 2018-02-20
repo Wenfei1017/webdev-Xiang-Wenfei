@@ -1,49 +1,18 @@
-// import {Routes, RouterModule} from '@angular/router';
-//
-// import {LoginComponent} from './view/user/views/user/login/login.component';
-// import {RegisterComponent} from './view/user/views/user/register/register.component';
-//
-// const appRoutes: Routes = [
-//   {path: 'login', component: LoginComponent},
-//   {path: 'profile', component: LoginComponent},
-//   {path: 'rigister', component: RegisterComponent},
-//
-// ];
-//
-// export const routing = RouterModule.forRoot(appRoutes);
-// {path: 'profile/:userId', component:}
-// import {Routes, RouterModule} from '@angular/router';
-//
-//
-// import {RegisterComponent} from './views/user/register/register.component';
-// import {ProfileComponent} from './views/user/profile/profile.component';
-// import {WebsiteListComponent} from './views/website/website-list/website-list.component';
-// import {LoginComponent} from './views/user/login/login.component';
-//
-// const appRoutes: Routes = [
-//   {path: 'login', component: LoginComponent},
-//   {path: 'register', component: RegisterComponent},
-//   {path: 'profile/:userId', component: ProfileComponent},
-//   {path: 'profile/:userId/website', component: WebsiteListComponent}
-// ];
-//
-// export const routing = RouterModule.forRoot(appRoutes);
-
 import {Routes, RouterModule} from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
 
-import {RegisterComponent} from './views/user/register/register.component';
-import {ProfileComponent} from './views/user/profile/profile.component';
-import {WebsiteListComponent} from './views/website/website-list/website-list.component';
-import {LoginComponent} from './views/user/login/login.component';
-import {WebsiteNewComponent} from './views/website/website-new/website-new.component';
-import {WebsiteEditComponent} from './views/website/website-edit/website-edit.component';
-import {PageListComponent} from './views/page/page-list/page-list.component';
-import {PageNewComponent} from './views/page/page-new/page-new.component';
-import {PageEditComponent} from './views/page/page-edit/page-edit.component';
-import {WidgetListComponent} from './views/widget/widget-list/widget-list.component';
-import {WidgetChooserComponent} from './views/widget/widget-chooser/widget-chooser.component';
-import {WidgetEditComponent} from './views/widget/widget-edit/widget-edit.component';
+import {RegisterComponent} from './components/user/register/register.component';
+import {ProfileComponent} from './components/user/profile/profile.component';
+import {WebsiteListComponent} from './components/website/website-list/website-list.component';
+import {LoginComponent} from './components/user/login/login.component';
+import {WebsiteNewComponent} from './components/website/website-new/website-new.component';
+import {WebsiteEditComponent} from './components/website/website-edit/website-edit.component';
+import {PageListComponent} from './components/page/page-list/page-list.component';
+import {PageNewComponent} from './components/page/page-new/page-new.component';
+import {PageEditComponent} from './components/page/page-edit/page-edit.component';
+import {WidgetListComponent} from './components/widget/widget-list/widget-list.component';
+import {WidgetChooserComponent} from './components/widget/widget-chooser/widget-chooser.component';
+import {WidgetEditComponent} from './components/widget/widget-edit/widget-edit.component';
 
 
 const APP_ROUTES: Routes = [
@@ -51,18 +20,17 @@ const APP_ROUTES: Routes = [
   { path: 'default', component: LoginComponent},
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
-  { path: 'profile', component: ProfileComponent},
-  { path: 'user/:uid', component: ProfileComponent},
-  { path: 'user/:uid/website', component: WebsiteListComponent},
-  { path: 'user/:uid/website/new', component: WebsiteNewComponent},
-  { path: 'user/:uid/website/:wid', component: WebsiteEditComponent},
-  // { path: 'user/:uid/website/:wid/page', component: PageListComponent},
-  // { path: 'user/:uid/website/:wid/page/new', component: PageNewComponent},
-  // { path: 'user/:uid/website/:wid/page/:pid', component: PageEditComponent},
-  // { path: 'user/:uid/website/:wid/page/:pid/widget', component: WidgetListComponent},
-  // { path: 'user/:uid/website/:wid/page/:pid/widget/new', component: WidgetChooserComponent},
-  // { path: 'user/:uid/website/:wid/page/:pid/widget/:wgid', component: WidgetEditComponent}
+  // { path: 'profile', component: ProfileComponent},
+  { path: 'profile/:userId', component: ProfileComponent},
+  { path: 'user/:userId/website', component: WebsiteListComponent},
+  { path: 'user/:userId/website/new', component: WebsiteNewComponent},
+  { path: 'user/:userId/website/:wid', component: WebsiteEditComponent},
+  { path: 'user/:userId/website/:wid/page', component: PageListComponent},
+  { path: 'user/:userId/website/:wid/page/new', component: PageNewComponent},
+  { path: 'user/:userId/website/:wid/page/:pid', component: PageEditComponent},
+  { path: 'user/:userId/website/:wid/page/:pid/widget', component: WidgetListComponent},
+  { path: 'user/:userId/website/:wid/page/:pid/widget/new', component: WidgetChooserComponent},
+  { path: 'user/:userId/website/:wid/page/:pid/widget/:wgid', component: WidgetEditComponent}
 ];
 
-
-export const routing = RouterModule.forRoot(APP_ROUTES);
+export const Routing = RouterModule.forRoot(APP_ROUTES);

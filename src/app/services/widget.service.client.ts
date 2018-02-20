@@ -6,21 +6,33 @@ export  class WidgetService {
 
   // constructor(_id:String, type:String, pageId:String, size= '1', text = 'text', url = 'url', width = '100%')
   widgets: Widget[] = [
-    new Widget('123', 'HEADER', '321', '2', 'GIZMODO' ),
-    new Widget('123', 'HEADER', '321', '2', 'GIZMODO' ),
-    new Widget('123', 'IMAGE', '321', '2', 'text', '100%', 'http://lorempixel.com/400/200/'),
-    new Widget('123', 'HTML', '321', '2', '<p>blalbla</p>' ),
-    new Widget('123', 'YOUTUBE', '321', '2', 'text', '100%', 'https://youtube.com/token' ),
+    // { _id: '123', widgetType: 'HEADER', pageId: 321, size: 2, text: 'GIZMODO', url: '', width: '' },
+    // { _id: '234', widgetType: 'HEADER', pageId: 321, size: 4, text: 'Lorem ipsum', url: '', width: '' },
+    // { _id: '345', widgetType: 'IMAGE', pageId: 321, size:, text: '', width: '100%', url: 'http://lorempixel.com/400/200/' },
+    // { _id: '456', widgetType: 'HTML', pageId: 321, size:, text: '<p>Lorem ipsum</p>', url: '', width: '' },
+    // { _id: '567', widgetType: 'HEADER', pageId: 321, size: 4, text: 'Lorem ipsum', url: '', width: '' },
+    // { _id: '678', widgetType: 'YOUTUBE', pageId: 321, size:, text: '', url: 'https://youtu.be/AM2Ivdi9c4E", width: "100%' },
+    // { _id: '789', widgetType: 'HTML', pageId: 321, size: '<p>Lorem ipsum</p>', text: '', url: '', width: '' }
   ];
 
   createWidget(pageId, widget) {
     this.widgets.push(widget);
   }
 
+  findWidgetsById(widgetId: String) {
+    return this.widgets.find(function (widgets) {
+      return widgets._id === widgetId;
+    });
+  }
+  fidWidgetByPageId(pageId) {
+    return this.widgets.find(function (page) {
+      return page._id === pageId;
+    });
+  }
   updateWidget(widgetId, widget) {
     for ( const i in this.widgets ) {
       if ( this.widgets[i]._id === widgetId ) {
-        switch (widget.widgetType){
+        switch (widget.widgetType) {
           case 'HEADER':
             this.widgets[i].text = widget.text;
             this.widgets[i].size = widget.size;
@@ -42,5 +54,14 @@ export  class WidgetService {
       }
     }
     return false;
+  }
+
+  deleteWidget(widgetId: String) {
+    for (const i in this.widgets) {
+      if (this.widgets[i]._id === widgetId) {
+        const j = +i;
+        this.widgets.splice(j, 1);
+      }
+    }
   }
 }

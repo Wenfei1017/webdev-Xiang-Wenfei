@@ -7,15 +7,13 @@ import { Http, RequestOptions, Response } from '@angular/http';
 export class PageService {
 
   pages: Page[] = [
-    new Page('321', 'page321', '321', 'test page 321' ),
-    new Page('111', 'page111', '111', 'test page 111' ),
-    new Page('222', 'page222', '222', 'test page 222' ),
-    new Page('333', 'page3', '333', 'test page 333' ),
-    new Page('432', 'page432', '432', 'test page 432' ),
-    new Page('234', 'page234', '234', 'test page 234' ),
+    {_id: '321', name: 'Post 1', websiteId: '456', title: 'Lorem'},
+    {_id: '432', name: 'Post 2', websiteId: '456', title: 'Lorem'},
+    {_id: '543', name: 'Post 3', websiteId: '456', title: 'Lorem'}
+
   ];
 
-  createWebsite(websiteId: String, page: Page) {
+  createPge(pageId: String, page: Page) {
 
     const new_page = {
       _id: (new Date()).getTime() + '',
@@ -29,7 +27,7 @@ export class PageService {
 
   findPageByWebsiteId(websiteId: String) {
     const resultSet = [];
-    for ( const i in this.pages) {
+    for (const i in this.pages) {
       if (this.pages[i].websiteId === websiteId) {
         resultSet.push(this.pages[i]);
       }
@@ -58,7 +56,7 @@ export class PageService {
     }
   }
 
-  deleteWebsite(pageId: String) {
+  deletePage(pageId: String) {
     for (const i in this.pages) {
       if (this.pages[i]._id === pageId) {
         const j = +i;
@@ -67,3 +65,4 @@ export class PageService {
     }
   }
 }
+

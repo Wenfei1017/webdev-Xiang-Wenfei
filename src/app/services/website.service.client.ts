@@ -6,12 +6,13 @@ import {Injectable} from '@angular/core';
 export class WebsiteService {
 
   websites: Website[] = [
-    new Website('321', 'Facebook', '123', 'test' ),
-    new Website('111', 'Facebook1', '123', 'test' ),
-    new Website('222', 'Facebook2', '123', 'test' ),
-    new Website('333', 'Facebook3', '123', 'test' ),
-    new Website('432', 'Twitter', '456', 'test' ),
-    new Website('234', 'Amazon', '789', 'test' ),
+    {_id: '123', name: 'Facebook',    developId: '456', description: 'Lorem' },
+    {_id: '234', name: 'Tweeter',     developId: '456', description: 'Lorem' },
+    {_id: '456', name: 'Gizmodo',     developId: '456', description: 'Lorem' },
+    {_id: '890', name: 'Go',          developId: '123', description: 'Lorem' },
+    {_id: '567', name: 'Tic Tac Toe', developId: '123', description: 'Lorem' },
+    {_id: '678', name: 'Checkers',    developId: '123', description: 'Lorem' },
+    {_id: '789', name: 'Chess',       developId: '234', description: 'Lorem' }
   ];
 
   createWebsite(userId: String, website: Website) {
