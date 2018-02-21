@@ -7,9 +7,14 @@ import { Http, RequestOptions, Response } from '@angular/http';
 export class PageService {
 
   pages: Page[] = [
-    {_id: '321', name: 'Post 1', websiteId: '456', title: 'Lorem'},
-    {_id: '432', name: 'Post 2', websiteId: '456', title: 'Lorem'},
-    {_id: '543', name: 'Post 3', websiteId: '456', title: 'Lorem'}
+    {_id: '321', name: 'Post 1', websiteId: '456', description: 'Lorem'},
+    {_id: '432', name: 'Post 2', websiteId: '456', description: 'Lorem'},
+    {_id: '543', name: 'Post 3', websiteId: '456', description: 'Lorem'},
+    // { '_id': '3', 'name': 'Post 1', 'websiteId': '4', 'description': 'Lorem' },
+    // { '_id': '4', 'name': 'Post 2', 'websiteId': '4', 'description': 'Lorem' },
+    // { '_id': '5', 'name': 'Post 3', 'websiteId': '4', 'description': 'Lorem' },
+    // { '_id': '1', 'name': 'Post 4', 'websiteId': '3', 'description': 'Lorem' },
+    // { '_id': '2', 'name': 'Post 5', 'websiteId': '2', 'description': 'Lorem' }
 
   ];
 
@@ -19,7 +24,7 @@ export class PageService {
       _id: (new Date()).getTime() + '',
       name: page.name,
       websiteId: page.websiteId,
-      title: page.title
+      description: page.description
     };
 
     this.pages.push(new_page);
@@ -51,7 +56,7 @@ export class PageService {
     for (const i in this.pages) {
       if (this.pages[i]._id === pageId) {
         this.pages[i].name = page.name;
-        this.pages[i].title = page.title;
+        this.pages[i].description = page.description;
       }
     }
   }

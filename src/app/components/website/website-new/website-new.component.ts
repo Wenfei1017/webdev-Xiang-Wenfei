@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import {WebsiteService} from '../../../services/website.service.client';
+// import {WebsiteService} from '../../../services/website.service.client';
 import {ActivatedRoute} from '@angular/router';
 import {Website} from '../../../models/website.model.client';
 
@@ -10,7 +10,7 @@ import {Website} from '../../../models/website.model.client';
 })
 export class WebsiteNewComponent implements OnInit {
   website: Website;
-  websites: Website[] = []
+  websites: Website[] = [];
 
   constructor(@Inject('WebsiteService') private websiteService, private activatedRoute: ActivatedRoute) {}
   websiteNew() {

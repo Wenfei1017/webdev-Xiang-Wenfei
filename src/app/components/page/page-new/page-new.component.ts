@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import { PageService } from '../../../services/page.service.client';
+// import { PageService } from '../../../services/page.service.client';
 import { Page } from '../../../models/page.model.client';
 import {ActivatedRoute} from '@angular/router';
 

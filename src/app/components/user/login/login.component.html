@@ -5,17 +5,21 @@ class="alert alert-danger">
 </div>
 <h1>Login</h1>
   <form (ngSubmit) = "login()" #f="ngForm">
-    <label for="username">Username</label>
-    <input type="text" class="form-control" id="username" placeholder="username" name="username" ngModel required #username="ngModel"/>
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" class="form-control" id="username" placeholder="username" name="username" ngModel required #username="ngModel"/>
+    </div>
 
     <span class="help-block" *ngIf="!username.valid && username.touched">
     Please enter username!
     </span>
 
-    <label for="password">Password</label>
-    <input type="password" class="form-control" id="password" placeholder="password" name="password" ngModel required #password="ngModel"/>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" placeholder="password" name="password" ngModel required #password="ngModel"/>
+    </div>
 
-    <span  class="help-block" *ngIf="!password.valid && password.touched">
+    <span class="help-block" *ngIf="!password.valid && password.touched">
     Please enter password!
     </span>
 

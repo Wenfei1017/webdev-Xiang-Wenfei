@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import { PageService } from '../../../services/page.service.client';
+// import { PageService } from '../../../services/page.service.client';
 import { Page } from '../../../models/page.model.client';
 
 @Component({
@@ -9,7 +9,7 @@ import { Page } from '../../../models/page.model.client';
   styleUrls: ['./page-list.component.css']
 })
 export class PageListComponent implements OnInit {
-
+  page: Page;
   pages: Page[] = [];
 
   constructor(@Inject('PageService') private pageService,

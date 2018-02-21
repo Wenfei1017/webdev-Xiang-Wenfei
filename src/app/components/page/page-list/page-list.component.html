@@ -1,6 +1,5 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid row">
-
     <div class="navbar-text pull-left">
       <a routerLink="user/{{userId}}/website" class="cl-text-black cl-icon-padding">
           <span class="glyphicon glyphicon-chevron-left">
@@ -13,44 +12,27 @@
           </span>
       </a>
     </div>
-    <a class="navbar-brand cl-text-white cl-text-bold" href="#">
+    <a class="navbar-brand cl-text-white cl-text-bold" routerLink="#">
       Pages
     </a>
   </div>
 </nav>
 
-
 <div class="container-fluid cl-container-padding">
-  <div class="row extra-padding" *ngFor="let page of pages">
-  <!--<ul class="list-group cl-list-group-borderless">-->
-    <!--<li class="list-group-item cl-list-item-borderless">-->
-      <!--<a href="./../page-edit/page-edit.component.html"><span class="glyphicon glyphicon-cog pull-right"></span></a>-->
-      <!--<a href="./../../widget/widget-list/widget-list.component.html">Blog Post</a>-->
-    <!--</li>-->
-    <!--<li class="list-group-item cl-list-item-borderless">-->
-      <!--<a href="./../page-edit/page-edit.component.html"><span class="glyphicon glyphicon-cog pull-right"></span></a>-->
-      <!--<a href="./../../widget/widget-list/widget-list.component.html">Blogs</a>-->
-    <!--</li>-->
-    <!--<li class="list-group-item cl-list-item-borderless">-->
-      <!--<a href="./../page-edit/page-edit.component.html"><span class="glyphicon glyphicon-cog pull-right"></span></a>-->
-      <!--<a href="./../../widget/widget-list/widget-list.component.html">Home</a>-->
-    <!--</li>-->
-    <!--<li class="list-group-item cl-list-item-borderless">-->
-      <!--<a href="./../page-edit/page-edit.component.html"><span class="glyphicon glyphicon-cog pull-right"></span></a>-->
-      <!--<a href="./../../widget/widget-list/widget-list.component.html">About</a>-->
-    <!--</li>-->
-
-      <a routerLink="/page-edit/page-edit.component"><span class="glyphicon glyphicon-cog pull-right"></span></a>
-      <a routerLink="user/:userId/website/:wid/page/:pid/widget">{{pages.name}}}</a>
-
-  <!--</ul>-->
+  <div class="row extra-padding">
+  <ul class="list-group cl-list-group-borderless">
+    <li  *ngFor="let page of pages">
+    <a routerLink="./{{page._id}}"><span class="glyphicon glyphicon-cog pull-right"></span></a>
+      <a routerLink="./{{page._id}}/widget">{{page.name}}}</a>
+    </li>
+  </ul>
   </div>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid row">
     <div class="pull-right navbar-text">
-      <a routerLink="/profile" class="cl-icon-padding">
+      <a routerLink="profile/{{userId}}" class="cl-icon-padding">
         <span class="glyphicon glyphicon-user"></span>
       </a>
     </div>

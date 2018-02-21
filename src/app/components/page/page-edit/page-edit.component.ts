@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {Page} from '../../../models/page.model.client';
-import {PageService} from '../../../services/page.service.client';
+// import {PageService} from '../../../services/page.service.client';
 
 @Component({
   selector: 'app-page-edit',

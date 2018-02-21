@@ -1,12 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Router} from '@angular/router';
-// import {UserService} from '../../../services/user.service.client';
 import {User} from '../../../models/user.model.client';
 import {NgForm} from '@angular/forms';
 import { ViewChild } from '@angular/core';
-// import {HttpClientModule} from '@angular/common/http';
-// import { HttpModule } from '@angular/http';
-
 
 @Component({
   selector: 'app-login',
@@ -20,7 +16,6 @@ export class LoginComponent implements OnInit {
   password: String; // see usage as two-way data binding
   errorFlag: boolean;
   errorMsg = 'Invalid username or password !';
-
   constructor(@Inject('UserService') private userService, private router: Router) {}
 
   login() {
@@ -33,17 +28,19 @@ export class LoginComponent implements OnInit {
       console.log('login id= ' + user._id);
       this.router.navigate(['/profile', user._id]);
     } else {
-      alert('Please type correct password!');
+      console.log('Please type correct password!');
+      console.log(this.username);
+      console.log(this.password);
       this.errorFlag = true;
     }
   }
 
   ngOnInit() {
-     this.errorMsg = 'This is Login Page';
-     this.errorFlag = false;
+     // this.errorMsg = 'This is Login Page';
+     // this.errorFlag = false;
   }
-  buttonClicked(event: any) {
-    console.log(event); // your custom code on button click
-  }
+  // buttonClicked(event: any) {
+  //   console.log(event); // your custom code on button click
+  // }
 }
 
