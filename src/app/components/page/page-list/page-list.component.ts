@@ -9,8 +9,10 @@ import { Page } from '../../../models/page.model.client';
   styleUrls: ['./page-list.component.css']
 })
 export class PageListComponent implements OnInit {
-  page: Page;
-  pages: Page[] = [];
+  // page: Page;
+  pages: any = [];
+  uid: String;
+  wid: String;
 
   constructor(@Inject('PageService') private pageService,
               private activatedRoute: ActivatedRoute) { }
@@ -19,9 +21,13 @@ export class PageListComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe(
       (params: any) => {
-        this.pages = this.pageService.findPageByWebsiteId(params['websiteId']);
-        console.log('page= ' + this.pages);
+        this.uid = params['userId'];
+        this.wid = params['websiteId'];
       }
     );
+    this.pages = this.pageService.findPageByWebsiteId(this.wid);
+    console.log('pages= ' + this.pages);
+    console.log('websiteId= ' + this.wid);
+    console.log('page= ' + this.pages[0]);
   }
 }

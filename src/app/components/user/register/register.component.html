@@ -26,7 +26,7 @@
     <input [(ngModel)]="verifypas" type="password" name="verifypas" class="form-control" id="verifypas" placeholder="verify password" [ngModelOptions]="{standalone: true}"/>
   </div>
 
-    <button class="btn btn-primary btn-block" routerLink="/profile/{{userId}}" (click)="register()">Register</button>
+    <button class="btn btn-primary btn-block" routerLink="/user/{{userId}}" (click)="register()">Register</button>
     <button class="btn btn-danger  btn-block"
      routerLink="/login">Cancel</button>
 </form>

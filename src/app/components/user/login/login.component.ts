@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     if (user) {
       // this.router.navigate(['/profile/user._id']);
       console.log('login id= ' + user._id);
-      this.router.navigate(['/profile', user._id]);
+      this.router.navigate(['/user', user._id]);
     } else {
       console.log('Please type correct password!');
       console.log(this.username);

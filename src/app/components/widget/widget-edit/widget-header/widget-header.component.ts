@@ -1,6 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-// import {WidgetService} from '../../../../services/widget.service.client';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Widget} from '../../../../models/widget.model.client';
 
 @Component({
@@ -10,24 +9,37 @@ import {Widget} from '../../../../models/widget.model.client';
 })
 export class WidgetHeaderComponent implements OnInit {
   widget: Widget;
-  widgetId: String;
-  pageId: String;
+  wid: String;
+  wgid: String;
+  pid: String;
+  uid: String;
 
   constructor(
     @Inject('WidgetService') private widgetService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) { }
   createWidget() {
-    this.widget = this.widgetService.creatWidget(this.pageId, this.widget);
+    this.widget = this.widgetService.creatWidget(this.pid, this.widget);
   }
   updateWidget() {
-    this.widget = this.widgetService.updateWidget(this.pageId, this.widget);
+    this.widget = this.widgetService.updateWidget(this.widget._id, this.widget);
   }
   deleteWidget() {
-    this.widgetService.deletWidget(this.widget._id);
+    this.widgetService.deletWidget(this.wgid);
   }
 
   ngOnInit() {
+    this.activatedRoute.params.subscribe(
+      (params: any) => {
+        this.wgid = params['widgetId'];
+        this.pid = params['pageId'];
+        this.uid = params['userId'];
+        this.wid = params['websiteId'];
+      }
+    );
+
+    this.widget = this.widgetService.findWidgetById(this.wgid);
   }
 
 }

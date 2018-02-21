@@ -2,13 +2,13 @@
   <div class="container-fluid row">
 
     <div class="navbar-text pull-left">
-      <a routerLink="user/:userId/website/:wid/page/:pid/widget" class="cl-text-black cl-icon-padding">
+      <a routerLink="user/{{uid}}/website/{{wid}}/page/{{pid}}/widget" class="cl-text-black cl-icon-padding">
           <span class="glyphicon glyphicon-chevron-left">
           </span>
       </a>
     </div>
     <div class="navbar-text pull-right">
-      <a routerLink="user/:userId/website/:wid/page/:pid/widget" class="cl-icon-padding cl-text-black">
+      <a routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget" class="cl-icon-padding cl-text-black">
           <span class="glyphicon glyphicon-ok">
           </span>
       </a>
@@ -23,29 +23,29 @@
   <form>
     <div class="form-group">
       <label for="youtube-name">Name</label>
-      <input [(ngModel)]="youtube-name" type="text" class="form-control" id="youtube-name" placeholder="Name">
+      <input [(ngModel)]="widget.widgetType" type="text" class="form-control" id="youtube-name" placeholder="Name" [ngModelOptions]="{standalone: true}">
     </div>
     <div class="form-group">
       <label for="youtube-text">Text</label>
-      <input [(ngModel)]="youtube-text" type="text" class="form-control" id="youtube-text" placeholder="Text">
+      <input [(ngModel)]="widget.text" type="text" class="form-control" id="youtube-text" placeholder="Text" [ngModelOptions]="{standalone: true}">
     </div>
     <div class="form-group">
       <label for="youtube-URL">URL</label>
-      <input [(ngModel)]="youtube-URL" type="text" class="form-control" id="youtube-URL" placeholder="URL">
+      <input [(ngModel)]="widget.url" type="text" class="form-control" id="youtube-URL" placeholder="URL" [ngModelOptions]="{standalone: true}">
     </div>
     <div class="form-group">
       <label for="youtube-width">Width</label>
-      <input [(ngModel)]="youtube-width" type="text" class="form-control" id="youtube-width" placeholder="100%">
+      <input [(ngModel)]="widget.width" type="text" class="form-control" id="youtube-width" placeholder="100%" [ngModelOptions]="{standalone: true}">
     </div>
   </form>
-  <a class="btn btn-danger btn-block" routerLink="user/:userId/website/:wid/page/:pid/widget">Delete</a>
+  <a class="btn btn-danger btn-block" routerLink="user/{{uid}}/website/{{uid}}/page/{{pid}}/widget">Delete</a>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid row">
     <div class="pull-right navbar-text">
 
-      <a routerLink="/profile:userId" class="cl-icon-padding">
+      <a routerLink="/user/{{uid}}" class="cl-icon-padding">
         <span class="glyphicon glyphicon-user"></span>
       </a>
 

@@ -1,6 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-// import {WidgetService} from '../../../services/widget.service.client';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Widget} from '../../../models/widget.model.client';
 
 @Component({
@@ -9,13 +8,27 @@ import {Widget} from '../../../models/widget.model.client';
   styleUrls: ['./widget-edit.component.css']
 })
 export class WidgetEditComponent implements OnInit {
+  uid: String;
+  pid: String;
+  wid: String;
+  wgid: String;
+  widget: Widget;
 
-  constructor(
-    @Inject('WidgetService') private widgetService,
-    private activatedRoute: ActivatedRoute
-  ) { }
-
-  ngOnInit() {
+  constructor(@Inject('WidgetService') private widgetService,
+              private activatedRoute: ActivatedRoute,
+              private router: Router) {
   }
 
+  ngOnInit() {
+    this.activatedRoute.params.subscribe(
+      (params: any) => {
+        this.uid = params['userID'];
+        this.wid = params['websiteId'];
+        this.pid = params['pageId'];
+        this.wgid = params['widgetId'];
+      }
+    );
+
+    this.widget = this.widgetService.findWidgetsById(this.wgid);
+  }
 }

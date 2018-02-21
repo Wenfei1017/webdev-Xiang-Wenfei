@@ -18,8 +18,9 @@ import {Website} from '../../../models/website.model.client';
 })
 export class WebsiteListComponent implements OnInit {
   // website: Website;
-  userId: String;
-  websites: Website[] = [];
+  uid: String;
+  // websites: Website[] = [];
+  websites: any[] = [{_id: '', name: '', developerId: '', description: ''}];
 
   constructor(@Inject('WebsiteService') private websiteService, private activatedRoute: ActivatedRoute) {
   }
@@ -28,11 +29,11 @@ export class WebsiteListComponent implements OnInit {
     this.activatedRoute.params
       .subscribe(
         (params: any) => {
-          this.userId = (params['userId']);
-          console.log(this.userId);
+          this.uid = (params['userId']);
+          console.log(this.uid);
           // this.websites = this.websiteService.findWebsitesByUser(params['userId']);
         });
-    this.websites = this.websiteService.findWebsitesByUser(this.userId);
+    this.websites = this.websiteService.findWebsitesByUser(this.uid);
     console.log(this.websites.length);
   }
 }

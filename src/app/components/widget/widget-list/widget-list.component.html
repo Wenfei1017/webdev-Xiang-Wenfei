@@ -2,18 +2,18 @@
   <div class="container-fluid row">
 
     <div class="navbar-text pull-left">
-      <a routerLink="user/:userId/website/:wid/page" class="cl-text-black cl-icon-padding">
+      <a routerLink="/user/{{uid}}/website/{{wid}}/page" class="cl-text-black cl-icon-padding">
           <span class="glyphicon glyphicon-chevron-left">
           </span>
       </a>
     </div>
     <div class="navbar-text pull-right">
-      <a routerLink="user/:userId/website/:wid/page/:pid/widget/new" class="cl-icon-padding cl-text-black">
+      <a routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/new" class="cl-icon-padding cl-text-black">
           <span class="glyphicon glyphicon-plus">
           </span>
       </a>
     </div>
-    <a class="navbar-brand cl-text-white cl-text-bold" routerLink="#">
+    <a class="navbar-brand cl-text-white cl-text-bold" routerLink=".">
       Widgets
     </a>
   </div>
@@ -21,37 +21,37 @@
 
 <div class="container cl-container-padding">
   <div  *ngFor="let widget of widgets">
-    <div [ngSwitch]="widget.type">
-      <div *ngSwitchCase="'header'">
+    <div [ngSwitch]="widget.widgetType">
+      <div *ngSwitchCase="'HEADER'">
         <div class="pull-right">
-          <a routerLink="#" class="pull-right">
+          <a routerLink="." class="pull-right">
           <span class="glyphicon glyphicon-menu-hamburger"></span>
           </a>
-          <a routerLink="../widget-edit/widget-header/widget-header.component.html">
+          <a routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{widget._id}}">
           <span class="glyphicon glyphicon-cog"></span>
           </a>
         </div>
-        <h1>{{widget.text}}}</h1>
+        <h1>{{widget.text}}</h1>
       </div>
 
-      <div *ngSwitchCase="'YouTube'">
+      <div *ngSwitchCase="'YOUTUBE'">
           <div class="embed-responsive embed-responsive-16by9">
-            <iframe width="640" height="360" [(src)]="urls[i]" frameborder="0" allowfullscreen></iframe>"
+            <iframe width="640" height="360" [src]="photoURL(widget.url)" frameborder="0" allowfullscreen></iframe>"
             <a routerLink="." class="pull-right">
               <span class="glyphicon glyphicon-menu-hamburger" style="background-color: white"></span>
             </a>
-            <a routerLink="./{{widget._id}}" class="pull-right">
+            <a routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{widget._id}}" class="pull-right">
               <span class="glyphicon glyphicon-cog" style="background-color: white"></span>
             </a>
           </div>
       </div>
 
-      <div *ngSwitchCase="'Image'">
+      <div *ngSwitchCase="'IMAGE'">
         <div>
           <a routerLink="." class="pull-right">
             <span class="glyphicon glyphicon-menu-hamburger"></span>
           </a>
-          <a routerLink="./{{widget._id}}" class="pull-right">
+          <a routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{widget._id}}" class="pull-right">
             <span class="glyphicon glyphicon-cog"></span>
           </a>
           <img class="img-responsive img-rounded cl-widget-images"
@@ -61,48 +61,6 @@
     </div>
   </div>
 </div>
-
-  <!--<div>-->
-    <!--<div class="pull-right">-->
-      <!--<a routerLink="#" class="pull-right">-->
-        <!--<span class="glyphicon glyphicon-menu-hamburger"></span>-->
-      <!--</a>-->
-      <!--<a routerLink="../widget-edit/widget-header/widget-header.component.html">-->
-        <!--<span class="glyphicon glyphicon-cog"></span>-->
-      <!--</a>-->
-    <!--</div>-->
-    <!--<h3>Counterterrorism officers patrol near the scene of the attack on London Bridge.</h3>-->
-  <!--</div>-->
-
-  <!--<div>-->
-
-  <!--</div>-->
-  <!--<div>-->
-    <!--<div class="pull-right">-->
-      <!--<a routerLink="#" class="pull-right">-->
-        <!--<span class="glyphicon glyphicon-menu-hamburger"></span>-->
-      <!--</a>-->
-      <!--<a routerLink="#">-->
-        <!--<span class="glyphicon glyphicon-cog"></span>-->
-      <!--</a>-->
-    <!--</div>-->
-    <!--<p>Armed officers responding to the London Bridge terror attack fired an "unprecedented" number of rounds at the three attackers because they were wearing what appeared to be suicide belts, police said.-->
-    <!--</p>-->
-  <!--</div>-->
-
-  <!--<div>-->
-    <!--<div class="pull-right">-->
-      <!--<a routerLink="#" class="pull-right">-->
-        <!--<span class="glyphicon glyphicon-menu-hamburger"></span>-->
-      <!--</a>-->
-      <!--<a routerLink="../widget-edit/widget-header/widget-header.component.html">-->
-        <!--<span class="glyphicon glyphicon-cog"></span>-->
-      <!--</a>-->
-    <!--</div>-->
-    <!--<h3>{{widget.text}}</h3>-->
-  <!--</div>-->
-
-
 
   <div>
     <div class="pull-right">
@@ -121,7 +79,7 @@
   <div class="container-fluid row">
     <div class="pull-right navbar-text">
 
-      <a routerLink="/profile:userId" class="cl-icon-padding">
+      <a routerLink="/user/{{uid}}" class="cl-icon-padding">
         <span class="glyphicon glyphicon-user"></span>
       </a>
 

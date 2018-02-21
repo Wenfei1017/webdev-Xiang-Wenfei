@@ -2,13 +2,13 @@
   <div class="container-fluid row">
 
     <div class="navbar-text pull-left">
-      <a routerLink="user/:userId/website/:wid/page/:pid/widget" class="cl-text-black cl-icon-padding">
+      <a routerLink="user/{{uid}}/website/{{wid}}/page/{{pid}}/widget" class="cl-text-black cl-icon-padding">
           <span class="glyphicon glyphicon-chevron-left">
           </span>
       </a>
     </div>
 
-    <a class="navbar-brand cl-text-white cl-text-bold" href="#">
+    <a class="navbar-brand cl-text-white cl-text-bold" href=".">
       Choose Widget
     </a>
   </div>
@@ -17,7 +17,7 @@
 <div class="container-fluid cl-container-padding">
   <ul class="list-group cl-list-group-borderless">
     <li class="list-group-item cl-list-item-borderless">
-      <a routerLink="../widget-edit/widget-header/widget-header.component.html">Header</a>
+      <a (click)="createWidget('HEADER')">Header</a>
     </li>
     <li class="list-group-item cl-list-item-borderless">
       <a routerLink=".">Label</a>
@@ -35,10 +35,10 @@
       <a routerLink=".">Button</a>
     </li>
     <li class="list-group-item cl-list-item-borderless">
-      <a routerLink="widget-image.html">Image</a>
+      <a (click)="createWidget('IMAGE')">Image</a>
     </li>
     <li class="list-group-item cl-list-item-borderless">
-      <a routerLink="widget-youtube.html">YouTube</a>
+      <a (click)="createWidget('YOUTUBE')">YouTube</a>
     </li>
     <li class="list-group-item cl-list-item-borderless">
       <a routerLink=".">Data Table</a>
@@ -53,7 +53,7 @@
   <div class="container-fluid row">
     <div class="pull-right navbar-text">
 
-      <a routerLink="/profile:userId" class="cl-icon-padding">
+      <a routerLink="/user/{{uid}}" class="cl-icon-padding">
         <span class="glyphicon glyphicon-user"></span>
       </a>
 

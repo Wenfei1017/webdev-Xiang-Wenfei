@@ -2,18 +2,18 @@
   <div class="container-fluid row">
 
     <div class="navbar-text pull-left">
-      <a routerLink="user/:userId/website/:wid/page" class="cl-text-black cl-icon-padding">
+      <a routerLink="user/{{uid}}/website/{{wid}}/page" class="cl-text-black cl-icon-padding">
           <span class="glyphicon glyphicon-chevron-left">
           </span>
       </a>
     </div>
     <div class="navbar-text pull-right">
-      <a routerLink="user/:userId/website/:wid/page" class="cl-icon-padding cl-text-black">
+      <a (click)="updatePage(updatedPage)" class="cl-icon-padding cl-text-black">
           <span class="glyphicon glyphicon-ok">
           </span>
       </a>
     </div>
-    <a class="navbar-brand cl-text-white cl-text-bold" routerLink="#">
+    <a class="navbar-brand cl-text-white cl-text-bold" routerLink=".">
       Edit Page
     </a>
   </div>
@@ -30,13 +30,13 @@
       <input [(ngModel)]="page-title" type="text" class="form-control" id="page-title" placeholder="Page Title" [ngModelOptions]="{standalone: true}">
     </div>
   </form>
-  <a class="btn btn-danger  btn-block" (click)="deletePage()" routerLink="/profile/:userId">Delete</a>
+  <a class="btn btn-danger  btn-block" (click)="deletePage()" routerLink="/user/{{uid}}">Delete</a>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid row">
     <div class="pull-right navbar-text">
-      <a routerLink="profile/:userId" class="cl-icon-padding">
+      <a routerLink="/user/{{uid}}" class="cl-icon-padding">
         <span class="glyphicon glyphicon-user"></span>
       </a>
     </div>

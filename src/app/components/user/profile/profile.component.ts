@@ -11,7 +11,7 @@ import {User} from '../../../models/user.model.client';
 })
 export class ProfileComponent implements OnInit {
   user: User;
-  username: String;
+  uid: String;
   infoFlag: boolean;
   infoMsg = 'update success !';
 
@@ -19,18 +19,18 @@ export class ProfileComponent implements OnInit {
     @Inject('UserService') private userService,
     private activatedRoute: ActivatedRoute) { }
 
-  updateUser() {
+  updateUser(user) {
     console.log(this.user);
-    // aaa
-    this.user = this.userService.updateUser(this.user._id, this.user);
+    console.log('test');
+    this.user = this.userService.updateUser(this.uid, user);
   }
   ngOnInit() {
-    this.activatedRoute.params.subscribe(params => {
+    this.activatedRoute.params.subscribe((params: any) => {
       // alert('userId is' + this.userId);
-      this.user = this.userService.findUserById(params['userId']);
-      // alert(this.user._id);
+      this.uid = params['userId'];
     });
-    // this.user = this.userService.findUserById(this.userId);
+    this.user = this.userService.findUserById(this.uid);
+
     // this.username = this.user['username'];
   }
 

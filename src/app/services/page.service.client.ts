@@ -1,15 +1,15 @@
-import { Page } from '../models/page.model.client';
+import {Page} from '../models/page.model.client';
 import {Injectable} from '@angular/core';
-import { Http, RequestOptions, Response } from '@angular/http';
+import {Http, RequestOptions, Response} from '@angular/http';
 
 
 @Injectable()
 export class PageService {
 
   pages: Page[] = [
-    {_id: '321', name: 'Post 1', websiteId: '456', description: 'Lorem'},
-    {_id: '432', name: 'Post 2', websiteId: '456', description: 'Lorem'},
-    {_id: '543', name: 'Post 3', websiteId: '456', description: 'Lorem'},
+    {_id: '321', name: 'Post 1', websiteId: '890', description: 'Lorem'},
+    {_id: '432', name: 'Post 2', websiteId: '567', description: 'Lorem'},
+    {_id: '543', name: 'Post 3', websiteId: '678', description: 'Lorem'},
     // { '_id': '3', 'name': 'Post 1', 'websiteId': '4', 'description': 'Lorem' },
     // { '_id': '4', 'name': 'Post 2', 'websiteId': '4', 'description': 'Lorem' },
     // { '_id': '5', 'name': 'Post 3', 'websiteId': '4', 'description': 'Lorem' },
@@ -18,23 +18,47 @@ export class PageService {
 
   ];
 
-  createPge(pageId: String, page: Page) {
+  // createPge(pageId: String, page: Page) {
+  //
+  //   const new_page = {
+  //     _id: (new Date()).getTime() + '',
+  //     name: page.name,
+  //     websiteId: page.websiteId,
+  //     description: page.description
+  //   };
+  //
+  //   this.pages.push(new_page);
+  // }
 
-    const new_page = {
-      _id: (new Date()).getTime() + '',
-      name: page.name,
-      websiteId: page.websiteId,
-      description: page.description
-    };
-
-    this.pages.push(new_page);
+  createPage(websiteId: String, page: Page) {
+    const createdPage = new Page(String(this.pages.length + 1), page.name, websiteId, page.description);
+    this.pages.push(createdPage);
+    // alert(createdPage.name);
+    return this.copyPage(createdPage);
   }
+
+  copyPage(page: Page) {
+    if (!page) {
+      return undefined;
+    }
+    return new Page(page._id, page.name, page.websiteId, page.description);
+  }
+
+  // findPageByWebsiteId(websiteId: String) {
+  //   const resultSet = [];
+  //   for (const i in this.pages.length) {
+  //     if (this.pages[i].websiteId === websiteId) {
+  //       resultSet.push(this.pages[i]);
+  //     }
+  //   }
+  //   return resultSet;
+  // }
 
   findPageByWebsiteId(websiteId: String) {
     const resultSet = [];
-    for (const i in this.pages) {
-      if (this.pages[i].websiteId === websiteId) {
-        resultSet.push(this.pages[i]);
+    for (let x = 0; x < this.pages.length; x++) {
+      if (this.pages[x].websiteId === websiteId) {
+        resultSet.push(this.pages[x]);
       }
     }
     return resultSet;
@@ -59,6 +83,10 @@ export class PageService {
         this.pages[i].description = page.description;
       }
     }
+  }
+
+  update(page: Page) {
+    this.pages.push(page);
   }
 
   deletePage(pageId: String) {
