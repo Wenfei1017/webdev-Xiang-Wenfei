@@ -54,7 +54,7 @@ export  class WidgetService {
     return resultSet;
   }
   updateWidget(widgetId, String, widget: any) {
-    for ( const i in this.widgets.length ) {
+    for (let i = 0; i < this.widgets.length; i++) {
       if ( this.widgets[i]._id === widgetId ) {
         switch (widget.widgetType) {
           case 'HEADER':
