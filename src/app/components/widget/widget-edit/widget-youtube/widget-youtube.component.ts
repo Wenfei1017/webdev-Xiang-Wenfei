@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Widget} from '../../../../models/widget.model.client';
-import {WidgetService} from '../../../../services/widget.service.client';
+// import {WidgetService} from '../../../../services/widget.service.client';
 
 @Component({
   selector: 'app-widget-youtube',
@@ -13,24 +13,23 @@ export class WidgetYoutubeComponent implements OnInit {
   pid: String;
   wid: String;
   wgid: String;
-  widget: Widget;
+  widget: Widget = {_id: '999', widgetType: '', pageId: '', size: '', text: '', url: '', width: ''};
 
-  constructor(
-    @Inject(WidgetService) private widgetService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router
-  ) { }
+  constructor(@Inject('WidgetService') private widgetService,
+              private activatedRoute: ActivatedRoute,
+              private router: Router) {
+  }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(
       (params: any) => {
-        this.wgid = params['wgid'];
+        this.wgid = params['widgetId'];
         this.pid = params['pageId'];
         this.uid = params['userId'];
         this.wid = params['websiteId'];
       }
     );
-    this.widget = this.widgetService.findWidgetById(this.wgid);
+    this.widget = this.widgetService.findWidgetsById(this.wgid);
   }
 
   updateWidget(widget: Widget) {

@@ -46,7 +46,13 @@ export class UserService {
       return user._id === userId;
     });
   }
-
+  // findUserById(userId: String) {
+  //   for (let x = 0; x < this.users.length; x++) {
+  //     if (this.users[x]._id === userId) {
+  //       return this.users[x];
+  //     }
+  //   }
+  // }
   // findUserByUsername(username) {
   //   return this.users.find(function (user) {
   //     return user.username === username;
@@ -69,7 +75,7 @@ export class UserService {
   //       return this.users[i];
   //     }
   //   }
-  updateUser(userId: String, user: any) {
+  updateUser(userId: String, user: User) {
     for (let x = 0; x < this.users.length; x++) {
       if (this.users[x]._id === userId) {
         this.users[x].firstName = user.firstName;

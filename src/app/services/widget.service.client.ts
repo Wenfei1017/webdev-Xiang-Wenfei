@@ -30,14 +30,17 @@ export  class WidgetService {
       text: '<p>Lorem ipsum</p>', url: '', width: '' }
   ];
 
-  createWidget(pageId, widget) {
+  createWidget(pageId: String, widget: any) {
+    widget._id = Math.random().toString();
+    widget.pageId = pageId;
     this.widgets.push(widget);
   }
-
   findWidgetsById(widgetId: String) {
-    return this.widgets.find(function (widgets) {
-      return widgets._id === widgetId;
-    });
+    for (let x = 0; x < this.widgets.length; x++) {
+      if (this.widgets[x]._id === widgetId) {
+        return this.widgets[x];
+      }
+    }
   }
   // fidWidgetByPageId(pageId) {
   //   return this.widgets.find(function (page) {
@@ -53,7 +56,7 @@ export  class WidgetService {
     }
     return resultSet;
   }
-  updateWidget(widgetId, String, widget: any) {
+  updateWidget(widgetId: String, widget: any) {
     for (let i = 0; i < this.widgets.length; i++) {
       if ( this.widgets[i]._id === widgetId ) {
         switch (widget.widgetType) {

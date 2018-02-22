@@ -13,7 +13,7 @@ export class WidgetImageComponent implements OnInit {
   wid: String;
   pid: String;
   wgid: String;
-  widget: Widget;
+  widget: Widget = {_id: '', widgetType: '', pageId: '', size: '', text: '', url: 'i am url', width: ''};
 
   constructor(
     @Inject('WidgetService') private widgetService,
@@ -23,14 +23,15 @@ export class WidgetImageComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe(
       (params: any) => {
-        this.wgid = params['wedgetId'];
+        this.wgid = params['widgetId'];
         this.pid = params['pageId'];
         this.uid = params['userId'];
         this.wid = params['websiteId'];
       }
     );
+    console.log('url= ' + this.widget.url);
 
-    this.widget = this.widgetService.findWidgetById(this.wgid);
+    this.widget = this.widgetService.findWidgetsById(this.wgid);
   }
 
   updateWidget(widget: Widget) {

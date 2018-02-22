@@ -1,56 +1,49 @@
 
-<nav class="navbar navbar-fixed-top cl-blue-navbar">
-  <div class="container-fluid">
-    <p class="navbar-text pull-left">
-    </p>
-    <a class="cl-text-white navbar-brand cl-text-bold cl-text-padding">
-      Profile
-    </a>
-    <div class="navbar-text pull-right" (click)="updateUser(user)">
-      <!--<a routerLink="/profile/{{user._id}}" class="cl-icon-padding2 cl-text-white">-->
-          <span class="glyphicon glyphicon-ok">
-          </span>
-      <!--</a>-->
-    </div>
+<!--<nav class="navbar navbar-fixed-top navber-light cl-blue-navbar">-->
+  <!--<div class="container-fluid">-->
+    <!--<p class="navbar-text pull-left">-->
+    <!--</p>-->
+    <!--<a class="cl-text-white navbar-brand cl-text-bold cl-text-padding">-->
+      <!--Profile-->
+    <!--</a>-->
+    <!--<div class="navbar-text pull-right" (click)="userUpdate(user)">-->
+      <!--&lt;!&ndash;<a routerLink="/profile/{{user._id}}" class="cl-icon-padding2 cl-text-white">&ndash;&gt;-->
+          <!--<span class="glyphicon glyphicon-ok">-->
+          <!--</span>-->
+      <!--&lt;!&ndash;</a>&ndash;&gt;-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</nav>-->
+
+<nav class="navbar navbar-fixed-top navbar-light bg-primary">
+  <div class="navbar-brand text-white font-weight-bold">
+    Profile
   </div>
+  <a class="navbar-brand btn pull-right" (click)="userUpdate(user)">
+    <span class="glyphicon glyphicon-ok text-white"></span>
+  </a >
 </nav>
 
 <div class="container">
-  <!--<div *ngIf="infoFlag" class="alert alert-success">-->
-    <!--{{infoMsg}}-->
-  <!--</div>-->
+  <div *ngIf="infoFlag" class="alert alert-success">
+    {{infoMsg}}
+  </div>
   <form>
-    <!--<div class="form-group">-->
-      <!--<label for="username">Username</label>-->
-      <!--<input [(ngModel)]="user.username" type="text" class="form-control" id="username" placeholder="Username">-->
-    <!--</div>-->
-    <!--<div class="form-group">-->
-      <!--<label for="email">Email address</label>-->
-      <!--<input type="email" class="form-control" id="email" placeholder="alice@wonderland.com">-->
-    <!--</div>-->
-    <!--<div class="form-group">-->
-      <!--<label for="first-name">First Name</label>-->
-      <!--<input [(ngModel)]="user.firstName" type="text" class="form-control" id="first-name" placeholder="Alice">-->
-    <!--</div>-->
-    <!--<div class="form-group">-->
-      <!--<label for="last-name">Last Name</label>-->
-      <!--<input [(ngModel)]="user.lastName" type="text" class="form-control" id="last-name" placeholder="Wonderland">-->
-    <!--</div>-->
     <label for="username">Username</label>
-    <input [(ngModel)]="user.username" type="text" class="form-control" id="username" placeholder="username" [ngModelOptions]="{standalone: true}"/>
+    <input [(ngModel)]="user.username" type="text" class="form-control" id="username" placeholder="username" [ngModelOptions]="{standalone: true}">
 
     <label for="password">Password</label>
-    <input [(ngModel)]="user.password" type="password" class="form-control" id="password" placeholder="password" [ngModelOptions]="{standalone: true}"/>
+    <input [(ngModel)]="user.password" type="password" class="form-control" id="password" placeholder="password" [ngModelOptions]="{standalone: true}">
 
     <label for="firstname">First Name</label>
-    <input [(ngModel)]="user.firstName" type="text" class="form-control" id="firstname" placeholder="first name" [ngModelOptions]="{standalone: true}"/>
+    <input [(ngModel)]="user.firstName" type="text" class="form-control" id="firstname" placeholder="first name" [ngModelOptions]="{standalone: true}">
 
     <label for="lastname">Last Name</label>
-    <input [(ngModel)]="user.lastName" type="text" class="form-control" id="lastname" placeholder="last name" [ngModelOptions]="{standalone: true}"/>
+    <input [(ngModel)]="user.lastName" type="text" class="form-control" id="lastname" placeholder="last name" [ngModelOptions]="{standalone: true}">
   </form>
 
   <a class="btn btn-primary btn-block"
-     routerLink="/user/{{uid}}/website">Websites</a>
+     routerLink="/user/{{user._id}}/website">Websites</a>
   <a class="btn btn-danger  btn-block"
      routerLink="/login">Logout</a>
 </div>

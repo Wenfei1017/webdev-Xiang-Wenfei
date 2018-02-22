@@ -30,5 +30,6 @@ export class WidgetEditComponent implements OnInit {
     );
 
     this.widget = this.widgetService.findWidgetsById(this.wgid);
+    console.log('type= ' + this.widget.widgetType);
   }
 }

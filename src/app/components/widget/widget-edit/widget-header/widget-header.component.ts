@@ -23,9 +23,10 @@ export class WidgetHeaderComponent implements OnInit {
     this.widget = this.widgetService.creatWidget(this.pid, this.widget);
   }
   updateWidget() {
-    this.widget = this.widgetService.updateWidget(this.widget._id, this.widget);
+    this.widget = this.widgetService.updateWidget(this.wgid, this.widget);
   }
   deleteWidget() {
+    console.log('this is delete');
     this.widgetService.deletWidget(this.wgid);
   }
 
@@ -39,7 +40,7 @@ export class WidgetHeaderComponent implements OnInit {
       }
     );
 
-    this.widget = this.widgetService.findWidgetById(this.wgid);
+    this.widget = this.widgetService.findWidgetsById(this.wgid);
   }
 
 }

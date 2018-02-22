@@ -1,7 +1,22 @@
 
-<div class="container">
-<a routerLink="/login">Login</a>
-<a routerLink="/register">Register</a>
-<a routerLink="/user/:userId">Profile</a>
+<div class="container-fluid">
+<!--<a routerLink="/login">Login</a>-->
+<!--<a routerLink="/register">Register</a>-->
+<!--<a routerLink="/user/:userId">Profile</a>-->
+  <ul>
+
+    <li class="list-group-item cl-list-item-borderless">
+      <a routerLink="/login">Login</a>
+    </li>
+
+    <li class="list-group-item cl-list-item-borderless">
+      <a routerLink="/register">Register</a>
+    </li>
+
+    <li class="list-group-item cl-list-item-borderless">
+      <a routerLink="/user/{{userId}}">Profile</a>
+    </li>
+
+  </ul>
 <router-outlet></router-outlet>
 </div>
