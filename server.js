@@ -113,9 +113,9 @@ app.set('port', port);
 const server = http.createServer(app);
 
 // For Build: Catch all other routes and return the index file -- BUILDING
-//app.get('*', function (req, res) {
-//  res.sendFile(path.join(__dirname, 'dist/index.html'));
-//});
+app.get('*', function (req, res) {
+ res.sendFile(path.join(__dirname, 'dist/index.html'));
+});
 
 
 //handle GET UR
@@ -126,16 +126,18 @@ const server = http.createServer(app);
 // app.get('api/user/:userId', function(req, res) {
 //   res.send();
 // }
-var webaker = require('./assignment/app');
-webaker(app);
+// var webaker = require('./assignment/app');
+// webaker(app);
+//
+// var hello = require('./hello');
+// hello(app);
+//
+//
+// require("./assignment/app")(app);
 
-var hello = require('./hello');
-hello(app);
 
+// server.listen( port , function() {
+//   console.log('Node app is running on port', app.get('port'))});
 
-require("./assignment/app")(app);
-
-
-server.listen( port , function() {
-  console.log('Node app is running on port', app.get('port'))});
+server.listen( port , () => console.log('Running'));
 
