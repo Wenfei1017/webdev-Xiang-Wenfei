@@ -10,7 +10,7 @@ import {Widget} from '../../../models/widget.model.client';
 export class WidgetEditComponent implements OnInit {
   uid: String;
   pid: String;
-  wid: String;
+  // wid: String;
   wgid: String;
   widget: Widget;
 
@@ -20,16 +20,19 @@ export class WidgetEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(
-      (params: any) => {
-        this.uid = params['userID'];
-        this.wid = params['websiteId'];
-        this.pid = params['pageId'];
-        this.wgid = params['widgetId'];
+    this.activatedRoute.params.subscribe((params: any) => {
+      this.widget = this.widgetService.emptyWidget();
+      this.wgid = (params['widgetId']);
+      if (this.wgid === 'heading') {
+        this.widget.widgetType = 'HEADING';
+      } else if (this.wgid === 'image') {
+        this.widget.widgetType = 'IMAGE';
+      } else if (this.wgid === 'youtube') {
+        this.widget.widgetType = 'YOUTUBE';
+      } else {
+        this.widget = this.widgetService.findWidgetsById(this.wgid);
       }
-    );
-
-    this.widget = this.widgetService.findWidgetsById(this.wgid);
-    console.log('type= ' + this.widget.widgetType);
+      console.log(this.widget);
+    });
   }
 }

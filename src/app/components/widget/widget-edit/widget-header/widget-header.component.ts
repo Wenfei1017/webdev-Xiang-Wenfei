@@ -27,7 +27,7 @@ export class WidgetHeaderComponent implements OnInit {
   }
   deleteWidget() {
     console.log('this is delete');
-    this.widgetService.deletWidget(this.wgid);
+    this.widgetService.deleteWidget(this.wgid);
   }
 
   ngOnInit() {

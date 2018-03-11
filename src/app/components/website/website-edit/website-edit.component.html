@@ -20,7 +20,7 @@
         <a class="cl-text-white navbar-brand cl-text-bold" routerLink="/user/{{webDeveloperId}}/website/">
           Edit Websites
         </a >
-        <a (click)="updateWebsite(updatedWebsite)" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
+        <a (click)="updateWebsite()" routerLink=".." class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
           <span class="glyphicon glyphicon-ok"></span>
         </a >
       </div>
@@ -30,9 +30,9 @@
 
 <div class="contain-fluid">
     <ul class="list-group cl-list-group-borderless">
-      <li *ngFor = "let website of websites" class="list-group-item cl-list-item-borderless">
-        <a routerLink="/user/{{webDeveloperId}}/website/{{website._id}}"><span class="glyphicon glyphicon-cog pull-right"></span></a >
-        <a routerLink="/user/{{webDeveloperId}}/website/{{website._id}}/page">{{website.name}}</a>
+      <li *ngFor = "let websiteLi of websites" class="list-group-item cl-list-item-borderless">
+        <a routerLink="../{{websiteLi._id}}"><span class="glyphicon glyphicon-cog pull-right"></span></a >
+        <a routerLink="../{{websiteLi._id}}/page">{{websiteLi.name}}</a>
       </li>
     </ul>
 </div>
@@ -40,15 +40,19 @@
   <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 borders">
     <form>
       <div class="form-group cl-8-top">
-        <label for="website-name">Website Name</label>
-        <input [(ngModel)]="website-name" type="text" class="form-control" id="website-name" placeholder="Blogger" [ngModelOptions]="{standalone: true}">
+        <div class="form-group">
+          <label for="website-name">Website Name</label>
+          <input [(ngModel)]="website.name" type="text" class="form-control" id="website-name" placeholder="website name" [ngModelOptions]="{standalone: true}">
+        </div>
       </div>
       <div class="form-group cl-8-top">
-        <label for="website-description">Website Description</label>
-        <textarea [(ngModel)]="website-description" id="website-description" class="form-control" rows="5"
-                  placeholder="Blog is a blog-publishing service." [ngModelOptions]="{standalone: true}"></textarea>
+        <div class="form-group">
+          <label for="website-description">Website Description</label>
+          <textarea [(ngModel)]="website.description" id="website-description" class="form-control" rows="5"
+                  placeholder="description" [ngModelOptions]="{standalone: true}"></textarea>
+        </div>
       </div>
-      <a (click)="deleteWebsite()" class="btn btn-danger btn-block cl-8-top">Delete</a >
+      <a (click)="deleteWebsite()" routerLink=".." class="btn btn-danger btn-block cl-8-top">Delete</a >
     </form>
   </div>
 

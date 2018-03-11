@@ -10,12 +10,6 @@ export class PageService {
     {_id: '321', name: 'Post 1', websiteId: '890', description: 'Lorem'},
     {_id: '432', name: 'Post 2', websiteId: '567', description: 'Lorem'},
     {_id: '543', name: 'Post 3', websiteId: '678', description: 'Lorem'},
-    // { '_id': '3', 'name': 'Post 1', 'websiteId': '4', 'description': 'Lorem' },
-    // { '_id': '4', 'name': 'Post 2', 'websiteId': '4', 'description': 'Lorem' },
-    // { '_id': '5', 'name': 'Post 3', 'websiteId': '4', 'description': 'Lorem' },
-    // { '_id': '1', 'name': 'Post 4', 'websiteId': '3', 'description': 'Lorem' },
-    // { '_id': '2', 'name': 'Post 5', 'websiteId': '2', 'description': 'Lorem' }
-
   ];
 
   // createPge(pageId: String, page: Page) {
