@@ -3,6 +3,7 @@ import { Router} from '@angular/router';
 import {User} from '../../../models/user.model.client';
 import {NgForm} from '@angular/forms';
 import { ViewChild } from '@angular/core';
+import {UserService} from '../../../services/user.service.client';
 
 @Component({
   selector: 'app-login',
@@ -15,8 +16,10 @@ export class LoginComponent implements OnInit {
   username: String; // see usage as two-way data binding
   password: String; // see usage as two-way data binding
   errorFlag: boolean;
+  userService = new UserService();
   errorMsg = 'Invalid username or password !';
-  constructor(@Inject('UserService') private userService, private router: Router) {}
+  constructor(private router: Router) {
+  }
 
   login() {
     this.username = this.loginForm.value.username;

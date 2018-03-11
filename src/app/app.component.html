@@ -1,22 +1,39 @@
 
-<div class="container-fluid">
+<!--<div class="container-fluid">-->
 <!--<a routerLink="/login">Login</a>-->
 <!--<a routerLink="/register">Register</a>-->
 <!--<a routerLink="/user/:userId">Profile</a>-->
+
+  <!--</ul>-->
+<!--<router-outlet></router-outlet>-->
+<!--</div>-->
+
+<!--<ul id="sortable">-->
+  <!--<li>One</li>-->
+  <!--<li>Two</li>-->
+  <!--<li>Three</li>-->
+  <!--<li>Four</li>-->
+  <!--<li>Five</li>-->
+<!--</ul>-->
+
+<div class="container-fluid">
+  <!--<a routerLink="/login">Login</a>-->
+  <!--<a routerLink="/register">Register</a>-->
+  <!--<a routerLink="/user/:userId">Profile</a>-->
   <ul>
 
-    <li class="list-group-item cl-list-item-borderless">
+    <li class="list-group-item cl-list-item-borderless" style="display:inline">
       <a routerLink="/login">Login</a>
     </li>
 
-    <li class="list-group-item cl-list-item-borderless">
+    <li class="list-group-item cl-list-item-borderless" style="display:inline">
       <a routerLink="/register">Register</a>
     </li>
 
-    <li class="list-group-item cl-list-item-borderless">
+    <li class="list-group-item cl-list-item-borderless" style="display:inline">
       <a routerLink="/user/{{userId}}">Profile</a>
     </li>
 
   </ul>
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
 </div>

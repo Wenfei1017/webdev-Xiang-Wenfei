@@ -22,6 +22,7 @@ export class WebsiteNewComponent implements OnInit {
         this.uid = params['userId'];
       }
     );
+    console.log('website new test');
     this.websites = this.websiteService.findWebsitesByUser(this.uid);
   }
 
@@ -29,7 +30,8 @@ export class WebsiteNewComponent implements OnInit {
     if (newWebsite.name !== '') {
       newWebsite.developerId = this.uid;
       this.websiteService.createWebsite(this.uid, newWebsite);
-      let url: any = '/user/' + this.uid + '/website';
+      // let url: any = '/user/' + this.uid + '/website';
+      const url: String = '/user/' + this.uid + '/website';
       this.router.navigate([url]);
     }
   }

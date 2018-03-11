@@ -10,25 +10,53 @@
   </div>
 
   <form (ngSubmit)="register()" #f="ngForm">
-  <div class="form-group">
-    <label for="username">Username</label>
-    <!--<input type="text" name="username" class="form-control" id="username" placeholder="username" ngModel required #username="ngModel" >-->
-    <input [(ngModel)]="user.username" type="text" name="username" class="form-control" id="username" placeholder="username" [ngModelOptions]="{standalone: true}"/>
-  </div>
+  <!--<div class="form-group">-->
+    <!--<label for="username">Username</label>-->
+    <!--&lt;!&ndash;<input type="text" name="username" class="form-control" id="username" placeholder="username" ngModel required #username="ngModel" >&ndash;&gt;-->
+    <!--<input [(ngModel)]="user.username" type="text" name="username" class="form-control" id="username" placeholder="username" [ngModelOptions]="{standalone: true}"/>-->
+  <!--</div>-->
+
+  <!--<div class="form-group">-->
+    <!--<label for="password">Password</label>-->
+    <!--<input [(ngModel)]="user.password" type="password" name="password" class="form-control" id="password" placeholder="password" [ngModelOptions]="{standalone: true}"/>-->
+  <!--</div>-->
+
+    <!--<div class="form-group">-->
+    <!--<label for="verifypas">Verify Password</label>-->
+    <!--<input [(ngModel)]="verifypas" type="password" name="verifypas" class="form-control" id="verifypas" placeholder="verify password" [ngModelOptions]="{standalone: true}"/>-->
+    <!--</div>-->
+
+    <!--<button class="btn btn-primary btn-block" routerLink="/user/{{userId}}" (click)="register()">Register</button>-->
+    <!--<button class="btn btn-danger  btn-block"-->
+    <!--routerLink="/login">Cancel</button>-->
 
   <div class="form-group">
-    <label for="password">Password</label>
-    <input [(ngModel)]="user.password" type="password" name="password" class="form-control" id="password" placeholder="password" [ngModelOptions]="{standalone: true}"/>
+    <input type="text" name="username" placeholder="username" class="form-control" ngModel required #username="ngModel">
   </div>
+  <span class="help-block" *ngIf="!username.valid && username.touched">
+      Please enter username!
+    </span>
 
   <div class="form-group">
-    <label for="verifypas">Verify Password</label>
-    <input [(ngModel)]="verifypas" type="password" name="verifypas" class="form-control" id="verifypas" placeholder="verify password" [ngModelOptions]="{standalone: true}"/>
+    <input type="password" name="password" placeholder="password" class="form-control" ngModel required #password="ngModel">
   </div>
+  <span class="help-block" *ngIf="!password.valid && password.touched">
+      Please enter password!
+    </span>
+  <div class="form-group">
+    <input type="password" name="verifypas" placeholder="verify password" class="form-control" ngModel required #verifyPassword="ngModel">
+  </div>
+  <span class="help-block" *ngIf="!verifyPassword.valid && verifyPassword.touched">
+      Please enter verify password!
+    </span>
 
-    <button class="btn btn-primary btn-block" routerLink="/user/{{userId}}" (click)="register()">Register</button>
-    <button class="btn btn-danger  btn-block"
-     routerLink="/login">Cancel</button>
+    <div class="form-group">
+      <button [disabled]="!f.valid" class="btn btn-primary btn-block">Register</button>
+    </div>
+    <div class="form-group">
+      <a [routerLink]="['/login']" class="btn btn-danger btn-block">Cancel</a>
+    </div>
+
 </form>
 
 </div>

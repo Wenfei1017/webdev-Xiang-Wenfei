@@ -42,11 +42,11 @@
     <form>
       <div class="form-group">
         <label for="website-name">Name</label>
-        <input [(ngModel)]="name" type="text" class="form-control" id="website-name" placeholder="Name" [ngModelOptions]="{standalone: true}">
+        <input [(ngModel)]="newWebsite.name" type="text" class="form-control" id="website-name" placeholder="Name" [ngModelOptions]="{standalone: true}">
       </div>
       <div class="form-group">
         <label for="website-description">Description</label>
-        <textarea [(ngModel)]="description" id="website-description" class="form-control" rows="5" placeholder="Description" [ngModelOptions]="{standalone: true}"></textarea>
+        <textarea [(ngModel)]="newWebsite.description" id="website-description" class="form-control" rows="5" placeholder="Description" [ngModelOptions]="{standalone: true}"></textarea>
       </div>
     </form>
   </div>

@@ -16,34 +16,18 @@ export class RegisterComponent implements OnInit {
   user: User = {_id: '', username: '', password: '', firstName: '', lastName: ''};
   username: String;
   password: String;
-  verifypas: string;
+  verifypas: String;
   InfoFlag: Boolean;
   infoMSG: String = 'wrong password';
-  uid: String;
+  // uid: String;
 
   constructor(@Inject('UserService') private userService,
               private router: Router, private activatedRoute: ActivatedRoute) {}
-  // register() {
-  //   console.log('username= ' + this.user.username);
-  //   console.log('password= ' + this.user.password);
-  //   this.userName = this.registerForm.value.username;
-  //   this.InfoFlag = false;
-  //   this.uid = Math.random() + '';
-  //   this.user._id = this.uid;
-  //   if (this.user.password === this.verifypas) {
-  //     this.InfoFlag = false;
-  //     this.userService.createUser(this.user);
-  //     this.router.navigate(['/user', this.uid]);
-  //   } else {
-  //     this.InfoFlag = true;
-  //   }
-  // }
-
   register() {
     this.InfoFlag = false;
     this.username = this.registerForm.value.username;
     this.password = this.registerForm.value.password;
-    this.verifypas = this.registerForm.value.verifyPassword;
+    this.verifypas = this.registerForm.value.verifypas;
 
     if (this.userService.findUserByUsername(this.username) != null) {
       this.infoMSG = 'This username is already exist.';
@@ -57,6 +41,9 @@ export class RegisterComponent implements OnInit {
       this.user.username = this.username;
       this.user.password = this.password;
       this.userService.createUser(this.user);
+      console.log('register username -----' + this.user.username);
+      console.log('register password -----' + this.user.password);
+      console.log('register user id ------' + this.userService.findUserByUsername(this.username)._id);
       this.router.navigate(['/user', this.userService.findUserByUsername(this.username)._id]);
     }
   }

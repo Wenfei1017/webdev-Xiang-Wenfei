@@ -35,6 +35,8 @@ import { WidgetListComponent } from './components/widget/widget-list/widget-list
 import { WidgetHeaderComponent } from './components/widget/widget-edit/widget-header/widget-header.component';
 import { WidgetImageComponent } from './components/widget/widget-edit/widget-image/widget-image.component';
 import { WidgetYoutubeComponent } from './components/widget/widget-edit/widget-youtube/widget-youtube.component';
+// import { MyDirectiveNameDirective } from './my-directive-name.directive';
+import { SortableDirective } from './sortable.directive';
 
 
 
@@ -55,7 +57,9 @@ import { WidgetYoutubeComponent } from './components/widget/widget-edit/widget-y
     WidgetListComponent,
     WidgetHeaderComponent,
     WidgetImageComponent,
-    WidgetYoutubeComponent
+    WidgetYoutubeComponent,
+    // MyDirectiveNameDirective,
+    // SortableDirective
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 // import {WebsiteService} from '../../../services/website.service.client';
 import { Website } from '../../../models/website.model.client';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-website-edit',
@@ -17,13 +17,15 @@ export class WebsiteEditComponent implements OnInit {
   webDeveloperId: String;
   description: String;
 
-  constructor(@Inject('WebsiteService') private websiteService, private activatedRoute: ActivatedRoute) {}
+  constructor(@Inject('WebsiteService') private websiteService, private activatedRoute: ActivatedRoute, private router: Router) {}
 
   updateWebsite() {
     this.website = this.websiteService.updateWebsite(this.updatedWebsite._id, this.updatedWebsite);
   }
   deleteWebsite() {
-    this.website = this.websiteService.deleteWebsite(this.website._id);
+    this.website = this.websiteService.deleteWebsite(this.wid);
+    let url: any = '/user/' + this.webDeveloperId + '/website';
+    this.router.navigate([url]);
   }
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: any) => {

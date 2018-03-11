@@ -1,17 +1,9 @@
 
 import {User} from '../models/user.model.client';
 import {Injectable} from '@angular/core';
-import { Http, RequestOptions, Response } from '@angular/http';
-import 'rxjs/Rx';
-import { environment } from '../../environments/environment';
-import { Router } from '@angular/router';
-
 
 @Injectable()
 export class UserService {
-
-  constructor() {
-  }
 
   users: User[] = [
     {_id: '123', username: 'alice', password: 'alice', firstName: 'Alice', lastName: 'Wonder'},
@@ -19,11 +11,29 @@ export class UserService {
     {_id: '345', username: 'charly', password: 'charly', firstName: 'Charly', lastName: 'Garcia'},
     {_id: '456', username: 'jannunzi', password: 'jannunzi', firstName: 'Jose', lastName: 'Annunzi'}
   ];
+  //
+  // createUser(user: any) {
+  //   user._id = Math.random();
+  //   this.users.push(new User(user._id, user.username, user.password, user.firstName, user.lastName));
+  //   // return user;
+  // }
 
+  // copyUser(user: User) {
+  //   if (!user) {
+  //     return undefined;
+  //   }
+  //   return new User(user._id, user.username, user.password, user.firstName, user.lastName);
+  // }
+  // createUser(user: User) {
+  //   const createdUser = new User(String(this.users.length + 1), user.username, user.password, user.firstName, user.lastName);
+  //   this.users.push(createdUser);
+  //   // return user;
+  //   return this.copyUser(createdUser);
+  // }
   createUser(user: any) {
-    // user._id = Math.random();
-    this.users.push(new User(user._id, user.username, user.password, user.firstName, user.lastName));
-    // return user;
+    user._id = Math.random().toString();
+    this.users.push(user);
+    console.log(this.users);
   }
 
   //  findUserByCredential(username: String, password: String) {
@@ -75,7 +85,7 @@ export class UserService {
   //       return this.users[i];
   //     }
   //   }
-  updateUser(userId: String, user: User) {
+  updateUser(userId: String, user: any) {
     for (let x = 0; x < this.users.length; x++) {
       if (this.users[x]._id === userId) {
         this.users[x].firstName = user.firstName;
