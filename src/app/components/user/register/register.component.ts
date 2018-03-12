@@ -13,12 +13,13 @@ import {NgForm} from '@angular/forms';
 export class RegisterComponent implements OnInit {
   @ViewChild('f') registerForm: NgForm;
 
-  user: User = {_id: '', username: '', password: '', firstName: '', lastName: ''};
+  user: User = { _id: '', username: '', password: '', firstName: '', lastName: '' };
   username: String;
   password: String;
   verifypas: String;
   InfoFlag: Boolean;
   infoMSG: String = 'wrong password';
+  users: User[] = [];
   // uid: String;
 
   constructor(@Inject('UserService') private userService,
@@ -41,6 +42,8 @@ export class RegisterComponent implements OnInit {
       this.user.username = this.username;
       this.user.password = this.password;
       this.userService.createUser(this.user);
+      console.log(this.user);
+      console.log(this.users);
       console.log('register username -----' + this.user.username);
       console.log('register password -----' + this.user.password);
       console.log('register user id ------' + this.userService.findUserByUsername(this.username)._id);

@@ -18,22 +18,9 @@ export class UserService {
   //   // return user;
   // }
 
-  // copyUser(user: User) {
-  //   if (!user) {
-  //     return undefined;
-  //   }
-  //   return new User(user._id, user.username, user.password, user.firstName, user.lastName);
-  // }
-  // createUser(user: User) {
-  //   const createdUser = new User(String(this.users.length + 1), user.username, user.password, user.firstName, user.lastName);
-  //   this.users.push(createdUser);
-  //   // return user;
-  //   return this.copyUser(createdUser);
-  // }
   createUser(user: any) {
     user._id = Math.random().toString();
     this.users.push(user);
-    console.log(this.users);
   }
 
   //  findUserByCredential(username: String, password: String) {

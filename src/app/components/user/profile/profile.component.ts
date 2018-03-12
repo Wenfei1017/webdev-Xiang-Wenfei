@@ -13,7 +13,7 @@ export class ProfileComponent implements OnInit {
   user: User;
   uid: String;
   // infoFlag: boolean;
-  // infoMsg = 'update success !';
+  infoMsg = 'update success !';
 
   constructor(
     @Inject('UserService') private userService,
@@ -25,7 +25,7 @@ export class ProfileComponent implements OnInit {
     });
     this.user = this.userService.findUserById(this.uid);
     // alert(this.user.username);
-    console.log(this.user.username);
+    console.log(this.user);
   }
 
   updateUser(user) {
