@@ -9,12 +9,12 @@
   {{infoMSG}}
   </div>
 
-  <form (ngSubmit)="register()" #f="ngForm">
-  <!--<div class="form-group">-->
+  <form (ngSubmit)="register(username, password, verifyPassword)" #f="ngForm">
+  <div class="form-group">
     <!--<label for="username">Username</label>-->
-    <!--&lt;!&ndash;<input type="text" name="username" class="form-control" id="username" placeholder="username" ngModel required #username="ngModel" >&ndash;&gt;-->
-    <!--<input [(ngModel)]="user.username" type="text" name="username" class="form-control" id="username" placeholder="username" [ngModelOptions]="{standalone: true}"/>-->
-  <!--</div>-->
+    <!--<input type="text" name="username" class="form-control" id="username" placeholder="username" ngModel required #username="ngModel" >-->
+    <input [(ngModel)]="username" type="text" name="username" class="form-control" id="username" placeholder="username" [ngModelOptions]="{standalone: true}">
+  </div>
 
   <!--<div class="form-group">-->
     <!--<label for="password">Password</label>-->
@@ -31,27 +31,27 @@
     <!--routerLink="/login">Cancel</button>-->
 
   <div class="form-group">
-    <input type="text" name="username" placeholder="username" class="form-control" ngModel required #username="ngModel">
+    <input [(ngModel)]="password" type="password" name="password" placeholder="password" class="form-control">
   </div>
-  <span class="help-block" *ngIf="!username.valid && username.touched">
-      Please enter username!
-    </span>
+  <!--<span class="help-block" *ngIf="!username.valid && username.touched">-->
+      <!--Please enter username!-->
+    <!--</span>-->
 
   <div class="form-group">
-    <input type="password" name="password" placeholder="password" class="form-control" ngModel required #password="ngModel">
+    <input [(ngModel)]="verifypas" type="password" name="verifyPassword" placeholder="verify password" class="form-control">
   </div>
-  <span class="help-block" *ngIf="!password.valid && password.touched">
-      Please enter password!
-    </span>
-  <div class="form-group">
-    <input type="password" name="verifypas" placeholder="verify password" class="form-control" ngModel required #verifyPassword="ngModel">
-  </div>
-  <span class="help-block" *ngIf="!verifyPassword.valid && verifyPassword.touched">
-      Please enter verify password!
-    </span>
+  <!--<span class="help-block" *ngIf="!password.valid && password.touched">-->
+      <!--Please enter password!-->
+    <!--</span>-->
+  <!--<div class="form-group">-->
+    <!--<input type="password" name="verifypas" placeholder="verify password" class="form-control" ngModel required #verifyPassword="ngModel">-->
+  <!--</div>-->
+  <!--<span class="help-block" *ngIf="!verifyPassword.valid && verifyPassword.touched">-->
+      <!--Please enter verify password!-->
+    <!--</span>-->
 
     <div class="form-group">
-      <button [disabled]="!f.valid" class="btn btn-primary btn-block">Register</button>
+      <button  class="btn btn-primary btn-block">Register</button>
     </div>
     <div class="form-group">
       <a [routerLink]="['/login']" class="btn btn-danger btn-block">Cancel</a>

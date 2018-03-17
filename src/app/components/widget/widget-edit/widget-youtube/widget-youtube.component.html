@@ -18,7 +18,7 @@
       Widgets Edit
     </a>
   </div>
-  <a class="btn navbar-brand pull-right" (click)="updateWidget(widget)">
+  <a class="btn navbar-brand pull-right" (click)="updateOrCreateWidget()">
     <span class="glyphicon glyphicon-ok text-dark"></span>
   </a>
 </nav>
@@ -27,7 +27,7 @@
   <form>
     <div class="form-group">
       <label for="youtube-name">Name</label>
-      <input [(ngModel)]="widget._id" type="text" class="form-control" id="youtube-name" placeholder="Name" [ngModelOptions]="{standalone: true}">
+      <input [(ngModel)]="widget.name" type="text" class="form-control" id="youtube-name" placeholder="Name" [ngModelOptions]="{standalone: true}">
     </div>
 
 

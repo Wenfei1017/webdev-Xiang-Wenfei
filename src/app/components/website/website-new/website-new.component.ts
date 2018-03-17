@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-// import {WebsiteService} from '../../../services/website.service.client';
+import {WebsiteService} from '../../../services/website.service.client';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Website} from '../../../models/website.model.client';
 
@@ -14,25 +14,38 @@ export class WebsiteNewComponent implements OnInit {
   newWebsite: Website = { _id: '', name: '', developerId: '', description: '' };
 
 
-  constructor(@Inject('WebsiteService') private websiteService,  private activatedRoute: ActivatedRoute,
+  constructor(private websiteService: WebsiteService,
+              private activatedRoute: ActivatedRoute,
               private router: Router) {}
+  // ngOnInit() {
+  //   this.activatedRoute.params.subscribe(
+  //     (params: any) => {
+  //       this.uid = params['userId'];
+  //     }
+  //   );
+  //   console.log('website new test');
+  //   this.websites = this.websiteService.findWebsitesByUser(this.uid);
+  // }
   ngOnInit() {
     this.activatedRoute.params.subscribe(
       (params: any) => {
         this.uid = params['userId'];
+        this.websiteService.findWebsitesByUser(this.uid).subscribe(
+          (websites: Website[]) => {
+            this.websites = websites;
+          }
+        );
       }
     );
-    console.log('website new test');
-    this.websites = this.websiteService.findWebsitesByUser(this.uid);
   }
 
-  createWebsite(newWebsite) {
-    if (newWebsite.name !== '') {
-      newWebsite.developerId = this.uid;
-      this.websiteService.createWebsite(this.uid, newWebsite);
-      // let url: any = '/user/' + this.uid + '/website';
-      const url: String = '/user/' + this.uid + '/website';
-      this.router.navigate([url]);
-    }
+  createWebsite(website) {
+    this.websiteService.createWebsite(this.uid, website).subscribe(
+      (website: Website) => {
+        this.newWebsite = website;
+        this.router.navigate(['../'], {relativeTo: this.activatedRoute});
+        console.log(this.newWebsite);
+      }
+    );
   }
 }

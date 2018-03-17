@@ -29,6 +29,41 @@ export class WidgetYoutubeComponent implements OnInit {
     private router: Router
   ) { }
 
+  // ngOnInit() {
+  //   this.activatedRoute.params.subscribe(
+  //     params => {
+  //       this.widgetService.findWidgetById(params['widgetId']).subscribe(
+  //         (widget: Widget) => {
+  //           if (widget.pageId === params['pageId']) {
+  //             this.pageService.findPageById(widget.pageId).subscribe(
+  //               (page: Page) => {
+  //                 if (page.websiteId === params['websiteId']) {
+  //                   this.websiteService.findWebsiteById(page.websiteId).subscribe(
+  //                     (website: Website) => {
+  //                       if (website.developerId === params['userId']) {
+  //                         this.uid = params['userId'];
+  //                         this.wid = params['websiteId'];
+  //                         this.pid = params['pageId'];
+  //                         this.wgid = params['widgetId'];
+  //                         this.widget = widget;
+  //                         console.log(this.widget);
+  //                       } else {
+  //                         console.log('User ID does not match.');
+  //                       }
+  //                     }
+  //                   );
+  //                 } else {
+  //                   console.log('Website ID does not match.');
+  //                 }
+  //               }
+  //             );
+  //           }
+  //         }
+  //       );
+  //     }
+  //   );
+  // }
+
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: any) => {
       this.wgid = params['widgetId'];

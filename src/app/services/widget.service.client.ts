@@ -1,87 +1,79 @@
 import {Injectable} from '@angular/core';
-import { Widget } from '../models/widget.model.client';
+import {Widget} from '../models/widget.model.client';
+import {Http, RequestOptions, Response} from '@angular/http';
+import 'rxjs/Rx';
+import {environment} from '../../environments/environment';
 
 @Injectable()
-export  class WidgetService {
+export class WidgetService {
 
-  // constructor(_id:String, type:String, pageId:String, size= '1', text = 'text', url = 'url', width = '100%')
-  widgets: Widget[] = [
-    { _id: '123', widgetType: 'HEADER', pageId: '321', size: '2', text: 'GIZMODO', url: '', width: '' },
-    { _id: '234', widgetType: 'HEADER', pageId: '321', size: '4', text: 'Lorem ipsum', url: '', width: '' },
-    { _id: '345', widgetType: 'IMAGE', pageId: '321', size: '', text: '',
-      width: '100%', url: 'http://lorempixel.com/400/200/'},
-    { _id: '456', widgetType: 'HTML', pageId: '321', size: '',
-      text: '<p>Lorem ipsum</p>', url: '', width: ''},
-    { _id: '567', widgetType: 'HEADER', pageId: '321', size: '4', text: 'Lorem ipsum', url: '', width: ''},
-    { _id: '678', widgetType: 'YOUTUBE', pageId: '321', size: '',
-      text: '', url: 'https://youtu.be/AM2Ivdi9c4E', width: '100%'},
-    { _id: '789', widgetType: 'HTML', pageId: '321', size: '',
-      text: '<p>Lorem ipsum</p>', url: '', width: '' }
-  ];
+  constructor(private http: Http) {}
+  baseUrl = environment.baseUrl;
 
-  emptyWidget() {
-    return new Widget(undefined, undefined, undefined);
+  dumpWidget() {
+    return new Widget(undefined, undefined, undefined, undefined);
   }
 
-  createWidget(pageId: String, widget: any) {
-    widget._id = Math.random().toString();
-    widget.pageId = pageId;
-    this.widgets.push(widget);
-  }
-  findWidgetsById(widgetId: String) {
-    for (let x = 0; x < this.widgets.length; x++) {
-      if (this.widgets[x]._id === widgetId) {
-        return this.widgets[x];
-      }
-    }
-  }
-  // fidWidgetByPageId(pageId) {
-  //   return this.widgets.find(function (page) {
-  //     return page._id === pageId;
-  //   });
-  // }
-  findWidgetsByPageId(pageId: String) {
-    const resultSet: Widget[] = [];
-    for (let x = 0; x < this.widgets.length; x++) {
-      if (this.widgets[x].pageId === pageId) {
-        resultSet.push(this.widgets[x]);
-      }
-    }
-    return resultSet;
-  }
-  updateWidget(widgetId: String, widget: any) {
-    for (let i = 0; i < this.widgets.length; i++) {
-      if ( this.widgets[i]._id === widgetId ) {
-        switch (widget.widgetType) {
-          case 'HEADER':
-            this.widgets[i].text = widget.text;
-            this.widgets[i].size = widget.size;
-            return true;
-
-          case 'IMAGE':
-            this.widgets[i].text = widget.text;
-            this.widgets[i].url = widget.url;
-            this.widgets[i].width = widget.width;
-            return true;
-
-          case 'YOUTUBE':
-            this.widgets[i].text = widget.text;
-            this.widgets[i].url = widget.url;
-            this.widgets[i].width = widget.width;
-            return true;
+  reorderWidgets(startIndex, endIndex, pageId) {
+    return this.http.put(this.baseUrl + '/api/page/' + pageId + '/widget?start=' + startIndex + '&end=' + endIndex, '')
+      .map(
+        (res: Response) => {
+          return res.json();
         }
+      );
+  }
 
+  createWidget(pageId: String, widget: Widget) {
+    const url = this.baseUrl + '/api/page/' + pageId + '/widget';
+    return this.http.post(url, widget).map(
+      (res: Response) => {
+        return res.json();
       }
-    }
-    return false;
+    );
+  }
+
+  findWidgetsByPageId(pageId: String) {
+    const url = this.baseUrl + '/api/page/' + pageId + '/widget';
+    return this.http.get(url).map(
+      (res: Response) => {
+        return res.json();
+      }
+    );
+  }
+
+  findWidgetById(widgetId: String) {
+    const url = this.baseUrl + '/api/widget/' + widgetId;
+    return this.http.get(url).map(
+      (res: Response) => {
+        return res.json();
+      }
+    );
+  }
+
+  updateWidget(widgetId: String, widget: Widget) {
+    const url = this.baseUrl + '/api/widget/' + widgetId;
+    return this.http.put(url, widget).map(
+      (res: Response) => {
+        return res.json();
+      }
+    );
   }
 
   deleteWidget(widgetId: String) {
-    for (const i in this.widgets) {
-      if (this.widgets[i]._id === widgetId) {
-        const j = +i;
-        this.widgets.splice(j, 1);
+    const url = this.baseUrl + '/api/widget/' + widgetId;
+    return this.http.delete(url).map(
+      (res: Response) => {
       }
-    }
+    );
   }
+
+  // reorderWidgets(startIndex, endIndex, pageId) {
+  //   const url = this.baseUrl + '/api/page/' + pageId + '/widget?initial=' + startIndex + '&final=' + endIndex;
+  //   return this.http.put(url, '').map(
+  //     (res: Response) => {
+  //       const data = res;
+  //       return data;
+  //     }
+  //   );
+  // }
 }

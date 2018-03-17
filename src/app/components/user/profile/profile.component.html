@@ -1,5 +1,8 @@
 
 <nav class="navbar navbar-fixed-top navbar-light bg-primary">
+  <div *ngIf="infoFlag" class="alert alert-success">
+    {{infoMsg}}
+  </div>
   <div class="navbar-brand text-white font-weight-bold">
     Profile
   </div>
@@ -9,35 +12,43 @@
 </nav>
 
 <div class="container">
-  <div *ngIf="infoFlag" class="alert alert-success">
-    {{infoMsg}}
-  </div>
+  <!--<div *ngIf="infoFlag" class="alert alert-success">-->
+    <!--{{infoMsg}}-->
+  <!--</div>-->
   <form>
     <div class="form-group">
     <label for="username">Username</label>
-    <input [(ngModel)]="user.username" type="text" class="form-control" id="username" placeholder="username" [ngModelOptions]="{standalone: true}">
+    <input [(ngModel)]="user.username" type="text" name="username" class="form-control" id="username" placeholder="username">
     </div>
 
     <div class="form-group">
     <label for="password">Password</label>
-    <input [(ngModel)]="user.password" type="password" class="form-control" id="password" placeholder="password" [ngModelOptions]="{standalone: true}">
+    <input [(ngModel)]="user.password" type="password" name="password" class="form-control" id="password" placeholder="password">
     </div>
 
     <div class="form-group">
     <label for="firstname">First Name</label>
-    <input [(ngModel)]="user.firstName" type="text" class="form-control" id="firstname" placeholder="first name" [ngModelOptions]="{standalone: true}">
+    <input [(ngModel)]="user.firstName" type="text" name="firstname" class="form-control" id="firstname" placeholder="first name">
     </div>
 
     <div class="form-group">
     <label for="lastname">Last Name</label>
-    <input [(ngModel)]="user.lastName" type="text" class="form-control" id="lastname" placeholder="last name" [ngModelOptions]="{standalone: true}">
+    <input [(ngModel)]="user.lastName" type="text" name="lastname" class="form-control" id="lastname" placeholder="last name">
+    </div>
+
+    <div class="form-group">
+    <a class="btn btn-primary btn-block" routerLink="/user/{{user._id}}/website">Websites</a>
+    </div>
+
+    <div class="form-group">
+      <a (click)="deleteUser()" class="btn btn-warning btn-block">Delete User</a>
+    </div>
+
+    <div class="form-group">
+    <a class="btn btn-danger  btn-block"
+     routerLink="/login">Logout</a>
     </div>
   </form>
-
-  <a class="btn btn-primary btn-block"
-     routerLink="/user/{{user._id}}/website">Websites</a>
-  <a class="btn btn-danger  btn-block"
-     routerLink="/login">Logout</a>
 </div>
 
 <nav class="navbar navbar-fixed-bottom cl-blue-navbar">

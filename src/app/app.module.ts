@@ -2,9 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {Routing} from './app.routing';
 import {FormsModule} from '@angular/forms';
-// import { HttpModule } from '@angular/http';
-// // import {HttpClientModule} from '@angular/common/http';
-
+import { HttpModule } from '@angular/http';
+// import {HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
 
 // client side services
@@ -35,10 +34,13 @@ import { WidgetListComponent } from './components/widget/widget-list/widget-list
 import { WidgetHeaderComponent } from './components/widget/widget-edit/widget-header/widget-header.component';
 import { WidgetImageComponent } from './components/widget/widget-edit/widget-image/widget-image.component';
 import { WidgetYoutubeComponent } from './components/widget/widget-edit/widget-youtube/widget-youtube.component';
-// import { MyDirectiveNameDirective } from './my-directive-name.directive';
-import { SortableDirective } from './sortable.directive';
+import { WidgetHtmlComponent } from './components/widget/widget-edit/widget-html/widget-html.component';
+import { WidgetTextComponent } from './components/widget/widget-edit/widget-text/widget-text.component';
 
-
+import { SortableDirective } from '../../assignment/directives/sortable.directive';
+// import { OrderByPipe } from '../../assignment/pipes/order-by-pipe/order-by-pipe.pipe';
+// import { SafePipe } from '../../assignment/pipes/safe-url/safe-url.pipe';
+import { QuillEditorModule } from 'ngx-quill-editor';
 
 @NgModule({
   declarations: [
@@ -58,34 +60,21 @@ import { SortableDirective } from './sortable.directive';
     WidgetHeaderComponent,
     WidgetImageComponent,
     WidgetYoutubeComponent,
-    // MyDirectiveNameDirective,
-    // SortableDirective
+    WidgetTextComponent,
+    WidgetHtmlComponent,
+    // SafePipe
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    // HttpModule,
+    // Http,
+    HttpModule,
     Routing,
     // HttpClientModule,
+    QuillEditorModule,
+    // SafePipe
   ],
-  providers: [
-    {
-      provide: 'UserService',
-      useClass: UserService
-    },
-    {
-      provide: 'WebsiteService',
-      useClass: WebsiteService
-    },
-    {
-      provide: 'PageService',
-      useClass: PageService
-    },
-    {
-      provide: 'WidgetService',
-      useClass: WidgetService
-    }
-  ],
+  providers: [UserService, WebsiteService, PageService, WidgetService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

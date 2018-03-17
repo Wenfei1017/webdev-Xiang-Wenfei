@@ -5,6 +5,8 @@ import {Widget} from '../../../../models/widget.model.client';
 import { PageService } from '../../../../services/page.service.client';
 import { WebsiteService } from '../../../../services/website.service.client';
 import { UserService } from '../../../../services/user.service.client';
+import { Page } from '../../../../models/page.model.client';
+import { Website } from '../../../../models/website.model.client';
 import { environment } from '../../../../../environments/environment';
 
 
@@ -31,8 +33,8 @@ export class WidgetImageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.baseUrl = environment.baseUrl;
 
+    this.baseUrl = environment.baseUrl;
     this.activatedRoute.params.subscribe((params: any) => {
       this.wgid = params['widgetId'];
       this.pid = params['pageId'];

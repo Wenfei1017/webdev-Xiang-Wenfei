@@ -2,7 +2,7 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import { User } from '../../../models/user.model.client';
-// import {UserService} from '../../../services/user.service.client';
+import {UserService} from '../../../services/user.service.client';
 import {NgForm} from '@angular/forms';
 
 @Component({
@@ -17,47 +17,45 @@ export class RegisterComponent implements OnInit {
   username: String;
   password: String;
   verifypas: String;
-  InfoFlag: Boolean;
-  infoMSG: String = 'wrong password';
+  errorFlag: Boolean;
+  errorMsg: String;
   users: User[] = [];
   // uid: String;
 
-  constructor(@Inject('UserService') private userService,
+  constructor(private userService: UserService,
               private router: Router, private activatedRoute: ActivatedRoute) {}
-  register() {
-    this.InfoFlag = false;
-    this.username = this.registerForm.value.username;
-    this.password = this.registerForm.value.password;
-    this.verifypas = this.registerForm.value.verifypas;
 
-    if (this.userService.findUserByUsername(this.username) != null) {
-      this.infoMSG = 'This username is already exist.';
-      this.InfoFlag = true;
+  register(username: String, password: String, verifyPassword: String) {
+    this.errorFlag = false;
+    if (username.trim() === '') {
+      this.errorMsg = 'Username cannot be empty';
+      this.errorFlag = true;
+    }
+    if (password.trim() === '') {
+      this.errorMsg = 'Password cannot be empty';
+      this.errorFlag = true;
     }
     if (this.password !== this.verifypas) {
-      this.infoMSG = 'Password and Verify Password do not match.';
-      this.InfoFlag = true;
+      this.errorMsg = 'Password and Verify Password do not match.';
+      this.errorFlag = true;
     }
-    if (!this.InfoFlag) {
+    if (!this.errorFlag) {
       this.user.username = this.username;
       this.user.password = this.password;
-      this.userService.createUser(this.user);
-      console.log(this.user);
-      console.log(this.users);
-      console.log('register username -----' + this.user.username);
-      console.log('register password -----' + this.user.password);
-      console.log('register user id ------' + this.userService.findUserByUsername(this.username)._id);
-      this.router.navigate(['/user', this.userService.findUserByUsername(this.username)._id]);
+      this.userService.createUser(this.user).subscribe(
+        (user: User) => {
+          this.errorFlag = false;
+          this.router.navigate(['/user', user._id]);
+        },
+        (error: any) => {
+          this.errorFlag = true;
+          this.errorMsg = error;
+        }
+      );
     }
   }
 
   ngOnInit() {
-    // this.activatedRoute.params.subscribe(
-    //   (params: any) => {
-    //     this.userId = params['userId'];
-    //     console.log(this.userId);
-    //   }
-    // );
   }
 
 }

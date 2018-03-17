@@ -1,95 +1,58 @@
 import {Page} from '../models/page.model.client';
 import {Injectable} from '@angular/core';
-import {Http, RequestOptions, Response} from '@angular/http';
-
+import {Http, HttpModule, Response} from '@angular/http';
+import {HttpClientModule} from '@angular/common/http';
+// import { Observable } from 'rxjs/Observable ';
+import 'rxjs/Rx';
+import {environment} from '../../environments/environment';
 
 @Injectable()
 export class PageService {
 
-  pages: Page[] = [
-    {_id: '321', name: 'Post 1', websiteId: '890', description: 'Lorem'},
-    {_id: '432', name: 'Post 2', websiteId: '567', description: 'Lorem'},
-    {_id: '543', name: 'Post 3', websiteId: '678', description: 'Lorem'},
-  ];
+  constructor(private http: Http) { }
+  baseUrl = environment.baseUrl;
 
-  // createPge(pageId: String, page: Page) {
-  //
-  //   const new_page = {
-  //     _id: (new Date()).getTime() + '',
-  //     name: page.name,
-  //     websiteId: page.websiteId,
-  //     description: page.description
-  //   };
-  //
-  //   this.pages.push(new_page);
-  // }
+  dumpPage() {
+    return new Page(undefined, undefined, undefined, undefined);
+  }
 
   createPage(websiteId: String, page: Page) {
-    const createdPage = new Page(String(this.pages.length + 1), page.name, websiteId, page.description);
-    this.pages.push(createdPage);
-    // alert(createdPage.name);
-    return this.copyPage(createdPage);
+    const url = this.baseUrl + '/api/website/' + websiteId + '/page';
+    return this.http.post(url, page).map(
+      (res: Response) => {
+        return res.json();
+      }
+    );
   }
-
-  copyPage(page: Page) {
-    if (!page) {
-      return undefined;
-    }
-    return new Page(page._id, page.name, page.websiteId, page.description);
-  }
-
-  // findPageByWebsiteId(websiteId: String) {
-  //   const resultSet = [];
-  //   for (const i in this.pages.length) {
-  //     if (this.pages[i].websiteId === websiteId) {
-  //       resultSet.push(this.pages[i]);
-  //     }
-  //   }
-  //   return resultSet;
-  // }
 
   findPageByWebsiteId(websiteId: String) {
-    const resultSet = [];
-    for (let x = 0; x < this.pages.length; x++) {
-      if (this.pages[x].websiteId === websiteId) {
-        resultSet.push(this.pages[x]);
+    const url = this.baseUrl + '/api/website/' + websiteId + '/page';
+    return this.http.get(url).map(
+      (res: Response) => {
+        return res.json();
       }
-    }
-    return resultSet;
-  }
-
-  findPageByWebsiteId2(websiteId: String) {
-    return this.pages.filter(function (page) {
-      return page.websiteId === websiteId;
-    });
+    );
   }
 
   findPageById(pageId: String) {
-    return this.pages.find(function (page) {
-      return page._id === pageId;
-    });
+    const url = this.baseUrl + '/api/page/' + pageId;
+    return this.http.get(url).map(
+      (res: Response) => {
+        return res.json();
+      }
+    );
   }
 
   updatePage(pageId: String, page: Page) {
-    for (const i in this.pages) {
-      if (this.pages[i]._id === pageId) {
-        this.pages[i].name = page.name;
-        this.pages[i].description = page.description;
+    const url = this.baseUrl + '/api/page/' + pageId;
+    return this.http.put(url, page).map(
+      (res: Response) => {
+        return res.json();
       }
-    }
-  }
-
-  update(page: Page) {
-    this.pages.push(page);
+    );
   }
 
   deletePage(pageId: String) {
-    for (const i in this.pages) {
-      if (this.pages[i]._id === pageId) {
-        const j = +i;
-        this.pages.splice(j, 1);
-      }
-    }
+    return this.http.delete(this.baseUrl + '/api/page/' + pageId);
   }
 }
-

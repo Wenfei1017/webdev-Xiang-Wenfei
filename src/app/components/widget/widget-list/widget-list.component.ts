@@ -1,9 +1,14 @@
-import { Component, Inject, OnInit } from '@angular/core';
-// import {WidgetService} from '../../../services/widget.service.client';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Widget} from '../../../models/widget.model.client';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 
+import { WidgetService } from '../../../services/widget.service.client';
+import { Widget } from '../../../models/widget.model.client';
+import { PageService } from '../../../services/page.service.client';
+import { WebsiteService } from '../../../services/website.service.client';
+import { UserService } from '../../../services/user.service.client';
+import { Page } from '../../../models/page.model.client';
+import { Website } from '../../../models/website.model.client';
 
 @Component({
   selector: 'app-widget-list',
@@ -11,33 +16,79 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./widget-list.component.css']
 })
 export class WidgetListComponent implements OnInit {
+
   uid: String;
   wid: String;
   pid: String;
-  widgets: Widget[] = [];
-  urls = [];
-  i = 0;
+  widgets: Widget[];
 
-  constructor(@Inject('WidgetService') private widgetService,
-              private activatedRoute: ActivatedRoute,
-              private sanitizer: DomSanitizer,
-              private router: Router) {
-  }
+  constructor(
+    private widgetService: WidgetService,
+    private pageService: PageService,
+    private websiteService: WebsiteService,
+    private userService: UserService,
+    private activatedRoute: ActivatedRoute,
+    private sanitizer: DomSanitizer
+  ) { }
+
+  // ngOnInit() {
+  //   this.activatedRoute.params.subscribe(
+  //     params => {
+  //       this.pageService.findPageById(params['pageId']).subscribe(
+  //         (page: Page) => {
+  //           if (page.websiteId === params['websiteId']) {
+  //             this.websiteService.findWebsiteById(page.websiteId).subscribe(
+  //               (website: Website) => {
+  //                 if (website.developerId === params['userId']) {
+  //                   this.uid = params['userId'];
+  //                   this.wid = params['websiteId'];
+  //                   this.pid = params['pageId'];
+  //                   this.widgetService.findWidgetsByPageId(this.pid).subscribe(
+  //                     (widgets: Widget[]) => {
+  //                       this.widgets = widgets;
+  //                     },
+  //                     (error: any) => {
+  //                       console.log(error);
+  //                     }
+  //                   );
+  //                 } else {
+  //                   console.log('User ID does not match.');
+  //                 }
+  //               }
+  //             );
+  //           } else {
+  //             console.log('Website ID does not match.');
+  //           }
+  //         }
+  //       );
+  //     }
+  //   );
+  // }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(
-      (params: any) => {
-        this.uid = params['userId'];
-        this.wid = params['websiteId'];
-        this.pid = params['pageId'];
-      }
-    );
-
-    this.widgets = this.widgetService.findWidgetsByPageId(this.pid);
-    console.log(this.pid);
+    this.activatedRoute.params.subscribe((params: any) => {
+      this.pid = params['pageId'];
+      this.widgetService.findWidgetsByPageId(this.pid).subscribe(
+        (widgets: Widget[]) => {
+          this.widgets = widgets;
+          console.log(this.widgets);
+        }
+      );
+    });
   }
+
   photoURL(url) {
-    var embedUrl = url.replace("youtu.be", "youtube.com/embed");
+    var embedUrl = url.replace('youtu.be', 'youtube.com/embed');
     return this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
   }
+
+  // receiving the emitted event
+  reorderWidgets(indexes) {
+    // call widget service function to update widget as per index
+    this.widgetService.reorderWidgets(indexes.startIndex, indexes.endIndex, this.pid)
+      .subscribe(
+        (data) => console.log(data)
+      );
+  }
 }
+

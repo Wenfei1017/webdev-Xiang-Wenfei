@@ -1,7 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
-// import {WebsiteService} from '../../../services/website.service.client';
+import {WebsiteService} from '../../../services/website.service.client';
 import {ActivatedRoute} from '@angular/router';
 import {Website} from '../../../models/website.model.client';
+
 
 // function WebsiteListController($routeParams, WebsiteService) {
 //   var vm = this;
@@ -22,18 +23,23 @@ export class WebsiteListComponent implements OnInit {
   // websites: Website[] = [];
   websites: any[] = [{_id: '', name: '', developerId: '', description: ''}];
 
-  constructor(@Inject('WebsiteService') private websiteService, private activatedRoute: ActivatedRoute) {
+  constructor(private websiteService: WebsiteService,
+              private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
+    console.log(this.websites);
     this.activatedRoute.params
       .subscribe(
         (params: any) => {
           this.uid = (params['userId']);
-          console.log(this.uid);
-          // this.websites = this.websiteService.findWebsitesByUser(params['userId']);
+          console.log('this.uid= ' + this.uid);
+          return this.websiteService.findWebsitesByUser(this.uid).subscribe(
+            (websites: Website[]) => {
+              this.websites = websites;
+              console.log(this.websites.length);
+            });
+          // this.websites = this.websiteService.findWebsitesByUser(this.uid);
         });
-    this.websites = this.websiteService.findWebsitesByUser(this.uid);
-    console.log(this.websites.length);
   }
 }
