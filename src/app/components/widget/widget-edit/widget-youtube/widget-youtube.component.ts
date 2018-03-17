@@ -1,7 +1,12 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Widget} from '../../../../models/widget.model.client';
-// import {WidgetService} from '../../../../services/widget.service.client';
+import {WidgetService} from '../../../../services/widget.service.client';
+import { Widget } from '../../../../models/widget.model.client';
+import { PageService } from '../../../../services/page.service.client';
+import { WebsiteService } from '../../../../services/website.service.client';
+import { UserService } from '../../../../services/user.service.client';
+import { Page } from '../../../../models/page.model.client';
+import { Website } from '../../../../models/website.model.client';
 
 @Component({
   selector: 'app-widget-youtube',
@@ -13,30 +18,62 @@ export class WidgetYoutubeComponent implements OnInit {
   pid: String;
   wid: String;
   wgid: String;
-  widget: Widget = {_id: '999', widgetType: '', pageId: '', size: '', text: '', url: '', width: ''};
+  widget: Widget;
 
-  constructor(@Inject('WidgetService') private widgetService,
-              private activatedRoute: ActivatedRoute,
-              private router: Router) {
-  }
+  constructor(
+    private widgetService: WidgetService,
+    private pageService: PageService,
+    private websiteService: WebsiteService,
+    private userService: UserService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+  ) { }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(
-      (params: any) => {
-        this.wgid = params['widgetId'];
-        this.pid = params['pageId'];
-        this.uid = params['userId'];
-        this.wid = params['websiteId'];
+    this.activatedRoute.params.subscribe((params: any) => {
+      this.wgid = params['widgetId'];
+      this.pid = params['pageId'];
+      if (this.wgid === 'youtube') {
+        this.widget = this.widgetService.dumpWidget();
+        this.widget.widgetType = 'YOUTUBE';
+      } else {
+        this.widgetService.findWidgetById(this.wgid).subscribe(
+          (widget: Widget) => {
+            this.widget = widget;
+            console.log(this.widget);
+          }
+        );
       }
-    );
-    this.widget = this.widgetService.findWidgetsById(this.wgid);
+    });
   }
 
-  updateWidget(widget: Widget) {
-    this.widgetService.updateWidget(widget._id, widget);
+  // updateWidget(widget: Widget) {
+  //   this.widgetService.updateWidget(widget._id, widget);
+  // }
+
+  updateOrCreateWidget() {
+    if (!this.widget._id) {
+      this.widgetService.createWidget(this.pid, this.widget).subscribe(
+        (widget: Widget) => {
+          this.widget = widget;
+          this.router.navigate(['../'], {relativeTo: this.activatedRoute});
+          console.log(this.widget);
+        }
+      );
+    } else {
+      this.widgetService.updateWidget(this.widget._id, this.widget).subscribe(
+        () => {
+          this.router.navigate(['../'], {relativeTo: this.activatedRoute});
+        }
+      );
+    }
   }
 
   deleteWidget() {
-    this.widgetService.deleteWidget(this.wgid);
+    this.widgetService.deleteWidget(this.widget._id).subscribe(
+      () => {
+        this.router.navigate(['../'], {relativeTo: this.activatedRoute});
+      }
+    );
   }
 }

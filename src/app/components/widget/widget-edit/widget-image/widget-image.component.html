@@ -1,16 +1,15 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid row">
-
     <div class="navbar-text pull-left">
-      <a routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget" class="cl-text-black cl-icon-padding">
-          <span class="glyphicon glyphicon-chevron-left">
-          </span>
+      <a routerLink=".." class="cl-text-black cl-icon-padding">
+        <span class="glyphicon glyphicon-chevron-left">
+        </span>
       </a>
     </div>
     <div class="navbar-text pull-right">
-      <a routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget" class="cl-icon-padding cl-text-black">
-          <span class="glyphicon glyphicon-ok">
-          </span>
+      <a (click)="updateOrCreateWidget()" class="cl-icon-padding cl-text-black">
+        <span class="glyphicon glyphicon-ok">
+        </span>
       </a>
     </div>
     <a class="navbar-brand cl-text-white cl-text-bold" routerLink=".">
@@ -22,38 +21,42 @@
 <div class="container">
   <form>
     <div class="form-group">
-      <label for="image-name">Name</label>
+      <label for="image-name">Name (actually there is no attribute for this according to assignment doc)</label>
       <input type="text" class="form-control" id="image-name" placeholder="Name">
     </div>
     <div class="form-group">
       <label for="image-text">Text</label>
-      <input type="text" class="form-control" id="image-text" placeholder="Text">
+      <input [(ngModel)]="widget.text" type="text" class="form-control" id="image-text" placeholder="Text" [ngModelOptions]="{standalone: true}">
     </div>
     <div class="form-group">
       <label for="image-URL">URL</label>
-      <input [(ngModel)]="widget.url" type="text" class="form-control" id="image-URL" placeholder="URL"[ngModelOptions]="{standalone: true}">
+      <input [(ngModel)]="widget.url" type="text" class="form-control" id="image-URL" placeholder="URL" [ngModelOptions]="{standalone: true}">
     </div>
     <div class="form-group">
       <label for="image-width">Width</label>
-      <input [(ngModel)]="widget.width" type="text" class="form-control" id="image-width" placeholder="100%" [ngModelOptions]="{standalone: true}">
-    </div>
-    <div class="form-group">
-      <label for="exampleInputFile">Upload</label>
-      <input type="file" class="form-control" id="exampleInputFile">
+      <input [(ngModel)]="widget.width" type="text" class="form-control" id="image-width" placeholder="Width percentage" [ngModelOptions]="{standalone: true}">
     </div>
   </form>
-  <a class="btn btn-primary btn-block" routerLink=".">Upload Image</a>
-  <a (click)="deleteWidget()" class="btn btn-danger  btn-block" routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget">Delete</a>
+
+  <form ngNoForm action="{{baseUrl}}/api/upload" method="post" enctype="multipart/form-data">
+    <label for="myFile">Upload Image</label>
+    <input  name="myFile" id="myFile"  type="file" class="form-control form-group"/>
+    <input  name="widgetId" value="{{widget._id}}" style="display: none"/>
+    <input  name="pageId" value="{{pid}}" style="display: none"/>
+    <input  name="websiteId" value="{{wid}}" style="display: none"/>
+    <input  name="userId" value="{{uid}}" style="display: none"/>
+    <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
+    <br/>
+  </form>
+  <a class="btn btn-danger btn-block" (click)="deleteWidget()">Delete</a>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid row">
     <div class="pull-right navbar-text">
-
-      <a routerLink="/user/{{uid}}" class="cl-icon-padding">
+      <a routerLink="../../../../../.." class="cl-icon-padding">
         <span class="glyphicon glyphicon-user"></span>
       </a>
-
     </div>
   </div>
 </nav>

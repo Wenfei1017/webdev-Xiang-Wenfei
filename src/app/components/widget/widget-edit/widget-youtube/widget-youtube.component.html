@@ -3,24 +3,24 @@
   <div class="container-fluid row">
 
     <div class="navbar-text pull-left">
-      <a routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget" class="cl-text-black cl-icon-padding">
+      <a routerLink=".." class="cl-text-black cl-icon-padding">
           <span class="glyphicon glyphicon-chevron-left">
           </span>
       </a>
     </div>
-    <div class="navbar-text pull-right">
-      <a routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget" class="cl-icon-padding cl-text-black">
-          <span class="glyphicon glyphicon-ok">
-          </span>
-      </a>
-    </div>
+    <!--<div class="navbar-text pull-right">-->
+      <!--<a routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget" class="cl-icon-padding cl-text-black">-->
+          <!--<span class="glyphicon glyphicon-ok">-->
+          <!--</span>-->
+      <!--</a>-->
+    <!--</div>-->
     <a class="navbar-brand cl-text-white cl-text-bold" routerLink=".">
       Widgets Edit
     </a>
   </div>
-  <!--<a class="btn navbar-brand pull-right" (click)="updateWidget(widget)">-->
-    <!--<span class="glyphicon glyphicon-ok text-dark"></span>-->
-  <!--</a>-->
+  <a class="btn navbar-brand pull-right" (click)="updateWidget(widget)">
+    <span class="glyphicon glyphicon-ok text-dark"></span>
+  </a>
 </nav>
 
 <div class="container">
