@@ -23,7 +23,9 @@ export class UserService {
   }
 
   findUserByCredentials(username: String, password: String) {
+    console.log('client side find user by cre');
     const url = this.baseUrl + '/api/user?username=' + username + '&password=' + password;
+    console.log('url =' + url);
     return this.http.get(url).map(
       (res: Response) => {
         return res.json();
@@ -58,7 +60,9 @@ export class UserService {
   }
 
   deleteUser(userId: String) {
+    console.log('client side delete user');
     const url = this.baseUrl + '/api/user/' + userId;
+    console.log('delete user url= ' + url);
     return this.http.delete(url).map(
       (res: Response) => {
         return res.json();

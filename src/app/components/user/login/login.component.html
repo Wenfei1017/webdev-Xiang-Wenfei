@@ -1,43 +1,36 @@
-<div class="container-fluid">
-<div *ngIf="errorFlag" class="alert alert-danger">
-{{errorMsg}}
-</div>
-<h1>Login</h1>
-
 <div class="container">
-  <form (ngSubmit) = "login(username, password)" #f="ngForm">
-    <!--<div class="form-group">-->
-      <!--<label for="username">Username</label>-->
-      <!--<input type="text" class="form-control" id="username" placeholder="username" name="username" ngModel required #username="ngModel">-->
-    <!--</div>-->
-    <div class="form-group">
-      <input [(ngModel)]="username" type="text" name="username" id="username" placeholder="username" class="form-control">
-    </div>
+  <h1>Login</h1>
 
+  <!-- generate error message when there are input errors -->
+  <div *ngIf="errorFlag" class="alert alert-danger">
+    {{errorMsg}}
+  </div>
+
+  <!-- using angular form (ngForm) instead of traditional <input> tag -->
+  <form (ngSubmit) = "login(username,password)" #f="ngForm">
+
+    <div class="form-group">
+      <input [(ngModel)]="username" type="text" name="username" placeholder="username" class="form-control">
+    </div>
     <!--<span class="help-block" *ngIf="!username.valid && username.touched">-->
-    <!--Please enter username!-->
+      <!--Please enter username!-->
     <!--</span>-->
 
-    <!--<div class="form-group">-->
-      <!--<label for="password">Password</label>-->
-      <!--<input type="password" class="form-control" id="password" placeholder="password" name="password" ngModel required #password="ngModel">-->
-    <!--</div>-->
+    <!--<label for="password">Password</label>-->
+    <!--<input placeholder="password" name="password" type="password" class="form-control" id="password" ngModel required #password="ngModel"/>-->
+    <!--<span class="help-block" *ngIf="!password.valid && password.touched">-->
+      <!--Please enter password!-->
+    <!--</span>-->
     <div class="form-group">
-      <input [(ngModel)]="password" type="password" name="password" id="password" placeholder="password" class="form-control">
+      <input [(ngModel)]="password" type="password" name="password" placeholder="password" class="form-control">
     </div>
 
-    <!--<span class="help-block" *ngIf="!password.valid && password.touched">-->
-    <!--Please enter password!-->
-    <!--</span>-->
-
-    <!--<div class="form-group">-->
-      <!--<button class="btn btn-primary btn-block" type="submit" [disabled]="!f.valid">Login</button>-->
-    <!--</div>-->
     <div class="form-group">
-      <button class="btn btn-primary btn-block" type="submit">Login</button>
+    <button class="btn btn-primary btn-block" type="submit">Login</button>
+    </div>
+
+    <div class="form-group">
+    <button class="btn btn-success btn-block" routerLink="/register">Register</button>
     </div>
   </form>
-  <a routerLink="/register" class="btn btn-success btn-block">Register</a>
-</div>
-
 </div>

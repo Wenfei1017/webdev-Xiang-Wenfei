@@ -98,6 +98,7 @@ module.exports = function (app) {
   }
 
   function createWidget(req, res) {
+    console.log('server side create widget');
     var createdWidget = req.body;
     var pageId = req.params["pageId"];
     createdWidget._id = (widgets.length + 1).toString();
@@ -118,15 +119,16 @@ module.exports = function (app) {
   }
 
   function findWidgetById(req, res){
+    console.log('find widgetbyId from server side');
     var widgetId = req.params["widgetId"];
+    console.log('serve side' + widgetId);
     var foundWidget = widgets.find(function (widget) {
       return widget._id === widgetId;
     });
     if (foundWidget){
       res.json(foundWidget);
     } else {
-      res.status(401);
-      res.json(foundWidget);
+      res.status(401).send('widget not found');
     }
   }
 
@@ -155,5 +157,4 @@ module.exports = function (app) {
     }
     res.send("success");
   }
-
 };

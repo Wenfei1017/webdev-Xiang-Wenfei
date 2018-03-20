@@ -18,10 +18,10 @@ import {WidgetEditComponent} from './components/widget/widget-edit/widget-edit.c
 
 const APP_ROUTES: Routes = [
   { path: '', component: LoginComponent},
-  { path: 'default', component: LoginComponent},
+  // { path: 'default', component: LoginComponent},
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
-  // { path: 'profile', component: ProfileComponent},
+  { path: 'profile', component: ProfileComponent},
   { path: 'user/:userId', component: ProfileComponent},
   { path: 'user/:userId/website', component: WebsiteListComponent},
   { path: 'user/:userId/website/new', component: WebsiteNewComponent},

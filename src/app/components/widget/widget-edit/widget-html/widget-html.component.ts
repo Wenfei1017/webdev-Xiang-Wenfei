@@ -17,7 +17,10 @@ import { Website } from '../../../../models/website.model.client';
 export class WidgetHtmlComponent implements OnInit {
 
   // properties
-  widget: Widget;
+  widget: Widget = {
+    _id: '', widgetType: '', name: '', pageId: '', size: '1', text: '', url: '', width: '100%',
+    height: 100, rows: 0, class: '', icon: '', deletable: false, formatted: false, placeholder: ''
+  };
   pid: String;
   uid: String;
   wgid: String;
@@ -70,6 +73,7 @@ export class WidgetHtmlComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: any) => {
       this.wgid = params['widgetId'];
       this.pid = params['pageId'];
+      this.uid = params['userId'];
       if (this.wgid === 'html') {
         this.widget = this.widgetService.dumpWidget();
         this.widget.widgetType = 'HTML';

@@ -19,7 +19,10 @@ export class WidgetChooserComponent implements OnInit {
   wid: String;
   pid: String;
   widgets: Widget[] = [];
-  newWidget: Widget;
+  newWidget: Widget = {
+    _id: '', widgetType: '', name: '', pageId: '', size: '1', text: '', url: '', width: '100%',
+    height: 100, rows: 0, class: '', icon: '', deletable: false, formatted: false, placeholder: ''
+  };
 
   constructor(
     private widgetService: WidgetService,
@@ -47,9 +50,11 @@ export class WidgetChooserComponent implements OnInit {
               this.websiteService.findWebsiteById(page.websiteId).subscribe(
                 (website: Website) => {
                   if (website.developerId === params['userId']) {
+                    console.log('testetetettetetettetetetehahaha');
                     this.uid = params['userId'];
                     this.wid = params['websiteId'];
                     this.pid = params['pageId'];
+                    console.log('pid = ' + this.pid);
                   } else {
                     console.log('User ID does not match.');
                   }
@@ -65,9 +70,13 @@ export class WidgetChooserComponent implements OnInit {
   }
 
   createWidget(widgetType: String) {
+    this.newWidget.widgetType = widgetType;
     this.widgetService.createWidget(this.pid, this.newWidget).subscribe(
       (widget: Widget) => {
-        const url: any = '/user/' + this.uid + '/website/' + this.wid + '/page/' + this.pid + '/widget/' + widget._id;
+        this.newWidget = widget;
+        console.log('widget chooser widget type = ' + widget.widgetType);
+        const url: any = '/user/' + this.uid + '/website/' + this.wid + '/page/' + this.pid + '/widget/' + this.newWidget._id;
+        console.log('widget chooser url = ' + url);
         this.router.navigate([url]);
       },
       (error: any) => {

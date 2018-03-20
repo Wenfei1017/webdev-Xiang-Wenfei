@@ -15,7 +15,10 @@ import { Website } from '../../../../models/website.model.client';
 })
 export class WidgetTextComponent implements OnInit {
 
-  widget: Widget;
+  widget: Widget = {
+    _id: '', widgetType: '', name: '', pageId: '', size: '1', text: '', url: '', width: '100%',
+    height: 100, rows: 0, class: '', icon: '', deletable: false, formatted: false, placeholder: ''
+  };
   wgid: String;
   pid: String;
   uid: String;

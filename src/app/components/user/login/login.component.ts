@@ -22,24 +22,62 @@ export class LoginComponent implements OnInit {
               private activatedRoute: ActivatedRoute, private router: Router) {
   }
 
+  // login() {
+  //   console.log('ddddhhhhh');
+  //   this.username = this.loginForm.value.username;
+  //   this.password = this.loginForm.value.password;
+  //
+  //   this.userService.findUserByCredentials(this.username, this.password)
+  //     .subscribe((user: User) => {
+  //         this.errorFlag = false;
+  //         console.log('username+  ' + this.username);
+  //         this.router.navigate(['/user', user._id]);
+  //       },
+  //       (error: any) => {
+  //         this.errorFlag = true;
+  //         this.errorMsg = error;
+  //       }
+  //     );
+  // }
+
   login(username: String, password: String) {
-    console.log('ddddhhhhh');
-    this.userService.findUserByCredentials(username, password)
-      .subscribe((user: User) => {
-          this.errorFlag = false;
-          console.log('username+  ' + this.username);
-          this.router.navigate(['/user', user._id]);
-        },
-        (error: any) => {
-          this.errorFlag = true;
-          this.errorMsg = error;
-        }
-      );
+    // if (username.trim() === '') {
+    //   this.errorMsg = 'Username cannot be empty';
+    //   this.errorFlag = true;
+    // }
+    // if (password.trim() === '') {
+    //   this.errorMsg = 'Password cannot be empty';
+    //   this.errorFlag = true;
+    // }
+    // this.username = this.loginForm.value.username;
+    // this.password = this.loginForm.value.password;
+    // console.log(this.username);
+    // console.log(this.password);
+    alert(this.username);
+    if (!this.errorFlag) {
+      console.log(this.username);
+      console.log(this.password);
+      this.userService.findUserByCredentials(this.username, this.password)
+        .subscribe(
+          (user: User) => {
+            console.log('message1');
+            // this.errorFlag = false;
+            console.log(user);
+
+            this.router.navigate(['/user', user._id]);
+          },
+          (error: any) => {
+            this.errorFlag = true;
+            // this.errorMsg = 'Invalid username or password !';
+            this.errorMsg = error;
+            console.log('this is error message = ' + this.errorMsg);
+          }
+        );
+    }
   }
 
   ngOnInit() {
-    console.log('ddddhhhhh');
-    console.log(this.username);
+    this.errorFlag = false;
      // this.errorMsg = 'This is Login Page';
      // this.errorFlag = false;
   }

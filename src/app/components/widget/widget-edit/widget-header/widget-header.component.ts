@@ -14,23 +14,27 @@ import { Website } from '../../../../models/website.model.client';
   styleUrls: ['./widget-header.component.css']
 })
 export class WidgetHeaderComponent implements OnInit {
-  widget: Widget;
+  widget: Widget = {
+    _id: '', widgetType: '', name: '', pageId: '', size: '1', text: '', url: '', width: '100%',
+    height: 100, rows: 0, class: '', icon: '', deletable: false, formatted: false, placeholder: ''
+  };
   wid: String;
   wgid: String;
   pid: String;
   uid: String;
 
-  constructor(
-    private widgetService: WidgetService,
-    private pageService: PageService,
-    private websiteService: WebsiteService,
-    private userService: UserService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router
-  ) { }
+  constructor(private widgetService: WidgetService,
+              private pageService: PageService,
+              private websiteService: WebsiteService,
+              private userService: UserService,
+              private activatedRoute: ActivatedRoute,
+              private router: Router) {
+  }
 
   updateOrCreateWidget() {
+    console.log('create widget = ' + this.widget._id);
     if (!this.widget._id) {
+      console.log('widget header pid = ' + this.pid);
       this.widgetService.createWidget(this.pid, this.widget).subscribe(
         (widget: Widget) => {
           this.widget = widget;
@@ -56,22 +60,34 @@ export class WidgetHeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('from 63');
     this.activatedRoute.params.subscribe(
       params => {
-        this.widgetService.findWidgetById(params['widgetId']).subscribe(
+        console.log('from 66');
+        this.widgetService.findWidgetById(params.widgetId).subscribe(
           (widget: Widget) => {
-            if (widget.pageId === params['pageId']) {
+            console.log('from 69');
+            if (widget.pageId === params.pageId) {
+              console.log('from 71');
               this.pageService.findPageById(widget.pageId).subscribe(
                 (page: Page) => {
-                  if (page.websiteId === params['websiteId']) {
+                  console.log('from 74');
+                  if (page.websiteId === params.websiteId) {
+                    console.log('from 76');
                     this.websiteService.findWebsiteById(page.websiteId).subscribe(
                       (website: Website) => {
-                        if (website.developerId === params['userId']) {
-                          this.uid = params['userId'];
-                          this.wid = params['websiteId'];
-                          this.pid = params['pageId'];
-                          this.wgid = params['widgetId'];
+                        if (website.developerId === params.userId) {
+                          console.log('from 80');
+                          this.uid = params.userId;
+                          this.wid = params.websiteId;
+                          this.pid = params.pageId;
+                          this.wgid = params.wdgetId;
                           this.widget = widget;
+                          console.log('uid = ' + this.uid);
+                          console.log('wid = ' + this.wid);
+                          console.log('pid = ' + this.pid);
+                          console.log('wgid = ' + this.wgid);
+                          console.log('widget header = ' + this.widget.widgetType);
                         } else {
                           console.log('User ID does not match.');
                         }
@@ -88,7 +104,6 @@ export class WidgetHeaderComponent implements OnInit {
       }
     );
   }
-
 }
 
 

@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { NgSwitch } from '@angular/common';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {NgSwitch} from '@angular/common';
 
-import { WidgetService } from '../../../services/widget.service.client';
-import { Widget } from '../../../models/widget.model.client';
-import { PageService } from '../../../services/page.service.client';
-import { WebsiteService } from '../../../services/website.service.client';
-import { UserService } from '../../../services/user.service.client';
-import { Page } from '../../../models/page.model.client';
-import { Website } from '../../../models/website.model.client';
+import {WidgetService} from '../../../services/widget.service.client';
+import {Widget} from '../../../models/widget.model.client';
+import {PageService} from '../../../services/page.service.client';
+import {WebsiteService} from '../../../services/website.service.client';
+import {UserService} from '../../../services/user.service.client';
+import {Page} from '../../../models/page.model.client';
+import {Website} from '../../../models/website.model.client';
 
 @Component({
   selector: 'app-widget-edit',
@@ -23,14 +23,13 @@ export class WidgetEditComponent implements OnInit {
   wgid: String;
   widget: Widget;
 
-  constructor(
-    private widgetService: WidgetService,
-    private pageService: PageService,
-    private websiteService: WebsiteService,
-    private userService: UserService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router
-  ) { }
+  constructor(private widgetService: WidgetService,
+              private pageService: PageService,
+              private websiteService: WebsiteService,
+              private userService: UserService,
+              private activatedRoute: ActivatedRoute,
+              private router: Router) {
+  }
 
   // ngOnInit() {
   //   console.log('hahahahahahahahahahahah');
@@ -72,6 +71,11 @@ export class WidgetEditComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: any) => {
       this.wgid = (params['widgetId']);
+      this.pid = params['pageId'];
+      this.uid = params['userId'];
+      this.wid = params['websiteId'];
+
+      console.log('widget edit = ' + this.wgid);
 
       // new
       this.widget = this.widgetService.dumpWidget();

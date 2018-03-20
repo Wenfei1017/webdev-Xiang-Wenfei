@@ -24,7 +24,9 @@ export class WidgetService {
   }
 
   createWidget(pageId: String, widget: Widget) {
+    console.log('client side create widget');
     const url = this.baseUrl + '/api/page/' + pageId + '/widget';
+    console.log('create widget url= ' + url);
     return this.http.post(url, widget).map(
       (res: Response) => {
         return res.json();
@@ -43,6 +45,7 @@ export class WidgetService {
 
   findWidgetById(widgetId: String) {
     const url = this.baseUrl + '/api/widget/' + widgetId;
+    console.log('from widget server client ts');
     return this.http.get(url).map(
       (res: Response) => {
         return res.json();

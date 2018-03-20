@@ -20,7 +20,10 @@ export class WidgetImageComponent implements OnInit {
   wid: String;
   pid: String;
   wgid: String;
-  widget: Widget;
+  widget: Widget = {
+    _id: '', widgetType: '', name: '', pageId: '', size: '1', text: '', url: '', width: '100%',
+    height: 100, rows: 0, class: '', icon: '', deletable: false, formatted: false, placeholder: ''
+  };
   baseUrl: String;
 
   constructor(
@@ -40,17 +43,17 @@ export class WidgetImageComponent implements OnInit {
       this.pid = params['pageId'];
       this.wid = params['websiteId'];
       this.uid = params['userId'];
-      if (this.wgid === 'image') {
-        this.widget = this.widgetService.dumpWidget();
-        this.widget.widgetType = 'IMAGE';
-      } else {
+      // if (this.wgid === 'image') {
+      //   this.widget = this.widgetService.dumpWidget();
+      //   this.widget.widgetType = 'IMAGE';
+      // } else {
         this.widgetService.findWidgetById(this.wgid).subscribe(
           (widget: Widget) => {
             this.widget = widget;
             console.log(this.widget);
           }
         );
-      }
+      // }
     });
   }
 

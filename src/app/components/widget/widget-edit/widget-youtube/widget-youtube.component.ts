@@ -18,7 +18,10 @@ export class WidgetYoutubeComponent implements OnInit {
   pid: String;
   wid: String;
   wgid: String;
-  widget: Widget;
+  widget: Widget = {
+    _id: '', widgetType: '', name: '', pageId: '', size: '1', text: '', url: '', width: '100%',
+    height: 100, rows: 0, class: '', icon: '', deletable: false, formatted: false, placeholder: ''
+  };
 
   constructor(
     private widgetService: WidgetService,

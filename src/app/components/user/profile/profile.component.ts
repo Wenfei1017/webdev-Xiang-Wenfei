@@ -16,7 +16,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private activatedRoute: ActivatedRoute, private route: Router) { }
+    private activatedRoute: ActivatedRoute, private router: Router) { }
 
   updateUser(updatedUser) {
     this.userService.updateUser(this.uid, updatedUser).subscribe(
@@ -44,8 +44,22 @@ export class ProfileComponent implements OnInit {
   //   );
   // }
 
+  // deleteUser() {
+  //   console.log('delete user');
+  //   this.userService.deleteUser(this.user._id).subscribe();
+  // }
+
   deleteUser() {
-    this.userService.deleteUser(this.user._id).subscribe();
+    this.userService.deleteUser(this.uid).subscribe(
+      (user: User) => {
+        const url: any = '/login';
+        this.router.navigate([url]);
+      },
+      (error: any) => {
+        this.errorFlag = true;
+        this.errorMsg = error;
+      }
+    );
   }
 
 

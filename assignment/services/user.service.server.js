@@ -3,9 +3,9 @@ module.exports = function (app) {
   app.post("/api/user", createUser);
   app.get("/api/user/:userId", findUserById);
   app.put("/api/user/:userId", updateUserById);
-  app.delete("api/user/:userId", deleteUser);
+  app.delete("/api/user/:userId", deleteUser);
   app.get("/api/user", findUserByUsername);
-  // app.get("/api/user?username=username&password=password", findUserByCredentials);
+  app.get("/api/user", findUserByCredentials);
 
   var users = [
     {_id: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonderland"},
@@ -90,6 +90,7 @@ module.exports = function (app) {
   }
 
   function findUserByCredentials(req, res) {
+    console.log('server side find user by credential');
     var username = req.query['username'];
     var password = req.query['password'];
     for (var i = 0; i < users.length; i++) {
@@ -114,13 +115,19 @@ module.exports = function (app) {
   // }
 
   function deleteUser(req, res) {
+    console.log('server side delete user');
     var userId = req.params["userId"];
     for (const i in users) {
       if (users[i]._id === userId) {
-        const j = +i;
-        users.splice(j, 1);
+        // const j = +i;
+        // console.log('before= ' + users.length);
+        // users.splice(j, 1);
+        // console.log('after= ' + users.length);
+        res.json(users[i]);
+        users.splice(i, 1);
+        return;
       }
     }
-    res.send("success");
+    res.send("user can not found");
   }
 };
