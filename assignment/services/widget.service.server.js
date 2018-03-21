@@ -44,7 +44,7 @@ module.exports = function (app) {
 
     if(myFile == null) {
       // res.redirect("http://localhost:4200/profile/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget");
-      res.redirect("https://cs5610-webdev-junruxu.herokuapp.com/profile/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget");
+      res.redirect("https://cs5610-webdev-wenfei.herokuapp.com/profile/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget");
       return;
     }
 
