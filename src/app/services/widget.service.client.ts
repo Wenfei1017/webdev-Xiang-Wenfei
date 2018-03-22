@@ -2,7 +2,8 @@ import {Injectable} from '@angular/core';
 import {Widget} from '../models/widget.model.client';
 import {Http, RequestOptions, Response} from '@angular/http';
 import 'rxjs/Rx';
-import {environment} from '../../environments/environment';
+// import {environment} from '../../environments/environment';
+import {environment} from '../../environments/environment.prod';
 
 @Injectable()
 export class WidgetService {
@@ -45,7 +46,9 @@ export class WidgetService {
 
   findWidgetById(widgetId: String) {
     const url = this.baseUrl + '/api/widget/' + widgetId;
-    console.log('from widget server client ts');
+    // console.log('from widget server client ts');
+    console.log('client side find widget by id');
+    console.log('find widget by id url = ' + url);
     return this.http.get(url).map(
       (res: Response) => {
         return res.json();

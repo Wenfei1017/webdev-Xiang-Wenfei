@@ -1,7 +1,8 @@
 module.exports = function (app) {
-
   var multer = require('multer'); // npm install multer --save
   var upload = multer({ dest: __dirname + '/../../src/assets/uploads' });
+  // var baseUrl = "http://localhost:3100";
+  var baseUrl = "";
 
   app.post("/api/page/:pageId/widget", createWidget);
   app.get("/api/page/:pageId/widget", findAllWidgetsForPage);
@@ -35,6 +36,7 @@ module.exports = function (app) {
   ];
 
   function uploadImage(req, res) {
+    console.log('server side upload image');
     var widgetId      = req.body.widgetId;
     var width         = req.body.width;
     var myFile        = req.file;
@@ -43,8 +45,8 @@ module.exports = function (app) {
     var pageId = req.body.pageId;
 
     if(myFile == null) {
-      // res.redirect("http://localhost:4200/profile/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget");
-      res.redirect("https://cs5610-webdev-wenfei.herokuapp.com/profile/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget");
+      res.redirect(baseUrl + "/user/" +userId + "/website/" + websiteId + "/page/" + pageId + "/widget");
+      // res.redirect("https://cs5610-webdev-wenfei.herokuapp.com/profile/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget");
       return;
     }
 
@@ -55,10 +57,16 @@ module.exports = function (app) {
     var size          = myFile.size;
     var mimetype      = myFile.mimetype;
 
+    console.log('widget id= ' + widgetId);
+    console.log('filename= ' + filename);
+    console.log('path= ' + path);
+    console.log('dest= ' + destination);
+
+    // console.log(widgetId)
     if (!widgetId) {
-      var tobeCreated = {_id: (widgets.length + 1).toString(), widgetType: 'IMAGE', pageId: pageId, size: size, text: 'text', width:'100%',
+      var imageCreated = {_id: (widgets.length + 1).toString(), widgetType: 'IMAGE', pageId: pageId, size: size, text: 'text', width:'100%',
         url:'/uploads/' + filename, formatted: false};
-      widgets.push(tobeCreated);
+      widgets.push(imageCreated);
     } else {
       var foundWidget = widgets.find(function (widget) {
         return widget._id === widgetId;
@@ -67,7 +75,8 @@ module.exports = function (app) {
     }
 
     // res.redirect("http://localhost:4200/profile/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget");
-    res.redirect("https://cs5610-webdev-wenfei.herokuapp.com/profile/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget");
+    res.redirect("https://cs5610-webdev-wenfei.herokuapp.com/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget");
+    // res.redirect(baseUrl + "/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget");
   }
 
   function reorderWidgets(req,res) {

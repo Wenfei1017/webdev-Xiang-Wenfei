@@ -1260,7 +1260,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-chooser/widget-chooser.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--<nav class=\"navbar navbar-fixed-top navbar-light bg-secondary\">-->\n  <!--<a class=\"navbar-brand\" routerLink=\"/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget\">-->\n    <!--<span class=\"glyphicon glyphicon-chevron-left text-dark\"></span>-->\n  <!--</a>-->\n  <!--<div class=\"navbar-brand font-weight-bold\">-->\n    <!--Choose Widget-->\n  <!--</div>-->\n<!--</nav>-->\n<!--<div class=\"container-fluid cl-body-padding\">-->\n  <!--<div class=\"extra-padding\">-->\n    <!--<a class=\"btn extra-left-padding\" (click)=\"createWidget('HEADER')\">Header</a>-->\n  <!--</div>-->\n  <!--<div class=\"extra-padding\">-->\n    <!--<a class=\"extra-left-padding\" routerLink=\"./\">Label</a>-->\n  <!--</div>-->\n  <!--<div class=\"extra-padding\">-->\n    <!--<a class=\"btn extra-left-padding\" (click)=\"createWidget('HTML')\">HTML</a>-->\n  <!--</div>-->\n  <!--<div class=\"extra-padding\">-->\n    <!--<a class=\"btn extra-left-padding\" (click)=\"createWidget('TEXT')\">Text Input</a>-->\n  <!--</div>-->\n  <!--<div class=\"extra-padding\">-->\n    <!--<a class=\"extra-left-padding\" routerLink=\"./\">Link</a>-->\n  <!--</div>-->\n  <!--<div class=\"extra-padding\">-->\n    <!--<a class=\"extra-left-padding\" routerLink=\"./\">Button</a>-->\n  <!--</div>-->\n  <!--<div class=\"extra-padding\">-->\n    <!--<a class=\"btn extra-left-padding\" (click)=\"createWidget('IMAGE')\">Image</a>-->\n  <!--</div>-->\n  <!--<div class=\"extra-padding\">-->\n    <!--<a class=\"btn extra-left-padding\" (click)=\"createWidget('YOUTUBE')\">YouTube</a>-->\n  <!--</div>-->\n  <!--<div class=\"extra-padding\">-->\n    <!--<a class=\"extra-left-padding\" routerLink=\"./\">Data Table</a>-->\n  <!--</div>-->\n  <!--<div class=\"extra-padding\">-->\n    <!--<a class=\"extra-left-padding\" routerLink=\"./\">Repeater</a>-->\n  <!--</div>-->\n<!--</div>-->\n<!--<nav class=\"navbar navbar-fixed-bottom navbar-light bg-secondary\">-->\n  <!--<a class=\"btn navbar-brand pull-right\" routerLink=\"/user/{{userId}}\">-->\n    <!--<span class=\"glyphicon glyphicon-user text-primary\"></span>-->\n  <!--</a>-->\n<!--</nav>-->\n\n\n<nav class=\"navbar navbar-default navbar-fixed-top\">\n  <div class=\"container-fluid row\">\n    <div class=\"navbar-text pull-left\">\n      <a routerLink=\"..\" class=\"cl-text-black cl-icon-padding\">\n        <span class=\"glyphicon glyphicon-chevron-left\">\n        </span>\n      </a>\n    </div>\n    <a class=\"navbar-brand cl-text-white cl-text-bold\" routerLink=\".\">\n      Choose Widget\n    </a>\n  </div>\n</nav>\n\n<div class=\"container-fluid cl-container-padding\">\n  <ul class=\"list-group cl-list-group-borderless\">\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a (click)=\"createWidget('HEADER')\">Header</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a routerLink=\".\">Label</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a routerLink=\"../html\">HTML</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a routerLink=\"../text\">Text</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a routerLink=\".\">Link</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a routerLink=\".\">Button</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a routerLink=\"../image\">Image</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a routerLink=\"../youtube\">YouTube</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a routerLink=\".\">Data Table</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a routerLink=\".\">Repeater</a>\n    </li>\n  </ul>\n</div>\n\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid row\">\n    <div class=\"pull-right navbar-text\">\n      <a routerLink=\"../../../../../..\" class=\"cl-icon-padding\">\n        <span class=\"glyphicon glyphicon-user\"></span>\n      </a>\n    </div>\n  </div>\n</nav>\n"
+module.exports = "<!--<nav class=\"navbar navbar-fixed-top navbar-light bg-secondary\">-->\n  <!--<a class=\"navbar-brand\" routerLink=\"/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget\">-->\n    <!--<span class=\"glyphicon glyphicon-chevron-left text-dark\"></span>-->\n  <!--</a>-->\n  <!--<div class=\"navbar-brand font-weight-bold\">-->\n    <!--Choose Widget-->\n  <!--</div>-->\n<!--</nav>-->\n<!--<div class=\"container-fluid cl-body-padding\">-->\n  <!--<div class=\"extra-padding\">-->\n    <!--<a class=\"btn extra-left-padding\" (click)=\"createWidget('HEADER')\">Header</a>-->\n  <!--</div>-->\n  <!--<div class=\"extra-padding\">-->\n    <!--<a class=\"extra-left-padding\" routerLink=\"./\">Label</a>-->\n  <!--</div>-->\n  <!--<div class=\"extra-padding\">-->\n    <!--<a class=\"btn extra-left-padding\" (click)=\"createWidget('HTML')\">HTML</a>-->\n  <!--</div>-->\n  <!--<div class=\"extra-padding\">-->\n    <!--<a class=\"btn extra-left-padding\" (click)=\"createWidget('TEXT')\">Text Input</a>-->\n  <!--</div>-->\n  <!--<div class=\"extra-padding\">-->\n    <!--<a class=\"extra-left-padding\" routerLink=\"./\">Link</a>-->\n  <!--</div>-->\n  <!--<div class=\"extra-padding\">-->\n    <!--<a class=\"extra-left-padding\" routerLink=\"./\">Button</a>-->\n  <!--</div>-->\n  <!--<div class=\"extra-padding\">-->\n    <!--<a class=\"btn extra-left-padding\" (click)=\"createWidget('IMAGE')\">Image</a>-->\n  <!--</div>-->\n  <!--<div class=\"extra-padding\">-->\n    <!--<a class=\"btn extra-left-padding\" (click)=\"createWidget('YOUTUBE')\">YouTube</a>-->\n  <!--</div>-->\n  <!--<div class=\"extra-padding\">-->\n    <!--<a class=\"extra-left-padding\" routerLink=\"./\">Data Table</a>-->\n  <!--</div>-->\n  <!--<div class=\"extra-padding\">-->\n    <!--<a class=\"extra-left-padding\" routerLink=\"./\">Repeater</a>-->\n  <!--</div>-->\n<!--</div>-->\n<!--<nav class=\"navbar navbar-fixed-bottom navbar-light bg-secondary\">-->\n  <!--<a class=\"btn navbar-brand pull-right\" routerLink=\"/user/{{userId}}\">-->\n    <!--<span class=\"glyphicon glyphicon-user text-primary\"></span>-->\n  <!--</a>-->\n<!--</nav>-->\n\n\n<nav class=\"navbar navbar-default navbar-fixed-top\">\n  <div class=\"container-fluid row\">\n    <div class=\"navbar-text pull-left\">\n      <a routerLink=\"..\" class=\"cl-text-black cl-icon-padding\">\n        <span class=\"glyphicon glyphicon-chevron-left\">\n        </span>\n      </a>\n    </div>\n    <a class=\"navbar-brand cl-text-white cl-text-bold\" routerLink=\".\">\n      Choose Widget\n    </a>\n  </div>\n</nav>\n\n<div class=\"container-fluid cl-container-padding\">\n  <ul class=\"list-group cl-list-group-borderless\">\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a (click)=\"createWidget('HEADER')\">Header</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a routerLink=\".\">Label</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a (click)=\"createWidget('HTML')\">HTML</a>\n      <!--<a routerLink=\"../html\">HTML</a>-->\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a (click)=\"createWidget('TEXT')\">Text</a>\n      <!--<a routerLink=\"../text\">Text</a>-->\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <!--<a (click)=\"createWidget('LINK')\" )></a>-->\n      <a routerLink=\".\">Link</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a routerLink=\".\">Button</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a (click)=\"createWidget('IMAGE')\">Image</a>\n      <!--<a routerLink=\"../image\">Image</a>-->\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a (click)=\"createWidget('YOUTUBE')\">YOUTUBE</a>\n      <!--<a routerLink=\"../youtube\">YouTube</a>-->\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a routerLink=\".\">Data Table</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a routerLink=\".\">Repeater</a>\n    </li>\n  </ul>\n</div>\n\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid row\">\n    <div class=\"pull-right navbar-text\">\n      <a routerLink=\"../../../../../..\" class=\"cl-icon-padding\">\n        <span class=\"glyphicon glyphicon-user\"></span>\n      </a>\n    </div>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -1318,7 +1318,7 @@ var WidgetChooserComponent = /** @class */ (function () {
                 if (page.websiteId === params['websiteId']) {
                     _this.websiteService.findWebsiteById(page.websiteId).subscribe(function (website) {
                         if (website.developerId === params['userId']) {
-                            console.log('testetetettetetettetetetehahaha');
+                            // console.log('testetetettetetettetetetehahaha');
                             _this.uid = params['userId'];
                             _this.wid = params['websiteId'];
                             _this.pid = params['pageId'];
@@ -1341,6 +1341,7 @@ var WidgetChooserComponent = /** @class */ (function () {
         this.widgetService.createWidget(this.pid, this.newWidget).subscribe(function (widget) {
             _this.newWidget = widget;
             console.log('widget chooser widget type = ' + widget.widgetType);
+            console.log('widget chooser widget id = ' + widget._id);
             var url = '/user/' + _this.uid + '/website/' + _this.wid + '/page/' + _this.pid + '/widget/' + _this.newWidget._id;
             console.log('widget chooser url = ' + url);
             _this.router.navigate([url]);
@@ -1486,7 +1487,10 @@ var WidgetEditComponent = /** @class */ (function () {
             _this.pid = params['pageId'];
             _this.uid = params['userId'];
             _this.wid = params['websiteId'];
-            console.log('widget edit = ' + _this.wgid);
+            console.log('widget edit wgid = ' + _this.wgid);
+            console.log('widget edit pid = ' + _this.pid);
+            console.log('widget edit uid = ' + _this.uid);
+            console.log('widget edit wid = ' + _this.wid);
             // new
             _this.widget = _this.widgetService.dumpWidget();
             if (_this.wgid === 'heading') {
@@ -2580,7 +2584,7 @@ var Widget = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Rx__ = __webpack_require__("../../../../rxjs/_esm5/Rx.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__environments_environment_prod__ = __webpack_require__("../../../../../src/environments/environment.prod.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2595,11 +2599,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 // import { Observable } from 'rxjs/Observable ';
 
+// import {environment} from '../../environments/environment';
 
 var PageService = /** @class */ (function () {
     function PageService(http) {
         this.http = http;
-        this.baseUrl = __WEBPACK_IMPORTED_MODULE_4__environments_environment__["a" /* environment */].baseUrl;
+        this.baseUrl = __WEBPACK_IMPORTED_MODULE_4__environments_environment_prod__["a" /* environment */].baseUrl;
     }
     PageService.prototype.dumpPage = function () {
         return new __WEBPACK_IMPORTED_MODULE_0__models_page_model_client__["a" /* Page */](undefined, undefined, undefined, undefined);
@@ -2650,7 +2655,7 @@ var PageService = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/_esm5/Rx.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment_prod__ = __webpack_require__("../../../../../src/environments/environment.prod.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2664,11 +2669,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 // import { Observable } from 'rxjs/Observable ';
 
+// import {environment} from '../../environments/environment';
 
 var UserService = /** @class */ (function () {
     function UserService(http) {
         this.http = http;
-        this.baseUrl = __WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl;
+        this.baseUrl = __WEBPACK_IMPORTED_MODULE_3__environments_environment_prod__["a" /* environment */].baseUrl;
     }
     UserService.prototype.createUser = function (user) {
         var url = this.baseUrl + '/api/user';
@@ -2747,7 +2753,7 @@ var WEBSITES = [
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__website_mock__ = __webpack_require__("../../../../../src/app/services/website.mock.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Rx__ = __webpack_require__("../../../../rxjs/_esm5/Rx.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__environments_environment_prod__ = __webpack_require__("../../../../../src/environments/environment.prod.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2762,12 +2768,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 // import { Observable } from 'rxjs/Observable ';
 
+// import {environment} from '../../environments/environment';
 
 var WebsiteService = /** @class */ (function () {
     function WebsiteService(http) {
         this.http = http;
         this.websites = __WEBPACK_IMPORTED_MODULE_1__website_mock__["a" /* WEBSITES */];
-        this.baseUrl = __WEBPACK_IMPORTED_MODULE_4__environments_environment__["a" /* environment */].baseUrl;
+        this.baseUrl = __WEBPACK_IMPORTED_MODULE_4__environments_environment_prod__["a" /* environment */].baseUrl;
     }
     WebsiteService.prototype.findAllWebSites = function () {
         return this.websites;
@@ -2822,7 +2829,7 @@ var WebsiteService = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_widget_model_client__ = __webpack_require__("../../../../../src/app/models/widget.model.client.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Rx__ = __webpack_require__("../../../../rxjs/_esm5/Rx.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__environments_environment_prod__ = __webpack_require__("../../../../../src/environments/environment.prod.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2836,11 +2843,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+// import {environment} from '../../environments/environment';
 
 var WidgetService = /** @class */ (function () {
     function WidgetService(http) {
         this.http = http;
-        this.baseUrl = __WEBPACK_IMPORTED_MODULE_4__environments_environment__["a" /* environment */].baseUrl;
+        this.baseUrl = __WEBPACK_IMPORTED_MODULE_4__environments_environment_prod__["a" /* environment */].baseUrl;
     }
     WidgetService.prototype.dumpWidget = function () {
         return new __WEBPACK_IMPORTED_MODULE_1__models_widget_model_client__["a" /* Widget */](undefined, undefined, undefined, undefined);
@@ -2867,7 +2875,9 @@ var WidgetService = /** @class */ (function () {
     };
     WidgetService.prototype.findWidgetById = function (widgetId) {
         var url = this.baseUrl + '/api/widget/' + widgetId;
-        console.log('from widget server client ts');
+        // console.log('from widget server client ts');
+        console.log('client side find widget by id');
+        console.log('find widget by id url = ' + url);
         return this.http.get(url).map(function (res) {
             return res.json();
         });
@@ -2894,6 +2904,20 @@ var WidgetService = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/environments/environment.prod.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
+var environment = {
+    production: true,
+    baseUrl: 'https://webdev-wenfei.herokuapp.com'
+    // baseUrl: 'http://localhost:3100'
+};
+
+
+/***/ }),
+
 /***/ "../../../../../src/environments/environment.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2905,8 +2929,8 @@ var WidgetService = /** @class */ (function () {
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 var environment = {
     production: false,
-    baseUrl: 'https://webdev-wenfei.herokuapp.com'
-    // baseUrl: 'http://localhost:3100'
+    // baseUrl: 'https://webdev-wenfei.herokuapp.com'
+    baseUrl: 'http://localhost:3100'
 };
 
 

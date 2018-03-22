@@ -75,7 +75,10 @@ export class WidgetEditComponent implements OnInit {
       this.uid = params['userId'];
       this.wid = params['websiteId'];
 
-      console.log('widget edit = ' + this.wgid);
+      console.log('widget edit wgid = ' + this.wgid);
+      console.log('widget edit pid = ' + this.pid);
+      console.log('widget edit uid = ' + this.uid);
+      console.log('widget edit wid = ' + this.wid);
 
       // new
       this.widget = this.widgetService.dumpWidget();
