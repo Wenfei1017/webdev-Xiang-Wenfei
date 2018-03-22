@@ -45,7 +45,7 @@ module.exports = function (app) {
     var pageId = req.body.pageId;
 
     if(myFile == null) {
-      res.redirect("https://cs5610-webdev-wenfei.herokuapp.com/user/" +userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId);
+      res.redirect("https://webdev-wenfei.herokuapp.com/user/" +userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId);
       // res.redirect("https://cs5610-webdev-wenfei.herokuapp.com/profile/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget");
       return;
     }
@@ -81,7 +81,7 @@ module.exports = function (app) {
     }
     widget.url = '/uploads/' + filename;
     // res.redirect("http://localhost:4200/profile/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget");
-    res.redirect("https://cs5610-webdev-wenfei.herokuapp.com/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId)
+    res.redirect("https://webdev-wenfei.herokuapp.com/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId)
     // res.redirect(baseUrl + "/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget");
   }
 

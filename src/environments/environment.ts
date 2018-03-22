@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'https://cs5610-webdev-wenfei.herokuapp.com'
+  baseUrl: 'https://webdev-wenfei.herokuapp.com'
   // baseUrl: 'http://localhost:3100'
 };
