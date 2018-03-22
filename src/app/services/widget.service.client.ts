@@ -2,8 +2,8 @@ import {Injectable} from '@angular/core';
 import {Widget} from '../models/widget.model.client';
 import {Http, RequestOptions, Response} from '@angular/http';
 import 'rxjs/Rx';
-// import {environment} from '../../environments/environment';
-import {environment} from '../../environments/environment.prod';
+import {environment} from '../../environments/environment';
+// import {environment} from '../../environments/environment.prod';
 
 @Injectable()
 export class WidgetService {
