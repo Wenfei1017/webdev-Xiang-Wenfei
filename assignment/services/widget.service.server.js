@@ -63,19 +63,25 @@ module.exports = function (app) {
     console.log('dest= ' + destination);
 
     // console.log(widgetId)
-    if (!widgetId) {
-      var imageCreated = {_id: (widgets.length + 1).toString(), widgetType: 'IMAGE', pageId: pageId, size: size, text: 'text', width:'100%',
-        url:'/uploads/' + filename, formatted: false};
-      widgets.push(imageCreated);
-    } else {
-      var foundWidget = widgets.find(function (widget) {
-        return widget._id === widgetId;
-      });
-      foundWidget.url = "/uploads/" + filename;
+    // if (!widgetId) {
+    //   var imageCreated = {_id: (widgets.length + 1).toString(), widgetType: 'IMAGE', pageId: pageId, size: size, text: 'text', width:'100%',
+    //     url:'/uploads/' + filename, formatted: false};
+    //   widgets.push(imageCreated);
+    // } else {
+    //   var foundWidget = widgets.find(function (widget) {
+    //     return widget._id === widgetId;
+    //   });
+    //   foundWidget.url = "/uploads/" + filename;
+    // }
+    var widget;
+    for(var i=0; i<widgets.length; i++) {
+      if(widgets[i]._id === widgetId) {
+        widget = widgets[i];
+      }
     }
-
+    widget.url = '/uploads/' + filename;
     // res.redirect("http://localhost:4200/profile/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget");
-    res.redirect("https://cs5610-webdev-wenfei.herokuapp.com/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId);
+    res.redirect("https://cs5610-webdev-wenfei.herokuapp.com/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId)
     // res.redirect(baseUrl + "/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget");
   }
 
