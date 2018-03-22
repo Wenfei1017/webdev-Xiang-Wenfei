@@ -45,7 +45,7 @@ module.exports = function (app) {
     var pageId = req.body.pageId;
 
     if(myFile == null) {
-      res.redirect(baseUrl + "/user/" +userId + "/website/" + websiteId + "/page/" + pageId + "/widget");
+      res.redirect(baseUrl + "/user/" +userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId);
       // res.redirect("https://cs5610-webdev-wenfei.herokuapp.com/profile/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget");
       return;
     }
@@ -75,7 +75,7 @@ module.exports = function (app) {
     }
 
     // res.redirect("http://localhost:4200/profile/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget");
-    res.redirect("https://cs5610-webdev-wenfei.herokuapp.com/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget");
+    res.redirect("https://cs5610-webdev-wenfei.herokuapp.com/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId);
     // res.redirect(baseUrl + "/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget");
   }
 
