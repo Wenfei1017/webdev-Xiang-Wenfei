@@ -12,11 +12,11 @@ export class WebsiteEditComponent implements OnInit {
   wid: String;
   // uid: String;
   // websites: any[] = [{ _id: '', name: '', developerId: '', description: '' }];
-  websites: Website[] = [];
+  websites: any[];
   // updatedWebsite: Website;
   webDeveloperId: String;
   description: String;
-  updatedWebsite: Website = {_id: '', name: '', developerId: '', description:''};
+  updatedWebsite: any = {};
   errorMsg: String;
 
   constructor(private websiteService: WebsiteService,
@@ -25,7 +25,7 @@ export class WebsiteEditComponent implements OnInit {
 
   updateWebsite(website) {
     this.websiteService.updateWebsite(this.wid, website).subscribe(
-      (website: Website) => {
+      (website: any) => {
         this.updatedWebsite = website;
         let url: any = '/user/' + this.webDeveloperId + '/website';
         this.router.navigate([url]);
@@ -46,9 +46,9 @@ export class WebsiteEditComponent implements OnInit {
     this.activatedRoute.params.subscribe(
       params => {
         this.websiteService.findWebsiteById(params['websiteId']).subscribe(
-          (website: Website) => {
+          (website: any) => {
             this.wid = website._id;
-            this.webDeveloperId = website.developerId;
+            this.webDeveloperId = website._user;
             this.updatedWebsite = website;
           },
           (error: any) => {
@@ -56,7 +56,7 @@ export class WebsiteEditComponent implements OnInit {
           }
         );
         this.websiteService.findWebsitesByUser(params['userId']).subscribe(
-          (websites: Website[]) => {
+          (websites: any[]) => {
             this.websites = websites;
           },
           (error: any) => {

@@ -18,11 +18,11 @@ export class WidgetChooserComponent implements OnInit {
   uid: String;
   wid: String;
   pid: String;
-  widgets: Widget[] = [];
-  newWidget: Widget = {
-    _id: '', widgetType: '', name: '', pageId: '', size: '1', text: '', url: '', width: '100%',
-    height: 100, rows: 0, class: '', icon: '', deletable: false, formatted: false, placeholder: ''
-  };
+  widgets: any[];
+  // newWidget: Widget = {
+  //   _id: '', widgetType: '', name: '', pageId: '', size: '1', text: '', url: '', width: '100%',
+  //   height: 100, rows: 0, class: '', icon: '', deletable: false, formatted: false, placeholder: ''
+  // };
 
   constructor(
     private widgetService: WidgetService,
@@ -33,28 +33,23 @@ export class WidgetChooserComponent implements OnInit {
     private router: Router
   ) { }
 
-  // ngOnInit() {
-  //   this.activatedRoute.params.subscribe((params: any) => {
-  //     this.uid = params['userId'];
-  //     this.wid = params['websiteId'];
-  //     this.pid = params['pageId'];
-  //   });
-  // }
-
   ngOnInit() {
     this.activatedRoute.params.subscribe(
       params => {
         this.pageService.findPageById(params['pageId']).subscribe(
-          (page: Page) => {
-            if (page.websiteId === params['websiteId']) {
-              this.websiteService.findWebsiteById(page.websiteId).subscribe(
-                (website: Website) => {
-                  if (website.developerId === params['userId']) {
-                    // console.log('testetetettetetettetetetehahaha');
+          (page: any) => {
+            if (page._website === params['websiteId']) {
+              this.websiteService.findWebsiteById(page._website).subscribe(
+                (website: any) => {
+                  if (website._user === params['userId']) {
                     this.uid = params['userId'];
                     this.wid = params['websiteId'];
                     this.pid = params['pageId'];
-                    console.log('pid = ' + this.pid);
+                    this.widgetService.findWidgetsByPageId(this.pid).subscribe(
+                      (widgets: any[]) => {
+                        this.widgets = widgets;
+                      }
+                    );
                   } else {
                     console.log('User ID does not match.');
                   }
@@ -69,15 +64,16 @@ export class WidgetChooserComponent implements OnInit {
     );
   }
 
+
   createWidget(widgetType: String) {
-    this.newWidget.widgetType = widgetType;
-    this.widgetService.createWidget(this.pid, this.newWidget).subscribe(
-      (widget: Widget) => {
-        this.newWidget = widget;
-        console.log('widget chooser widget type = ' + widget.widgetType);
-        console.log('widget chooser widget id = ' + widget._id );
-        const url: any = '/user/' + this.uid + '/website/' + this.wid + '/page/' + this.pid + '/widget/' + this.newWidget._id;
-        console.log('widget chooser url = ' + url);
+    const newWidget: any = {
+      type: widgetType, name: 'name', size: 1, width: '30%',
+      height: '30%', rows: 0, deletable: false, formatted: false, placeholder: '',
+      position: this.widgets.length
+    }
+    this.widgetService.createWidget(this.pid, newWidget).subscribe(
+      (widget: any) => {
+        const url: any = '/user/' + this.uid + '/website/' + this.wid + '/page/' + this.pid + '/widget/' + widget._id;
         this.router.navigate([url]);
       },
       (error: any) => {
@@ -85,21 +81,4 @@ export class WidgetChooserComponent implements OnInit {
       }
     );
   }
-
 }
-
-// import { Component, OnInit } from '@angular/core';
-//
-// @Component({
-//   selector: 'app-widget-chooser',
-//   templateUrl: './widget-chooser.component.html',
-//   styleUrls: ['./widget-chooser.component.css']
-// })
-// export class WidgetChooserComponent implements OnInit {
-//
-//   constructor() { }
-//
-//   ngOnInit() {
-//   }
-//
-// }

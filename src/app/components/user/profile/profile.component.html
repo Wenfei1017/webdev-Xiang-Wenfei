@@ -6,7 +6,7 @@
   <div class="navbar-brand text-white font-weight-bold">
     Profile
   </div>
-  <a class="navbar-brand btn pull-right" (click)="userUpdate(user)">
+  <a class="navbar-brand btn pull-right" (click)="updateUser(user)">
     <span class="glyphicon glyphicon-ok text-white"></span>
   </a >
 </nav>
@@ -34,6 +34,16 @@
     <div class="form-group">
     <label for="lastname">Last Name</label>
     <input [(ngModel)]="user.lastName" type="text" name="lastname" class="form-control" id="lastname" placeholder="last name">
+    </div>
+
+    <div class="form-group">
+    <label for="email">Email</label>
+    <input [(ngModel)]="user.email" type="email" name="email" id = "email" placeholder="jannunzi@gmail.com" class="form-control">
+    </div>
+
+    <div class="form-group">
+    <label for="phone">Phone</label>
+    <input [(ngModel)]="user.phone" type="tel" name="phone" id="phone" placeholder="2061234567" class="form-control">
     </div>
 
     <div class="form-group">

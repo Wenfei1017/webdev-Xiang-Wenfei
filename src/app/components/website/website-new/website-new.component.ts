@@ -10,28 +10,21 @@ import {Website} from '../../../models/website.model.client';
 })
 export class WebsiteNewComponent implements OnInit {
   uid: String;
-  websites: any[] = [{ _id: '', name: '', developerId: '', description: '' }];
-  newWebsite: Website = { _id: '', name: '', developerId: '', description: '' };
+  websites: any[];
+  newWebsite: any = {};
 
 
   constructor(private websiteService: WebsiteService,
               private activatedRoute: ActivatedRoute,
-              private router: Router) {}
-  // ngOnInit() {
-  //   this.activatedRoute.params.subscribe(
-  //     (params: any) => {
-  //       this.uid = params['userId'];
-  //     }
-  //   );
-  //   console.log('website new test');
-  //   this.websites = this.websiteService.findWebsitesByUser(this.uid);
-  // }
+              private router: Router) {
+  }
+
   ngOnInit() {
     this.activatedRoute.params.subscribe(
       (params: any) => {
         this.uid = params['userId'];
         this.websiteService.findWebsitesByUser(this.uid).subscribe(
-          (websites: Website[]) => {
+          (websites: any[]) => {
             this.websites = websites;
           }
         );
@@ -40,12 +33,18 @@ export class WebsiteNewComponent implements OnInit {
   }
 
   createWebsite(website) {
-    this.websiteService.createWebsite(this.uid, website).subscribe(
-      (website: Website) => {
-        this.newWebsite = website;
-        this.router.navigate(['../'], {relativeTo: this.activatedRoute});
-        console.log(this.newWebsite);
+      if (website.name != null
+        && website.description != null
+        && website.name.trim() !== ''
+        && website.description.trim() !== '') {
+        this.websiteService.createWebsite(this.uid, website).subscribe(
+          (website: any) => {
+            const url: any = '/user/' + this.uid + '/website';
+            this.router.navigate([url]);
+          },
+          (error: any) => {
+          }
+        );
       }
-    );
   }
 }

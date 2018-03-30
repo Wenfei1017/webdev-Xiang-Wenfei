@@ -20,10 +20,7 @@ export class WidgetImageComponent implements OnInit {
   wid: String;
   pid: String;
   wgid: String;
-  widget: Widget = {
-    _id: '', widgetType: '', name: '', pageId: '', size: '1', text: '', url: '', width: '100%',
-    height: 100, rows: 0, class: '', icon: '', deletable: false, formatted: false, placeholder: ''
-  };
+  widget: any = {};
   baseUrl: String;
 
   constructor(
@@ -48,7 +45,7 @@ export class WidgetImageComponent implements OnInit {
       //   this.widget.widgetType = 'IMAGE';
       // } else {
         this.widgetService.findWidgetById(this.wgid).subscribe(
-          (widget: Widget) => {
+          (widget: any) => {
             this.widget = widget;
             console.log(this.widget);
           }
@@ -57,16 +54,10 @@ export class WidgetImageComponent implements OnInit {
     });
   }
 
-
-  //
-  // updateWidget(widget: Widget) {
-  //   this.widgetService.updateWidget(widget._id, widget);
-  // }
-
   updateOrCreateWidget() {
     if (!this.widget._id) {
       this.widgetService.createWidget(this.pid, this.widget).subscribe(
-        (widget: Widget) => {
+        (widget: any) => {
           this.widget = widget;
           this.router.navigate(['../'], {relativeTo: this.activatedRoute});
           console.log(this.widget);
@@ -82,27 +73,11 @@ export class WidgetImageComponent implements OnInit {
   }
 
   deleteWidget() {
-    this.widgetService.deleteWidget(this.widget._id).subscribe(
-      () => {
-        this.router.navigate(['../'], {relativeTo: this.activatedRoute});
+    this.widgetService.deleteWidget(this.wid).subscribe(
+      (widget: any) => {
+        const url: any = '/user/' + this.uid + '/website/' + this.wid + '/page/' + this.pid + '/widget';
+        this.router.navigate([url]);
       }
     );
   }
-
-  // deleteWidget() {
-  //   this.widgetService.deleteWidget(this.wgid);
-  // }
-
-  // deleteWidget() {
-  //   this.widgetService.deleteWidget(this.wgid).subscribe(
-  //     () => {
-  //       let url: any = '/user/' + this.uid + '/website/' + this.wid + '/page/' + this.pid + '/widget';
-  //       this.router.navigate([url]);
-  //     },
-  //     (error: any) => {
-  //       console.log(error);
-  //     }
-  //   );
-  // }
-
 }

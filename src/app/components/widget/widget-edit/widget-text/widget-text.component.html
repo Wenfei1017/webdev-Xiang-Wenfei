@@ -13,7 +13,7 @@
       </a>
     </div>
     <a class="navbar-brand cl-text-white cl-text-bold" routerLink=".">
-      Widgets Edit {{widget.widgetType}}
+      Widgets Edit
     </a>
   </div>
 </nav>
@@ -28,20 +28,21 @@
       <label for="text-text">Text</label>
       <input [(ngModel)]="widget.text" type="text" class="form-control" id="text-text" placeholder="Text" [ngModelOptions]="{standalone: true}">
     </div>
+
     <div class="form-group">
       <label for="text-rows">Rows</label>
-      <input type="text" class="form-control" id="text-rows" placeholder="Rows">
+      <input [(ngModel)]="widget.rows" type="number" class="form-control" name = "rows" id="text-rows" placeholder="Rows">
     </div>
+
     <div class="form-group">
-      <label for="text-placeholder">Placeholder</label>
-      <input type="text" class="form-control" id="text-placeholder" placeholder="Placeholder">
-    </div>
-    <div class="input-group">
-      <input type="text" readonly value="Formatted" class="form-control"/>
+      <label for="placeholder">Placeholder</label>
+      <input [(ngModel)]="widget.placeholder" id= "placeholder" name="placeholder" class="form-control" required/>
+      <p></p>
+      <input type="text" readonly value="Formatted" class="form-control" />
       <span class="input-group-addon">
-        <input [(ngModel)]="widget.formatted" type="checkbox" [ngModelOptions]="{standalone: true}"/>
+        <input [(ngModel)]="widget.formatted" name="formatted" type="checkbox" />
       </span>
-    </div><br/>
+    </div>
   </form>
   <a class="btn btn-danger btn-block" (click)="deleteWidget()">Delete</a>
 </div>
@@ -49,7 +50,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid row">
     <div class="pull-right navbar-text">
-      <a routerLink="../../../../../.." class="cl-icon-padding">
+      <a routerLink="/user/{{uid}}" class="cl-icon-padding">
         <span class="glyphicon glyphicon-user"></span>
       </a>
     </div>

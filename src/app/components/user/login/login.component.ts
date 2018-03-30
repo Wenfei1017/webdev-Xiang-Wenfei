@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
       console.log(this.password);
       this.userService.findUserByCredentials(this.username, this.password)
         .subscribe(
-          (user: User) => {
+          (user: any) => {
             console.log('message1');
             // this.errorFlag = false;
             console.log(user);

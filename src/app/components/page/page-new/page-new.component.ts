@@ -1,10 +1,10 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import { PageService } from '../../../services/page.service.client';
-import { Page } from '../../../models/page.model.client';
+import {PageService} from '../../../services/page.service.client';
+import {Page} from '../../../models/page.model.client';
 import {ActivatedRoute, Router} from '@angular/router';
-import { WebsiteService } from '../../../services/website.service.client';
-import { UserService } from '../../../services/user.service.client';
-import { Website } from '../../../models/website.model.client';
+import {WebsiteService} from '../../../services/website.service.client';
+import {UserService} from '../../../services/user.service.client';
+import {Website} from '../../../models/website.model.client';
 
 
 @Component({
@@ -17,14 +17,15 @@ export class PageNewComponent implements OnInit {
   page: Page;
   wid: String;
   pages: Page[] = [];
-  newPage: Page = {_id: '', name: '', websiteId: '', description: ''};
+  newPage: any = {};
   pageName: String;
 
   constructor(private pageService: PageService,
               private websiteService: WebsiteService,
               private userService: UserService,
               private activatedRoute: ActivatedRoute,
-              private router: Router) { }
+              private router: Router) {
+  }
 
   // createPage(websiteId: String, page: Page) {
   //   const createdPage = new Page(String(this.pages.length + 1), page.name, websiteId, page.description);
@@ -50,8 +51,8 @@ export class PageNewComponent implements OnInit {
     this.activatedRoute.params.subscribe(
       params => {
         this.websiteService.findWebsiteById(params['websiteId']).subscribe(
-          (website: Website) => {
-            if (website.developerId === params['userId']) {
+          (website: any) => {
+            if (website._user === params['userId']) {
               this.wid = params['websiteId'];
               this.uid = params['userId'];
             } else {
@@ -67,8 +68,10 @@ export class PageNewComponent implements OnInit {
   }
 
   createPage(page: Page) {
+    console.log('page new create method');
+    console.log('page name= ' + page.name);
     this.pageService.createPage(this.wid, page).subscribe(
-      (page: Page) => {
+      (page: any) => {
         let url: any = '/user/' + this.uid + '/website/' + this.wid + '/page';
         this.router.navigate([url]);
       }

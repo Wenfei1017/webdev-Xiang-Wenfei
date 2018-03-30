@@ -18,10 +18,7 @@ export class WidgetYoutubeComponent implements OnInit {
   pid: String;
   wid: String;
   wgid: String;
-  widget: Widget = {
-    _id: '', widgetType: '', name: '', pageId: '', size: '1', text: '', url: '', width: '100%',
-    height: 100, rows: 0, class: '', icon: '', deletable: false, formatted: false, placeholder: ''
-  };
+  widget: any = {};
 
   constructor(
     private widgetService: WidgetService,
@@ -76,7 +73,7 @@ export class WidgetYoutubeComponent implements OnInit {
         this.widget.widgetType = 'YOUTUBE';
       } else {
         this.widgetService.findWidgetById(this.wgid).subscribe(
-          (widget: Widget) => {
+          (widget: any) => {
             this.widget = widget;
             console.log(this.widget);
           }
@@ -92,7 +89,7 @@ export class WidgetYoutubeComponent implements OnInit {
   updateOrCreateWidget() {
     if (!this.widget._id) {
       this.widgetService.createWidget(this.pid, this.widget).subscribe(
-        (widget: Widget) => {
+        (widget: any) => {
           this.widget = widget;
           this.router.navigate(['../'], {relativeTo: this.activatedRoute});
           console.log(this.widget);

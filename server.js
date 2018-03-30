@@ -4,6 +4,11 @@ const app = express();
 const path = require('path');
 const http = require('http');
 
+// var connectionString = 'mongodb://localhost:27017/webdev';
+var connectionString = 'mongodb://wenfei123:xwf455804669@ds127139.mlab.com:27139/wenfeidatabase'; // for heroku
+var mongoose = require("mongoose");
+mongoose.createConnection(connectionString);
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 

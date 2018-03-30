@@ -15,13 +15,13 @@ export class WidgetService {
     return new Widget(undefined, undefined, undefined, undefined);
   }
 
-  reorderWidgets(startIndex, endIndex, pageId) {
-    return this.http.put(this.baseUrl + '/api/page/' + pageId + '/widget?start=' + startIndex + '&end=' + endIndex, '')
-      .map(
-        (res: Response) => {
-          return res.json();
-        }
-      );
+  findImage(imageName: String) {
+    const url = this.baseUrl + '/api/image/' + imageName;
+    return this.http.get(url).map(
+      (res: Response) => {
+        return res.json();
+      }
+    );
   }
 
   createWidget(pageId: String, widget: Widget) {
@@ -69,17 +69,18 @@ export class WidgetService {
     const url = this.baseUrl + '/api/widget/' + widgetId;
     return this.http.delete(url).map(
       (res: Response) => {
+        return res.json();
       }
     );
   }
 
-  // reorderWidgets(startIndex, endIndex, pageId) {
-  //   const url = this.baseUrl + '/api/page/' + pageId + '/widget?initial=' + startIndex + '&final=' + endIndex;
-  //   return this.http.put(url, '').map(
-  //     (res: Response) => {
-  //       const data = res;
-  //       return data;
-  //     }
-  //   );
-  // }
+  reorderWidgets(startIndex, endIndex, pageId) {
+    const url = this.baseUrl + '/api/page/' + pageId + '/widget?initial=' + startIndex + '&final=' + endIndex;
+    return this.http.put(url, '').map(
+      (res: Response) => {
+        const data = res;
+        return data;
+      }
+    );
+  }
 }

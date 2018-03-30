@@ -9,7 +9,7 @@ import {User} from '../../../models/user.model.client';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  user: User = { _id: '', username: '', password: '', firstName: '', lastName: '' };
+  user: any = {};
   uid: String;
   errorFlag: boolean;
   errorMsg = 'update success !';
@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
 
   updateUser(updatedUser) {
     this.userService.updateUser(this.uid, updatedUser).subscribe(
-      (user: User) => {
+      (user: any) => {
         this.errorFlag = false;
         this.user = user;
       },
@@ -31,27 +31,9 @@ export class ProfileComponent implements OnInit {
     );
   }
 
-  // deleteUser() {
-  //   this.userService.deleteUser(this.uid).subscribe(
-  //     (user: User) => {
-  //       const url: any = '/login';
-  //       this.route.navigate([url]);
-  //     },
-  //     (error: any) => {
-  //       this.errorFlag = true;
-  //       this.errorMsg = error;
-  //     }
-  //   );
-  // }
-
-  // deleteUser() {
-  //   console.log('delete user');
-  //   this.userService.deleteUser(this.user._id).subscribe();
-  // }
-
   deleteUser() {
     this.userService.deleteUser(this.uid).subscribe(
-      (user: User) => {
+      (user: any) => {
         const url: any = '/login';
         this.router.navigate([url]);
       },
@@ -66,8 +48,8 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       this.uid = params['userId'];
-      return this.userService.findUserById(params['userId']).subscribe(
-        (user: User) => {
+      return this.userService.findUserById(this.uid).subscribe(
+        (user: any) => {
           this.user = user;
         },
       (error: any) => {

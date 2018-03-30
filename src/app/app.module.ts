@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import {Routing} from './app.routing';
 import {FormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
-// import {HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
+import { QuillEditorModule } from 'ngx-quill-editor';
 
 // client side services
 import {UserService} from './services/user.service.client';
@@ -38,9 +38,11 @@ import { WidgetHtmlComponent } from './components/widget/widget-edit/widget-html
 import { WidgetTextComponent } from './components/widget/widget-edit/widget-text/widget-text.component';
 
 import { SortableDirective } from '../../assignment/directives/sortable.directive';
-// import { OrderByPipe } from '../../assignment/pipes/order-by-pipe/order-by-pipe.pipe';
+import { FlickrImageSearchComponent } from './components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
+import { OrderByPipe } from './components/widget/widget-list/order-by-pipe.pipe';
 // import { SafePipe } from '../../assignment/pipes/safe-url/safe-url.pipe';
-import { QuillEditorModule } from 'ngx-quill-editor';
+import { FlickrService } from '../app/services/flickr.service.client';
+
 
 @NgModule({
   declarations: [
@@ -62,7 +64,11 @@ import { QuillEditorModule } from 'ngx-quill-editor';
     WidgetYoutubeComponent,
     WidgetTextComponent,
     WidgetHtmlComponent,
+    SortableDirective,
+    FlickrImageSearchComponent,
+    // QuillEditorModule,
     // SafePipe
+    OrderByPipe,
   ],
   imports: [
     BrowserModule,
@@ -70,11 +76,10 @@ import { QuillEditorModule } from 'ngx-quill-editor';
     // Http,
     HttpModule,
     Routing,
-    // HttpClientModule,
     QuillEditorModule,
     // SafePipe
   ],
-  providers: [UserService, WebsiteService, PageService, WidgetService],
+  providers: [UserService, WebsiteService, PageService, WidgetService, FlickrService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

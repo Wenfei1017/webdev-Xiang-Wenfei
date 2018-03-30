@@ -1,6 +1,5 @@
-
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid row">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid row">
 
     <div class="navbar-text pull-left">
       <a routerLink=".." class="cl-text-black cl-icon-padding">
@@ -8,19 +7,40 @@
           </span>
       </a>
     </div>
-    <!--<div class="navbar-text pull-right">-->
-      <!--<a routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget" class="cl-icon-padding cl-text-black">-->
-          <!--<span class="glyphicon glyphicon-ok">-->
-          <!--</span>-->
-      <!--</a>-->
-    <!--</div>-->
+    <div class="navbar-text pull-right">
+      <a class="cl-icon-padding cl-text-black" (click)="updateOrCreateWidget()">
+      <span class="glyphicon glyphicon-ok">
+        </span>
+    </a>
+    </div>
     <a class="navbar-brand cl-text-white cl-text-bold" routerLink=".">
-      Widgets Edit {{widget.widgetType}}
+
+
+
+      <!--<nav class="navbar navbar-default navbar-fixed-top">-->
+        <!--<div class="container-fluid row">-->
+          <!--<div class="navbar-text pull-left">-->
+            <!--<a routerLink=".." class="cl-text-black cl-icon-padding">-->
+        <!--<span class="glyphicon glyphicon-chevron-left">-->
+        <!--</span>-->
+            <!--</a>-->
+          <!--</div>-->
+          <!--<div class="navbar-text pull-right">-->
+            <!--<a (click)="updateOrCreateWidget()" class="cl-icon-padding cl-text-black">-->
+        <!--<span class="glyphicon glyphicon-ok">-->
+        <!--</span>-->
+            <!--</a>-->
+          <!--</div>-->
+          <!--<a class="navbar-brand cl-text-white cl-text-bold" routerLink=".">-->
+
+
+
+      Widgets Edit
     </a>
   </div>
-  <a class="btn navbar-brand pull-right" (click)="updateOrCreateWidget()">
-    <span class="glyphicon glyphicon-ok text-dark"></span>
-  </a>
+  <!--<a class="btn navbar-brand pull-right" (click)="updateOrCreateWidget()">-->
+    <!--<span class="glyphicon glyphicon-ok text-dark"></span>-->
+  <!--</a>-->
 </nav>
 
 <div class="container">
@@ -31,10 +51,10 @@
     </div>
 
 
-    <!--<div class="form-group">-->
-      <!--<label for="website-name">Name</label>-->
-      <!--<input [(ngModel)]="name" type="text" class="form-control" id="website-name" placeholder="Name" [ngModelOptions]="{standalone: true}">-->
-    <!--</div>-->
+    <div class="form-group">
+      <label for="website-name">Name</label>
+      <input [(ngModel)]="widget.name" type="text" class="form-control" id="website-name" placeholder="Name" [ngModelOptions]="{standalone: true}">
+    </div>
 
     <div class="form-group">
       <label for="youtube-text">Text</label>

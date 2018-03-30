@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {Website} from '../models/website.model.client';
-import {WEBSITES} from './website.mock';
 import {Http, Response} from '@angular/http';
 import {HttpClientModule} from '@angular/common/http';
 // import { Observable } from 'rxjs/Observable ';
@@ -11,15 +10,10 @@ import {environment} from '../../environments/environment';
 
 @Injectable()
 export class WebsiteService {
-  websites: Website[] = WEBSITES;
 
   constructor(private http: Http) {}
 
   baseUrl = environment.baseUrl;
-
-  findAllWebSites() {
-    return this.websites;
-  }
 
   createWebsite(userId: String, website: Website) {
     const url = this.baseUrl + '/api/user/' + userId + '/website';

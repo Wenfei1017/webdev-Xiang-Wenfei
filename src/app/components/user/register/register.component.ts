@@ -13,13 +13,13 @@ import {NgForm} from '@angular/forms';
 export class RegisterComponent implements OnInit {
   @ViewChild('f') registerForm: NgForm;
 
-  user: User = { _id: '', username: '', password: '', firstName: '', lastName: '' };
+  user: any =   {};
   username: String;
   password: String;
   verifypas: String;
   errorFlag: Boolean;
   errorMsg: String;
-  users: User[] = [];
+  // users: User[] = [];
   // uid: String;
 
   constructor(private userService: UserService,
@@ -40,10 +40,10 @@ export class RegisterComponent implements OnInit {
       this.errorFlag = true;
     }
     if (!this.errorFlag) {
-      this.user.username = this.username;
-      this.user.password = this.password;
+      this.user.username = username;
+      this.user.password = password;
       this.userService.createUser(this.user).subscribe(
-        (user: User) => {
+        (user: any) => {
           this.errorFlag = false;
           this.router.navigate(['/user', user._id]);
         },

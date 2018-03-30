@@ -19,16 +19,22 @@
 </nav>
 
 <div class="container-fluid cl-container-padding">
-  <div class="row extra-padding">
+  <!--<div class="row extra-padding">-->
 
-    <ul class="list-group cl-list-group-borderless" *ngFor="let page of pages">
-      <li class="list-group-item cl-list-item-borderless">
-        <a routerLink="/user/{{uid}}/website/{{wid}}/page/{{page._id}}"><span class="glyphicon glyphicon-cog pull-right"></span></a>
-        <a routerLink="/user/{{uid}}/website/{{wid}}/page/{{page._id}}/widget">{{page.name}}</a>
-      </li>
-    </ul>
+    <!--<ul class="list-group cl-list-group-borderless" *ngFor="let page of pages">-->
+      <!--<li class="list-group-item cl-list-item-borderless">-->
+        <!--<a routerLink="/user/{{uid}}/website/{{wid}}/page/{{page._id}}"><span class="glyphicon glyphicon-cog pull-right"></span></a>-->
+        <!--<a routerLink="/user/{{uid}}/website/{{wid}}/page/{{page._id}}/widget">{{page.name}}</a>-->
+      <!--</li>-->
+    <!--</ul>-->
+  <!--</div>-->
+
+  <div class="row extra-padding" *ngFor="let page of pages">
+    <a class="extra-left-padding" routerLink="/user/{{uid}}/website/{{wid}}/page/{{page._id}}/widget">{{page.name}}</a>
+    <a class="pull-right" routerLink="/user/{{uid}}/website/{{wid}}/page/{{page._id}}">
+      <i class="glyphicon glyphicon-cog text-primary extra-right-padding"></i>
+    </a>
   </div>
-</div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid row">

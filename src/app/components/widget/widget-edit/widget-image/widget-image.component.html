@@ -48,6 +48,8 @@
     <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
     <br/>
   </form>
+
+  <a class="btn btn-primary btn-block " [routerLink]="['/user/'+uid+'/website/'+wid+'/page/'+pid+'/widget/'+wgid+'/flickr']">Choose From Flickr</a>
   <a class="btn btn-danger btn-block" (click)="deleteWidget()">Delete</a>
 </div>
 
