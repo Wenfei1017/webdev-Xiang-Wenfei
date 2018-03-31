@@ -82,7 +82,7 @@ export class WidgetHeaderComponent implements OnInit {
                           this.uid = params.userId;
                           this.wid = params.websiteId;
                           this.pid = params.pageId;
-                          this.wgid = params.wdgetId;
+                          this.wgid = params.widgetId;
                           this.widget = widget;
                           console.log('uid = ' + this.uid);
                           console.log('wid = ' + this.wid);

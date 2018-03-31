@@ -30,8 +30,11 @@ function findUserByCredentials(username, password) {
   return User.findOne({username: username, password: password});
 }
 
+// function updateUser(userId, user) {
+//   return User.findByIdAndUpdate(userId, user);
+// }
 function updateUser(userId, user) {
-  return User.findByIdAndUpdate(userId, user);
+  return User.update({_id: userId}, user);
 }
 
 function deleteUser(userId) {

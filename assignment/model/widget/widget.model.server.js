@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var WidgetSchema = require('./widget.schema.server');
 var Widget = mongoose.model('Widget', WidgetSchema);
 var Page = require('../page/page.model.server');
+var Website = require('../website/website.model.server');
 
 Widget.createWidget = createWidget;
 Widget.findAllWidgetsForPage = findAllWidgetsForPage;
@@ -17,7 +18,7 @@ function createWidget(pageId, widget)  {
   widget._page = pageId;
   return Widget.create(widget)
     .then(function(responseWidget){
-      Page.findPageById(pageId)
+      Page.findPageById(responseWidget._page)
         .then(function(page){
           page.widgets.push(responseWidget);
           return page.save();
@@ -38,12 +39,25 @@ function updateWidget(widgetId, widget) {
   return Widget.findByIdAndUpdate(widgetId, widget);
 }
 
+// function deleteWidget(widgetId) {
+//   console.log("widgetId: " + widgetId);
+//   Widget.findById(widgetId, function (err, foundWidget) {
+//     var index = foundWidget.position;
+//     resetWidgets(index, foundWidget._page);
+//   });
+//   return Widget.findByIdAndRemove(widgetId);
+// }
+
 function deleteWidget(widgetId) {
-  Widget.findById(widgetId, function (err, foundWidget) {
-    var index = foundWidget.position;
-    resetWidgets(index, foundWidget._page);
-  });
-  return Widget.findByIdAndRemove(widgetId);
+  Widget.findById(widgetId)
+    .then(function(widget) {
+      Page.findPageById(widget._page)
+        .then(function(page) {
+          page.widgets.pull({_id: widgetId});
+          page.save();
+        })
+    });
+  return Widget.remove({_id: widgetId});
 }
 
 function resetWidgets(index, pageId) {

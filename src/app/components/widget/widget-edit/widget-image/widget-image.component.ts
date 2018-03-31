@@ -73,7 +73,7 @@ export class WidgetImageComponent implements OnInit {
   }
 
   deleteWidget() {
-    this.widgetService.deleteWidget(this.wid).subscribe(
+    this.widgetService.deleteWidget(this.widget._id).subscribe(
       (widget: any) => {
         const url: any = '/user/' + this.uid + '/website/' + this.wid + '/page/' + this.pid + '/widget';
         this.router.navigate([url]);
