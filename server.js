@@ -5,7 +5,7 @@ const path = require('path');
 const http = require('http');
 
 // var connectionString = 'mongodb://localhost:27017/webdev';
-var connectionString = 'mongodb://wenfei123:xwf455804669@ds127139.mlab.com:57097/heroku_wq4lb13n'; // for heroku
+var connectionString = 'mongodb://wenfei1:123456@ds127139.mlab.com:57097/heroku_wq4lb13n'; // for heroku
 var mongoose = require("mongoose");
 mongoose.createConnection(connectionString);
 

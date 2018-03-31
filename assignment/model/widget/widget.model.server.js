@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var WidgetSchema = require('./widget.schema.server');
 var Widget = mongoose.model('Widget', WidgetSchema);
+var Page = require('../page/page.model.server');
 
 Widget.createWidget = createWidget;
 Widget.findAllWidgetsForPage = findAllWidgetsForPage;
@@ -12,9 +13,17 @@ Widget.resetWidgets = resetWidgets;
 
 module.exports = Widget;
 
-function createWidget(pageId, widget) {
+function createWidget(pageId, widget)  {
   widget._page = pageId;
-  return Widget.create(widget);
+  return Widget.create(widget)
+    .then(function(responseWidget){
+      Page.findPageById(pageId)
+        .then(function(page){
+          page.widgets.push(responseWidget);
+          return page.save();
+        });
+      return responseWidget;
+    });
 }
 
 function findAllWidgetsForPage(pageId) {

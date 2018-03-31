@@ -16,4 +16,4 @@ module.exports = function (app){
 //
 // }
 
-// do the samething in services(user services)
+// do the something in services(user services)
