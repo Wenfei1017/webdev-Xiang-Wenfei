@@ -86,21 +86,32 @@ module.exports = function (app) {
     );
   }
 
+  // function updateUser(req, res) {
+  //   var userId = req.params["userId"];
+  //   var updatedUser = req.body;
+  //   userModel.updateUser(userId, updatedUser).then(
+  //     function (user) {
+  //       if (user) {
+  //         res.json(user);
+  //       } else {
+  //         res.sendStatus(400).send("Cannot find user")
+  //       }
+  //     },
+  //     function (err) {
+  //       res.sendStatus(400).send(err);
+  //     }
+  //   );
+  // }
+
   function updateUser(req, res) {
     var userId = req.params["userId"];
-    var updatedUser = req.body;
-    userModel.updateUser(userId, updatedUser).then(
-      function (user) {
-        if (user) {
-          res.json(user);
-        } else {
-          res.sendStatus(400).send("Cannot find user")
-        }
-      },
-      function (err) {
-        res.sendStatus(400).send(err);
-      }
-    );
+    var user = req.body;
+    userModel.updateUser(userId, user)
+      .then(function(status){
+        res.send(status);
+      }, function(err) {
+        res.status(500).json(err);
+      });
   }
 
   function deleteUser(req, res) {

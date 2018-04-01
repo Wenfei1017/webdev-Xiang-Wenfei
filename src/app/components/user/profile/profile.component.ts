@@ -18,8 +18,8 @@ export class ProfileComponent implements OnInit {
     private userService: UserService,
     private activatedRoute: ActivatedRoute, private router: Router) { }
 
-  updateUser(updatedUser) {
-    this.userService.updateUser(this.uid, updatedUser).subscribe(
+  updateUser() {
+    this.userService.updateUser(this.user._id, this.user).subscribe(
       (user: any) => {
         this.errorFlag = false;
         this.user = user;

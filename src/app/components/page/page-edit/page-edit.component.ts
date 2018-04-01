@@ -77,6 +77,7 @@ export class PageEditComponent implements OnInit {
       this.pageService.findPageById(params['pageId']).subscribe(
         (page: Page) => {
           this.page = page;
+          console.log(page._id);
         }
       );
     });
