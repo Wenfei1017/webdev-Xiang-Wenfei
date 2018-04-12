@@ -15,14 +15,14 @@ import {WidgetListComponent} from './components/widget/widget-list/widget-list.c
 import {WidgetChooserComponent} from './components/widget/widget-chooser/widget-chooser.component';
 import {WidgetEditComponent} from './components/widget/widget-edit/widget-edit.component';
 import { FlickrImageSearchComponent } from './components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
-
+import {AuthGuard} from './services/auth-guard.service';
 
 const APP_ROUTES: Routes = [
   { path: '', component: LoginComponent},
   // { path: 'default', component: LoginComponent},
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
-  { path: 'profile', component: ProfileComponent},
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   { path: 'user/:userId', component: ProfileComponent},
   { path: 'user/:userId/website', component: WebsiteListComponent},
   { path: 'user/:userId/website/new', component: WebsiteNewComponent},

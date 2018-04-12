@@ -19,6 +19,8 @@ export class WidgetHeaderComponent implements OnInit {
   wgid: String;
   pid: String;
   uid: String;
+  errorFlag: boolean;
+  errorMsg = '';
 
   constructor(private widgetService: WidgetService,
               private pageService: PageService,
@@ -29,9 +31,7 @@ export class WidgetHeaderComponent implements OnInit {
   }
 
   updateOrCreateWidget() {
-    console.log('create widget = ' + this.widget._id);
     if (!this.widget._id) {
-      console.log('widget header pid = ' + this.pid);
       this.widgetService.createWidget(this.pid, this.widget).subscribe(
         (widget: any) => {
           this.widget = widget;
@@ -40,6 +40,15 @@ export class WidgetHeaderComponent implements OnInit {
         }
       );
     } else {
+      this.errorFlag = true;
+      this.errorMsg = '';
+      if (this.widget.name == null || this.widget.name.trim() === '') {
+        this.errorFlag = true;
+        this.errorMsg = 'Widget Name cannot be empty';
+      }
+      if (this.errorFlag) {
+        return;
+      }
       this.widgetService.updateWidget(this.widget._id, this.widget).subscribe(
         () => {
           this.router.navigate(['../'], {relativeTo: this.activatedRoute});

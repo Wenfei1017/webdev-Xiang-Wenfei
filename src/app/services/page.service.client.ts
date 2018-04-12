@@ -13,7 +13,7 @@ export class PageService {
   baseUrl = environment.baseUrl;
 
   dumpPage() {
-    return new Page(undefined, undefined, undefined, undefined);
+    return new Page(undefined, undefined, undefined, undefined, undefined);
   }
 
   createPage(websiteId: String, page: Page) {

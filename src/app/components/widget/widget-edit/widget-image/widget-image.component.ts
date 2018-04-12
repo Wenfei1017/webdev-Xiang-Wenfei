@@ -22,6 +22,8 @@ export class WidgetImageComponent implements OnInit {
   wgid: String;
   widget: any = {};
   baseUrl: String;
+  errorFlag: boolean;
+  errorMsg = '';
 
   constructor(
     private widgetService: WidgetService,
@@ -64,6 +66,15 @@ export class WidgetImageComponent implements OnInit {
         }
       );
     } else {
+      this.errorFlag = false;
+      this.errorMsg = '';
+      if (this.widget.name == null || this.widget.name.trim() === '') {
+        this.errorFlag = true;
+        this.errorMsg = 'Widget Name cannot be empty';
+      }
+      if (this.errorFlag) {
+        return;
+      }
       this.widgetService.updateWidget(this.widget._id, this.widget).subscribe(
         () => {
           this.router.navigate(['../'], {relativeTo: this.activatedRoute});

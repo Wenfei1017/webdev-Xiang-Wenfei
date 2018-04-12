@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
   password: String;
   verifypas: String;
   errorFlag: Boolean;
-  errorMsg: String;
+  errorMsg: String = '';
   // users: User[] = [];
   // uid: String;
 
@@ -28,30 +28,33 @@ export class RegisterComponent implements OnInit {
   register(username: String, password: String, verifyPassword: String) {
     this.errorFlag = false;
     if (username.trim() === '') {
-      this.errorMsg = 'Username cannot be empty';
+      this.errorMsg += 'Username cannot be empty';
       this.errorFlag = true;
+      return;
     }
     if (password.trim() === '') {
-      this.errorMsg = 'Password cannot be empty';
+      this.errorMsg += 'Password cannot be empty';
       this.errorFlag = true;
+      return;
     }
     if (this.password !== this.verifypas) {
-      this.errorMsg = 'Password and Verify Password do not match.';
+      this.errorMsg += 'Password and Verify Password do not match.';
       this.errorFlag = true;
     }
+    if (this.errorFlag) {
+      return;
+    }
     if (!this.errorFlag) {
-      this.user.username = username;
-      this.user.password = password;
-      this.userService.createUser(this.user).subscribe(
-        (user: any) => {
-          this.errorFlag = false;
-          this.router.navigate(['/user', user._id]);
-        },
-        (error: any) => {
-          this.errorFlag = true;
-          this.errorMsg = error;
-        }
-      );
+      this.userService.register(this.username, this.password)
+        .subscribe(
+          (data: any) => {
+            this.errorFlag = false;
+            this.router.navigate(['/profile']);
+          },
+          (error: any) => {
+            this.errorMsg = error.body;
+          }
+        );
     }
   }
 

@@ -4,6 +4,7 @@ import {User} from '../../../models/user.model.client';
 import {NgForm} from '@angular/forms';
 import { ViewChild } from '@angular/core';
 import {UserService} from '../../../services/user.service.client';
+import {SharedService} from '../../../services/shared.service.client';
 
 @Component({
   selector: 'app-login',
@@ -16,55 +17,36 @@ export class LoginComponent implements OnInit {
   password: String;
   errorFlag: boolean;
   // users: User[] = [];
-  errorMsg = 'Invalid username or password !';
+  errorMsg = '';
 
   constructor(private userService: UserService,
-              private activatedRoute: ActivatedRoute, private router: Router) {
+              private activatedRoute: ActivatedRoute, private router: Router,
+              private sharedService: SharedService) {
   }
 
-  // login() {
-  //   console.log('ddddhhhhh');
-  //   this.username = this.loginForm.value.username;
-  //   this.password = this.loginForm.value.password;
-  //
-  //   this.userService.findUserByCredentials(this.username, this.password)
-  //     .subscribe((user: User) => {
-  //         this.errorFlag = false;
-  //         console.log('username+  ' + this.username);
-  //         this.router.navigate(['/user', user._id]);
-  //       },
-  //       (error: any) => {
-  //         this.errorFlag = true;
-  //         this.errorMsg = error;
-  //       }
-  //     );
-  // }
-
   login(username: String, password: String) {
-    // if (username.trim() === '') {
-    //   this.errorMsg = 'Username cannot be empty';
-    //   this.errorFlag = true;
-    // }
-    // if (password.trim() === '') {
-    //   this.errorMsg = 'Password cannot be empty';
-    //   this.errorFlag = true;
-    // }
-    // this.username = this.loginForm.value.username;
-    // this.password = this.loginForm.value.password;
-    // console.log(this.username);
-    // console.log(this.password);
-    alert(this.username);
+    this.errorMsg = '';
+    this.errorFlag = false;
+    if (username == null || username.trim() === '') {
+      this.errorMsg += 'Username cannot be empty';
+      this.errorFlag = true;
+    }
+    if (password == null || password.trim() === '') {
+      this.errorMsg += 'Password cannot be empty';
+      this.errorFlag = true;
+    }
+    if (this.errorFlag) {
+      return;
+    }
     if (!this.errorFlag) {
-      console.log(this.username);
-      console.log(this.password);
-      this.userService.findUserByCredentials(this.username, this.password)
+      this.userService.login(this.username, this.password)
         .subscribe(
-          (user: any) => {
-            console.log('message1');
-            // this.errorFlag = false;
-            console.log(user);
-
-            this.router.navigate(['/user', user._id]);
+          (data: any) => {
+            this.sharedService.user = data;
+            this.errorFlag = false;
+            // console.log('this is login page');
+            // console.log(data);
+            this.router.navigate(['/profile']);
           },
           (error: any) => {
             this.errorFlag = true;
@@ -78,8 +60,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.errorFlag = false;
-     // this.errorMsg = 'This is Login Page';
-     // this.errorFlag = false;
   }
 }
 

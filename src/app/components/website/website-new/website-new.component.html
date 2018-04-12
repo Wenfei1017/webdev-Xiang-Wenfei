@@ -44,6 +44,9 @@
 <div class="col-xs-1 hidden-xs cl-full-height cl-right-divider"></div>
 
 <div class="col-xs-7 cl-body-padding">
+  <div *ngIf="errorFlag" class="alert alert-danger">
+    {{errorMsg}}
+  </div>
   <form>
     <div class="form-group">
       <label for="name">Name</label>

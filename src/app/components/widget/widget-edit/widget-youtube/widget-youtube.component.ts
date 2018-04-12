@@ -19,6 +19,8 @@ export class WidgetYoutubeComponent implements OnInit {
   wid: String;
   wgid: String;
   widget: any = {};
+  errorFlag: boolean;
+  errorMsg = '';
 
   constructor(
     private widgetService: WidgetService,
@@ -28,41 +30,6 @@ export class WidgetYoutubeComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) { }
-
-  // ngOnInit() {
-  //   this.activatedRoute.params.subscribe(
-  //     params => {
-  //       this.widgetService.findWidgetById(params['widgetId']).subscribe(
-  //         (widget: Widget) => {
-  //           if (widget.pageId === params['pageId']) {
-  //             this.pageService.findPageById(widget.pageId).subscribe(
-  //               (page: Page) => {
-  //                 if (page.websiteId === params['websiteId']) {
-  //                   this.websiteService.findWebsiteById(page.websiteId).subscribe(
-  //                     (website: Website) => {
-  //                       if (website.developerId === params['userId']) {
-  //                         this.uid = params['userId'];
-  //                         this.wid = params['websiteId'];
-  //                         this.pid = params['pageId'];
-  //                         this.wgid = params['widgetId'];
-  //                         this.widget = widget;
-  //                         console.log(this.widget);
-  //                       } else {
-  //                         console.log('User ID does not match.');
-  //                       }
-  //                     }
-  //                   );
-  //                 } else {
-  //                   console.log('Website ID does not match.');
-  //                 }
-  //               }
-  //             );
-  //           }
-  //         }
-  //       );
-  //     }
-  //   );
-  // }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: any) => {
@@ -82,10 +49,6 @@ export class WidgetYoutubeComponent implements OnInit {
     });
   }
 
-  // updateWidget(widget: Widget) {
-  //   this.widgetService.updateWidget(widget._id, widget);
-  // }
-
   updateOrCreateWidget() {
     if (!this.widget._id) {
       this.widgetService.createWidget(this.pid, this.widget).subscribe(
@@ -96,6 +59,15 @@ export class WidgetYoutubeComponent implements OnInit {
         }
       );
     } else {
+      this.errorFlag = false;
+      this.errorMsg = '';
+      if (this.widget.name == null || this.widget.name.trim() === '') {
+        this.errorFlag = true;
+        this.errorMsg = 'Widget Name cannot be empty';
+      }
+      if (this.errorFlag) {
+        return;
+      }
       this.widgetService.updateWidget(this.widget._id, this.widget).subscribe(
         () => {
           this.router.navigate(['../'], {relativeTo: this.activatedRoute});

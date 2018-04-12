@@ -10,28 +10,36 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class WebsiteEditComponent implements OnInit {
   wid: String;
-  // uid: String;
-  // websites: any[] = [{ _id: '', name: '', developerId: '', description: '' }];
   websites: any[];
-  // updatedWebsite: Website;
   webDeveloperId: String;
   description: String;
   updatedWebsite: any = {};
-  errorMsg: String;
+  errorFlag: boolean;
+  errorMsg: '';
 
   constructor(private websiteService: WebsiteService,
               private activatedRoute: ActivatedRoute,
               private router: Router) {}
 
   updateWebsite(website) {
-    this.websiteService.updateWebsite(this.wid, website).subscribe(
-      (website: any) => {
-        this.updatedWebsite = website;
-        let url: any = '/user/' + this.webDeveloperId + '/website';
-        this.router.navigate([url]);
-      },
-    );
-    console.log(this.wid);
+    this.errorFlag = false;
+         this.errorMsg = '';
+         if (website.name == null || website.name.trim() === '') {
+            this.errorFlag = true;
+            this.errorMsg += 'Website Name cannot be empty';
+            return;
+         }
+          if (!this.errorFlag) {
+            this.websiteService.updateWebsite(this.wid, website).subscribe(
+              (website: any) => {
+                this.updatedWebsite = website;
+                let url: any = '/user/' + this.webDeveloperId + '/website';
+                this.router.navigate([url]);
+              },
+            );
+            console.log(this.wid);
+          }
+
   }
 
   deleteWebsite() {

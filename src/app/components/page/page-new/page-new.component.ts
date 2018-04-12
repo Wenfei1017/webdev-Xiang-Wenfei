@@ -13,6 +13,8 @@ import {Website} from '../../../models/website.model.client';
   styleUrls: ['./page-new.component.css']
 })
 export class PageNewComponent implements OnInit {
+  errorMsg = '';
+  errorFlag: boolean;
   uid: String;
   page: Page;
   wid: String;
@@ -37,7 +39,7 @@ export class PageNewComponent implements OnInit {
     if (!page) {
       return undefined;
     }
-    return new Page(page._id, page.name, page.websiteId, page.description);
+    return new Page(page._id, page.name, page.websiteId, page.description, page.title);
   }
 
   // ngOnInit() {
@@ -68,6 +70,19 @@ export class PageNewComponent implements OnInit {
   }
 
   createPage(page: Page) {
+    this.errorMsg = '';
+    this.errorFlag = false;
+    if (page.name == null || page.name.trim() === '') {
+      this.errorFlag = true;
+      this.errorMsg += 'Page Name cannot be empty';
+    }
+    if (page.title == null || page.title.trim() === '') {
+      this.errorFlag = true;
+      this.errorMsg += 'Page Title cannot be empty';
+    }
+    if (this.errorFlag) {
+      return;
+    }
     console.log('page new create method');
     console.log('page name= ' + page.name);
     this.pageService.createPage(this.wid, page).subscribe(

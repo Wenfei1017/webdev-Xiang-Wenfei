@@ -3,6 +3,10 @@ const bodyParser = require('body-parser');
 const app = express();
 const path = require('path');
 const http = require('http');
+var cookieParser = require('cookie-parser');
+var session      = require('express-session');
+var passport = require('passport');
+
 
 // var connectionString = 'mongodb://localhost:27017/webdev';
 var connectionString = 'mongodb://wenfei1:123456@ds157097.mlab.com:57097/heroku_wq4lb13n'; // for heroku
@@ -12,12 +16,25 @@ mongoose.createConnection(connectionString);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(cookieParser());
+// app.use(session({ secret: process.env.SESSION_SECRET }));
+
+app.use(session({
+  secret: 'S3CR3T!',
+  resave: true,
+  saveUninitialized: true
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 app.use(express.static(path.join(__dirname, 'dist')));
 app.use(express.static(path.join(__dirname, 'src/assets')));
 
 //CORS
 app.use(function(reg, res, next){
-  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Origin", "https://webdev-wenfei.herokuapp.com/");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE, OPTIONS');
   next();

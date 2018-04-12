@@ -38,6 +38,9 @@
 </div>
   <!--<div class="col-xs-8 borders">-->
   <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 borders">
+    <div *ngIf="errorFlag" class="alert alert-danger">
+      {{errorMsg}}
+    </div>
     <form>
       <div class="form-group cl-8-top">
         <div class="form-group">

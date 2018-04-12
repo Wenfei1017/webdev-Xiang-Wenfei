@@ -19,6 +19,9 @@
 </nav>
 
 <div class="container">
+  <div *ngIf="errorFlag" class="alert alert-danger">
+    {{errorMsg}}
+  </div>
   <form>
     <div class="form-group">
       <label for="heading-name">Name</label>

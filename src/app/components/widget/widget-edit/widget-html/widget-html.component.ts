@@ -25,6 +25,8 @@ export class WidgetHtmlComponent implements OnInit {
   uid: String;
   wgid: String;
   wid: String;
+  errorFlag: boolean;
+  errorMsg = '';
 
   constructor(
     private widgetService: WidgetService,
@@ -34,40 +36,6 @@ export class WidgetHtmlComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) { }
-
-  // ngOnInit() {
-  //   this.activatedRoute.params.subscribe(
-  //     params => {
-  //       this.widgetService.findWidgetById(params['widgetId']).subscribe(
-  //         (widget: Widget) => {
-  //           if (widget.pageId === params['pageId']) {
-  //             this.pageService.findPageById(widget.pageId).subscribe(
-  //               (page: Page) => {
-  //                 if (page.websiteId === params['websiteId']) {
-  //                   this.websiteService.findWebsiteById(page.websiteId).subscribe(
-  //                     (website: Website) => {
-  //                       if (website.developerId === params['userId']) {
-  //                         this.uid = params['userId'];
-  //                         this.wid = params['websiteId'];
-  //                         this.pid = params['pageId'];
-  //                         this.wgid = params['widgetId'];
-  //                         this.widget = widget;
-  //                       } else {
-  //                         console.log('User ID does not match.');
-  //                       }
-  //                     }
-  //                   );
-  //                 } else {
-  //                   console.log('Website ID does not match.');
-  //                 }
-  //               }
-  //             );
-  //           }
-  //         }
-  //       );
-  //     }
-  //   );
-  // }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: any) => {
@@ -98,6 +66,15 @@ export class WidgetHtmlComponent implements OnInit {
         }
       );
     } else {
+      this.errorFlag = false;
+      this.errorMsg = '';
+      if (this.widget.name == null || this.widget.name.trim() === '') {
+        this.errorFlag = true;
+        this.errorMsg = 'Widget Name cannot be empty';
+      }
+      if (this.errorFlag) {
+        return;
+      }
       this.widgetService.updateWidget(this.widget._id, this.widget).subscribe(
         () => {
           this.router.navigate(['../'], {relativeTo: this.activatedRoute});

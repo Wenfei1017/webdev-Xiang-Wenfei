@@ -12,6 +12,8 @@ export class WebsiteNewComponent implements OnInit {
   uid: String;
   websites: any[];
   newWebsite: any = {};
+  errorFlag: boolean;
+  errorMsg = '';
 
 
   constructor(private websiteService: WebsiteService,
@@ -33,18 +35,24 @@ export class WebsiteNewComponent implements OnInit {
   }
 
   createWebsite(website) {
-      if (website.name != null
-        && website.description != null
-        && website.name.trim() !== ''
-        && website.description.trim() !== '') {
-        this.websiteService.createWebsite(this.uid, website).subscribe(
-          (website: any) => {
-            const url: any = '/user/' + this.uid + '/website';
-            this.router.navigate([url]);
-          },
-          (error: any) => {
-          }
-        );
-      }
+    this.errorFlag = false;
+    this.errorMsg = '';
+    if (website.name == null || website.name.trim() === '') {
+      this.errorMsg = 'Website Name cannot be empty';
+      this.errorFlag = true;
+      return
+    }
+    if (!this.errorFlag) {
+      this.websiteService.createWebsite(this.uid, website).subscribe(
+        (website: any) => {
+          const url: any = '/user/' + this.uid + '/website';
+          this.router.navigate([url]);
+        },
+        (error: any) => {
+          // Place an error message here
+        }
+      );
+    }
   }
+
 }

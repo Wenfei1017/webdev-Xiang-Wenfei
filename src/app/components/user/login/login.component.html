@@ -3,7 +3,7 @@
 
   <!-- generate error message when there are input errors -->
   <div *ngIf="errorFlag" class="alert alert-danger">
-    {{errorMsg}}
+    <p>{{errorMsg}}</p>>
   </div>
 
   <!-- using angular form (ngForm) instead of traditional <input> tag -->
@@ -28,6 +28,11 @@
     <div class="form-group">
     <button class="btn btn-primary btn-block" type="submit">Login</button>
     </div>
+
+    <a href="https://webdev-wenfei.herokuapp.com/facebook/login" class="btn btn-primary btn-block">
+      <span class="fa fa-facebook"></span>
+      Facebook
+    </a>
 
     <div class="form-group">
     <button class="btn btn-success btn-block" routerLink="/register">Register</button>
