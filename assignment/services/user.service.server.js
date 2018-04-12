@@ -6,13 +6,12 @@ module.exports = function (app) {
   var FacebookStrategy = require('passport-facebook').Strategy;
   var bcrypt = require("bcrypt-nodejs");
   var facebookConfig = {
-    // clientID: process.env.FACEBOOK_CLIENT_ID,
-    // clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
-    // callbackURL: process.env.FACEBOOK_CALLBACK_URL
-
-    clientID     : '789222517955181',
-    clientSecret : '994a779ee2dcd248942a8c06ed36479d',
-    callbackURL  : 'https://webdev-wenfei.herokuapp.com/auth/facebook/callback'
+    clientID: process.env.FACEBOOK_CLIENT_ID,
+    clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
+    callbackURL: process.env.FACEBOOK_CALLBACK_URL
+    // clientID     : '789222517955181',
+    // clientSecret : '994a779ee2dcd248942a8c06ed36479d',
+    // callbackURL  : 'https://webdev-wenfei.herokuapp.com/auth/facebook/callback'
   };
 
 
